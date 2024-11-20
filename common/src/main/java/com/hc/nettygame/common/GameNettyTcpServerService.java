@@ -1,11 +1,13 @@
 package com.hc.nettygame.common;
 
 import io.netty.channel.ChannelInitializer;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class GameNettyTcpServerService extends AbstractNettyTcpServerService {
-
-    public GameNettyTcpServerService(String serviceId, int serverPort, String bossThreadName, String workThreadName, ChannelInitializer channelInitializer) {
-        super(serviceId, serverPort, bossThreadName, workThreadName, channelInitializer);
+    public GameNettyTcpServerService(@Qualifier("GameTcpServerChannelInitializer") ChannelInitializer channelInitializer) {
+        super(channelInitializer);
     }
 }

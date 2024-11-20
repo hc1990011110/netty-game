@@ -7,8 +7,9 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.timeout.IdleStateHandler;
+import org.springframework.stereotype.Component;
 
-
+@Component("GameTcpServerChannelInitializer")
 public class GameTcpServerChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {

@@ -9,35 +9,42 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.net.InetSocketAddress;
 
 @Getter
-public abstract class AbstractNettyTcpServerService  {
+public class AbstractNettyTcpServerService {
     private final Logger LOGGER = Loggers.serverLogger;
-    private final String serviceId;
-    protected int serverPort;
+    private final ChannelInitializer channelInitializer;
     protected InetSocketAddress serverAddress;
 
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
-
-    private final ChannelInitializer channelInitializer;
-
     private ChannelFuture serverChannelFuture;
-    public AbstractNettyTcpServerService(String serviceId, int serverPort, String bossTreadName, String workThreadName, ChannelInitializer channelInitializer) {
-        this.serviceId = serviceId;
-        this.serverPort = serverPort;
-        this.serverAddress = new InetSocketAddress(serverPort);
+
+    @Value("${netty.serverId}")
+    private String serverId;
+    @Value("${netty.tcp-port}")
+    private int serverPort;
+
+    public AbstractNettyTcpServerService(ChannelInitializer channelInitializer) {
         this.channelInitializer = channelInitializer;
     }
 
-    public boolean startService() throws Exception{
-        boolean serviceFlag  = true;
+    @PostConstruct
+    public void init() {
+        this.serverAddress = new InetSocketAddress(serverPort);
+    }
+
+    public boolean startService() throws Exception {
+        boolean serviceFlag = true;
         bossGroup = new NioEventLoopGroup(1);
         workerGroup = new NioEventLoopGroup(0);
-        try{
+        try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap = serverBootstrap.group(bossGroup, workerGroup);
             serverBootstrap.channel(NioServerSocketChannel.class)
@@ -56,7 +63,7 @@ public abstract class AbstractNettyTcpServerService  {
             //TODO这里会阻塞main线程，暂时先注释掉
 //            serverChannelFuture.channel().closeFuture().sync();
             serverChannelFuture.channel().closeFuture().addListener(ChannelFutureListener.CLOSE);
-        }catch (Exception e) {
+        } catch (Exception e) {
             LOGGER.error(e.toString(), e);
             serviceFlag = false;
         }
@@ -64,12 +71,12 @@ public abstract class AbstractNettyTcpServerService  {
     }
 
 
-    public boolean stopService() throws Exception{
+    public boolean stopService() throws Exception {
         boolean flag = true;
-        if(bossGroup != null){
+        if (bossGroup != null) {
             bossGroup.shutdownGracefully();
         }
-        if(workerGroup != null){
+        if (workerGroup != null) {
             workerGroup.shutdownGracefully();
         }
         return flag;
