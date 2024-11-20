@@ -8,7 +8,7 @@
         <version>3.3.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.hc.www</groupId>
+    <groupId>com.hc.nettygame</groupId>
     <artifactId>netty-game</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -16,6 +16,8 @@
     <modules>
         <module>common</module>
         <module>gate-server</module>
+        <module>node-server</module>
+        <module>world-server</module>
     </modules>
 
     <properties>
@@ -52,7 +54,7 @@
                 <version>${netty.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.hc.www</groupId>
+                <groupId>com.hc.nettygame</groupId>
                 <artifactId>common</artifactId>
                 <version>${netty-game.version}</version>
             </dependency>

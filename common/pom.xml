@@ -10,7 +10,7 @@
     <description>common</description>
 
     <parent>
-        <groupId>com.hc.www</groupId>
+        <groupId>com.hc.nettygame</groupId>
         <artifactId>netty-game</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
