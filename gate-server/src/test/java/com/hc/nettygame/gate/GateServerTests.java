@@ -1,4 +1,4 @@
-package com.hc.nettygame.common;
+package com.hc.nettygame.gate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

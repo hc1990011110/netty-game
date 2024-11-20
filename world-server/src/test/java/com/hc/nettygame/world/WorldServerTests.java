@@ -1,10 +1,10 @@
-package com.hc.nettygame.common;
+package com.hc.nettygame.world;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NodeServerTests {
+class WorldServerTests {
 
     @Test
     void contextLoads() {
