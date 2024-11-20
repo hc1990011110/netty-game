@@ -1,0 +1,2 @@
+
+C:\Users\B053-mac\Desktop\windws\server\proto\windows>protoc.exe -I C:\Users\B053-mac\Desktop\windws\server\proto --java_out=C:\Users\B053-mac\Desktop\windws\server\src C:\Users\B053-mac\Desktop\windws\server\proto\map.proto

@@ -1,0 +1,5 @@
+netty:
+  tcp-port: 10080
+  serverId: gate-server
+
+

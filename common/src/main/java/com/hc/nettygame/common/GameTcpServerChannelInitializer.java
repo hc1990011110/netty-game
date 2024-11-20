@@ -5,7 +5,6 @@ import com.hc.nettygame.common.constant.GlobalConstants;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,7 @@ public class GameTcpServerChannelInitializer extends ChannelInitializer<NioSocke
 
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
+//        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
 //        channelPipLine.addLast("encoder", new NetProtoBufMessageTCPEncoder());
 //        channelPipLine.addLast("decoder", new NetProtoBufMessageTCPDecoder());
 //        int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_READ_TIMEOUT;

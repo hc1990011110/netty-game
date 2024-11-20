@@ -37,7 +37,7 @@ public class AbstractNettyTcpServerService {
 
     @PostConstruct
     public void init() {
-        this.serverAddress = new InetSocketAddress(serverPort);
+        serverAddress = new InetSocketAddress(serverPort);
     }
 
     public boolean startService() throws Exception {

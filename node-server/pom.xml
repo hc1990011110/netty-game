@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>com.hc.nettygame</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>generate-code</artifactId>
         </dependency>
     </dependencies>
 
