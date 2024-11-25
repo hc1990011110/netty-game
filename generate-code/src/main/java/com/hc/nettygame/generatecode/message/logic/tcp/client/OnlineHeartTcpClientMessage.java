@@ -10,7 +10,7 @@ import com.hc.nettygame.generatecode.message.auto.tcp.client.TcpClientMessagePro
 *
 * @author CodeGenerator, don't modify this file please.
 */
-@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
+@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE)
 public class OnlineHeartTcpClientMessage extends AbstractNetProtoBufTcpMessage {
 
 /**请求*/
