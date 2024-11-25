@@ -4,24 +4,27 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
 import io.netty.util.CharsetUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
 import java.util.List;
 
 /**
- * Created by jiangwenping on 17/2/3.
+ * Created by hc on 17/2/3.
  */
-
+@Component
+@Scope("prototype")
 public class NetProtoBufMessageTCPDecoder extends MessageToMessageDecoder<ByteBuf> {
 
     private final Charset charset;
 
-    private INetProtoBufTcpMessageDecoderFactory iNetMessageDecoderFactory;
+    @Autowired
+    private NetProtoBufTcpMessageDecoderFactory iNetMessageDecoderFactory;
 
     public NetProtoBufMessageTCPDecoder() {
         this(CharsetUtil.UTF_8);
-//        NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufTcpMessageDecoderFactory();
-//        this.iNetMessageDecoderFactory = netProtoBufTcpMessageDecoderFactory;
     }
 
     public NetProtoBufMessageTCPDecoder(Charset charset) {
@@ -35,7 +38,7 @@ public class NetProtoBufMessageTCPDecoder extends MessageToMessageDecoder<ByteBu
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-        out.add(iNetMessageDecoderFactory.praseMessage(msg));
+        out.add(iNetMessageDecoderFactory.parseMessage(msg));
     }
 }
 

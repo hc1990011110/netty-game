@@ -1,5 +1,7 @@
 netty:
   tcp-port: 10080
   serverId: gate-server
+  netMessageHandlerNameSpace: com.hc.nettygame.gate.message.handler.impl
+  netMsgNameSpace: com.hc.nettygame.generatecode.message.logic
 
 

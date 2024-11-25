@@ -5,7 +5,7 @@
 //import org.springframework.stereotype.Service;
 //
 /// **
-// * Created by jiangwenping on 2017/5/10.
+// * Created by hc on 2017/5/10.
 // */
 //@Service
 //public class GameMessageCommandFactory extends MessageCommandFactory {

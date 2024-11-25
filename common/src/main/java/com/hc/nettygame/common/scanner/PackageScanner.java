@@ -19,7 +19,7 @@ import java.util.jar.JarFile;
  *
  * @author C172
  */
-public final class PackageScaner {
+public final class PackageScanner {
     /**
      * Logger for this class
      */
@@ -39,9 +39,9 @@ public final class PackageScaner {
             URL url;
             logger.info("scan url path " + respath);
             if (!respath.startsWith("/")) {
-                url = PackageScaner.class.getResource('/' + respath);
+                url = PackageScanner.class.getResource('/' + respath);
             } else {
-                url = PackageScaner.class.getResource(respath);
+                url = PackageScanner.class.getResource(respath);
             }
 
             URLConnection tmpURLConnection = url.openConnection();

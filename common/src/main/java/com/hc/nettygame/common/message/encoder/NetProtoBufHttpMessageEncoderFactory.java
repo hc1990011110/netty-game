@@ -9,7 +9,7 @@ import io.netty.buffer.Unpooled;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by jiangwenping on 2017/9/28.
+ * Created by hc on 2017/9/28.
  * http编码
  */
 @Service
@@ -28,7 +28,7 @@ public class NetProtoBufHttpMessageEncoderFactory implements INetProtoBufHttpMes
         byteBuf.writeInt(netMessageHead.getSerial());
         //设置tocken
         byteBuf.writeLong(netMessageHead.getPlayerId());
-        byte[] bytes = netMessageHead.getTocken().getBytes();
+        byte[] bytes = netMessageHead.getToken().getBytes();
         byteBuf.writeShort(bytes.length);
         byteBuf.writeBytes(bytes);
 

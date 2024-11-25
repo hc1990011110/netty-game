@@ -1,7 +1,7 @@
 package com.hc.nettygame.common.message.command;
 
 /**
- * Created by jiangwenping on 17/2/20.
+ * Created by hc on 17/2/20.
  */
 public final class MessageCommandIndex {
     //

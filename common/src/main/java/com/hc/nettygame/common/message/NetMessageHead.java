@@ -1,10 +1,15 @@
 package com.hc.nettygame.common.message;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * Created by jwp on 2017/1/24.
+ * Created by hc on 2017/1/24.
  * 网络消息头
  * 魔法头short+版本号byte+长度int+协议命令号short+唯一序列号
  */
+@Setter
+@Getter
 public class NetMessageHead {
 
     public static final short MESSAGE_HEADER_FLAG = 0x2425;
@@ -33,46 +38,6 @@ public class NetMessageHead {
 
     public NetMessageHead() {
         this.head = MESSAGE_HEADER_FLAG;
-    }
-
-    public short getHead() {
-        return head;
-    }
-
-    public void setHead(short head) {
-        this.head = head;
-    }
-
-    public byte getVersion() {
-        return version;
-    }
-
-    public void setVersion(byte version) {
-        this.version = version;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public short getCmd() {
-        return cmd;
-    }
-
-    public void setCmd(short cmd) {
-        this.cmd = cmd;
-    }
-
-    public int getSerial() {
-        return serial;
-    }
-
-    public void setSerial(int serial) {
-        this.serial = serial;
     }
 
 }

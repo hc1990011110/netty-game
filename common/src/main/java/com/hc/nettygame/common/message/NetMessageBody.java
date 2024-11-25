@@ -1,8 +1,13 @@
 package com.hc.nettygame.common.message;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * Created by jwp on 2017/1/24.
+ * Created by hc on 2017/1/24.
  */
+@Setter
+@Getter
 public class NetMessageBody {
 
     /**
@@ -10,11 +15,4 @@ public class NetMessageBody {
      */
     private byte[] bytes;
 
-    public byte[] getBytes() {
-        return bytes;
-    }
-
-    public void setBytes(byte[] bytes) {
-        this.bytes = bytes;
-    }
 }

@@ -1,27 +1,17 @@
 package com.hc.nettygame.common.message;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * Created by jiangwenping on 2017/9/28.
+ * Created by hc on 2017/9/28.
  * http消息头部
  */
+@Setter
+@Getter
 public class NetHttpMessageHead extends NetMessageHead {
 
     private long playerId;
-    private String tocken = "";
+    private String token = "";
 
-    public long getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(long playerId) {
-        this.playerId = playerId;
-    }
-
-    public String getTocken() {
-        return tocken;
-    }
-
-    public void setTocken(String tocken) {
-        this.tocken = tocken;
-    }
 }

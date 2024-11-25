@@ -7,8 +7,7 @@ package com.hc.nettygame.common.scanner;
  */
 public class ClassScanner {
     public String[] scannerPackage(String namespace, String ext) throws Exception {
-        String[] files = new PackageScaner().scanNamespaceFiles(namespace, ext, false, true);
-        return files;
+        return PackageScanner.scanNamespaceFiles(namespace, ext, false, true);
     }
 
 }

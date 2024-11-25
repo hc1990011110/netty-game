@@ -1,9 +1,12 @@
 package com.hc.nettygame.common.message;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by jwp on 2017/1/24.
+ * Created by hc on 2017/1/24.
  * 网络基本消息
  */
 public abstract class AbstractNetMessage implements INetMessage {
@@ -12,24 +15,12 @@ public abstract class AbstractNetMessage implements INetMessage {
      * 增加默认属性(附带逻辑调用需要的属性)
      */
     private final ConcurrentHashMap<Object, Object> attributes = new ConcurrentHashMap<Object, Object>(3);
+    @Getter
+    @Setter
     private NetMessageHead netMessageHead;
+    @Setter
+    @Getter
     private NetMessageBody netMessageBody;
-
-    public NetMessageHead getNetMessageHead() {
-        return netMessageHead;
-    }
-
-    public void setNetMessageHead(NetMessageHead netMessageHead) {
-        this.netMessageHead = netMessageHead;
-    }
-
-    public NetMessageBody getNetMessageBody() {
-        return netMessageBody;
-    }
-
-    public void setNetMessageBody(NetMessageBody netMessageBody) {
-        this.netMessageBody = netMessageBody;
-    }
 
     public int getSerial() {
         return netMessageHead.getSerial();

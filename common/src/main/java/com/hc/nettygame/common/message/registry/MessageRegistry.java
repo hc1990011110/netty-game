@@ -2,30 +2,41 @@ package com.hc.nettygame.common.message.registry;
 
 
 import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
+import com.hc.nettygame.common.constant.GlobalConstants;
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.constant.ServiceName;
 import com.hc.nettygame.common.message.AbstractNetProtoBufMessage;
 import com.hc.nettygame.common.message.command.MessageCommand;
+import com.hc.nettygame.common.message.command.MessageCommandEnum;
+import com.hc.nettygame.common.message.command.MessageCommandFactory;
 import com.hc.nettygame.common.scanner.ClassScanner;
 import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.Reloadable;
+import com.hc.nettygame.common.util.StringUtils;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by jiangwenping on 17/2/8.
+ * Created by hc on 17/2/8.
  */
 @Service
 public class MessageRegistry implements Reloadable, IService {
 
-    public static Logger logger = Loggers.serverLogger;
+    public static Logger LOGGER = Loggers.serverLogger;
     private final ConcurrentHashMap<Short, MessageCommand> messageCommandMap = new ConcurrentHashMap<Short, MessageCommand>();
     private final Map<Integer, Class<? extends AbstractNetProtoBufMessage>> messages = new HashMap<Integer, Class<? extends AbstractNetProtoBufMessage>>();
     public ClassScanner classScanner = new ClassScanner();
+    @Autowired
+    private MessageCommandFactory messageCommandFactory;
+    @Value("${netty.netMsgNameSpace}")
+    private String netMsgNameSpace;
 
     public void putMessageCommands(int key, Class putClass) {
         messages.put(key, putClass);
@@ -51,7 +62,7 @@ public class MessageRegistry implements Reloadable, IService {
             AbstractNetProtoBufMessage message = cls.newInstance();
             return message;
         } catch (Exception e) {
-            logger.error("getMessage(int) - commandId=" + commandId + ". ", e);
+            LOGGER.error("getMessage(int) - commandId=" + commandId + ". ", e);
         }
         return null;
     }
@@ -67,7 +78,7 @@ public class MessageRegistry implements Reloadable, IService {
                         - (ext.length()));
                 Class<?> messageClass = Class.forName(realClass);
 
-                logger.info("message load:" + messageClass);
+                LOGGER.info("message load:{}", messageClass);
 
                 MessageCommandAnnotation annotation = messageClass
                         .getAnnotation(MessageCommandAnnotation.class);
@@ -79,21 +90,17 @@ public class MessageRegistry implements Reloadable, IService {
     }
 
     public final void loadMessageCommand() {
-//        MessageCommandEnum[] set = MessageCommandEnum.values();
-//        for(int i = 0; i< set.length; i++){
-//            MessageCommandEnum messageCommandEnum = set[i];
-//            MessageCommand messageCommand = new MessageCommand(messageCommandEnum.command_id, messageCommandEnum.bo_id, messageCommandEnum.is_need_filter);
-//            messageCommandMap.put((short) messageCommandEnum.command_id, messageCommand);
-//            logger.info("messageCommands load:" + messageCommandEnum);
-//        }
-
-//        LocalSpringBeanManager localSpringBeanManager = LocalMananger.getInstance().getLocalSpringBeanManager();
-//        MessageCommandFactory messageCommandFactory = localSpringBeanManager.getMessageCommandFactory();
-//        MessageCommand[] messageCommands = messageCommandFactory.getAllCommands();
-//        for (MessageCommand messageCommand : messageCommands) {
-//            messageCommandMap.put((short) messageCommand.getCommand_id(), messageCommand);
-//            logger.info("messageCommands load:" + messageCommand);
-//        }
+        MessageCommandEnum[] set = MessageCommandEnum.values();
+        for (MessageCommandEnum messageCommandEnum : set) {
+            MessageCommand messageCommand = new MessageCommand(messageCommandEnum.command_id, messageCommandEnum.bo_id, messageCommandEnum.is_need_filter);
+            messageCommandMap.put((short) messageCommandEnum.command_id, messageCommand);
+            LOGGER.info("messageCommandEnum load:{}", messageCommandEnum);
+        }
+        MessageCommand[] messageCommands = messageCommandFactory.getAllCommands();
+        for (MessageCommand messageCommand : messageCommands) {
+            messageCommandMap.put((short) messageCommand.getCommand_id(), messageCommand);
+            LOGGER.info("messageCommand load:{}", messageCommand);
+        }
     }
 
     public MessageCommand getMessageCommand(short commandId) {
@@ -102,13 +109,11 @@ public class MessageRegistry implements Reloadable, IService {
 
     public void reload() throws Exception {
         loadMessageCommand();
-//        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-//        String netMsgNameSpace = gameServerConfigService.getGameServerConfig().getNetMsgNameSpace();
-//        List<String> splits = StringUtils.getListBySplit(netMsgNameSpace, ",");
-//        for (String key : splits) {
-//            loadPackage(key,
-//                    GlobalConstants.FileExtendConstants.Ext);
-//        }
+        List<String> splits = StringUtils.getListBySplit(netMsgNameSpace, ",");
+        for (String key : splits) {
+            loadPackage(key,
+                    GlobalConstants.FileExtendConstants.Ext);
+        }
     }
 
     @Override
@@ -119,7 +124,6 @@ public class MessageRegistry implements Reloadable, IService {
     @Override
     public void startup() throws Exception {
         reload();
-
     }
 
     @Override

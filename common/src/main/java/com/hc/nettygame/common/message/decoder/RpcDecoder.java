@@ -8,7 +8,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import java.util.List;
 
 /**
- * Created by jwp on 2017/3/7.
+ * Created by hc on 2017/3/7.
  */
 public class RpcDecoder extends ByteToMessageDecoder {
 

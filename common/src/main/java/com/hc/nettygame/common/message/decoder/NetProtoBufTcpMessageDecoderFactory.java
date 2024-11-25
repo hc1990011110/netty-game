@@ -7,15 +7,18 @@ import com.hc.nettygame.common.message.NetMessageHead;
 import com.hc.nettygame.common.message.NetProtoBufMessageBody;
 import com.hc.nettygame.common.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by jiangwenping on 17/2/3.
+ * Created by hc on 17/2/3.
  */
 @Service
 public class NetProtoBufTcpMessageDecoderFactory implements INetProtoBufTcpMessageDecoderFactory {
+    @Autowired
+    private MessageRegistry messageRegistry;
 
-    public AbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException {
+    public AbstractNetProtoBufMessage parseMessage(ByteBuf byteBuf) throws CodecException {
         //读取head
         NetMessageHead netMessageHead = new NetMessageHead();
         //head为两个字节，跳过
@@ -28,8 +31,10 @@ public class NetProtoBufTcpMessageDecoderFactory implements INetProtoBufTcpMessa
         netMessageHead.setCmd(cmd);
         netMessageHead.setSerial(byteBuf.readInt());
 
-        MessageRegistry messageRegistry = new MessageRegistry();//LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         AbstractNetProtoBufMessage netMessage = messageRegistry.getMessage(cmd);
+        if (netMessage == null) {
+            return null;
+        }
         //读取body
         NetProtoBufMessageBody netMessageBody = new NetProtoBufMessageBody();
         int byteLength = byteBuf.readableBytes();
@@ -47,7 +52,7 @@ public class NetProtoBufTcpMessageDecoderFactory implements INetProtoBufTcpMessa
 
         //增加协议解析打印
         if (Loggers.sessionLogger.isDebugEnabled()) {
-            Loggers.sessionLogger.debug("revice net message" + netMessage.toAllInfoString());
+            Loggers.sessionLogger.debug("receive net message{}", netMessage.toAllInfoString());
         }
 
         return netMessage;

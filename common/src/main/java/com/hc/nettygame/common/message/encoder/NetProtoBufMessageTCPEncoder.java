@@ -1,28 +1,35 @@
 package com.hc.nettygame.common.message.encoder;
 
 
+import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.message.AbstractNetProtoBufMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import io.netty.util.CharsetUtil;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
 import java.util.List;
 
 /**
- * Created by jiangwenping on 17/2/8.
+ * Created by hc on 17/2/8.
  */
+@Component
+@Scope("prototype")
 public class NetProtoBufMessageTCPEncoder extends MessageToMessageEncoder<AbstractNetProtoBufMessage> {
-
+    private final Logger LOGGER = Loggers.serverLogger;
     private final Charset charset;
 
-    private INetProtoBufTcpMessageEncoderFactory iNetMessageEncoderFactory;
+    @Autowired
+    private NetProtoBufTcpMessageEncoderFactory iNetMessageEncoderFactory;
 
     public NetProtoBufMessageTCPEncoder() {
         this(CharsetUtil.UTF_8);
-//        NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufTcpMessageEncoderFactory();
-//        this.iNetMessageEncoderFactory = netProtoBufTcpMessageEncoderFactory;
+
     }
 
     public NetProtoBufMessageTCPEncoder(Charset charset) {

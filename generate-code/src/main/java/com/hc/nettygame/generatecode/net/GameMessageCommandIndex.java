@@ -1,7 +1,7 @@
 package com.hc.nettygame.generatecode.net;
 
 /**
- * Created by jiangwenping on 17/5/8.
+ * Created by hc on 17/5/8.
  * 消息协议号索引
  */
 public final class GameMessageCommandIndex {

@@ -4,7 +4,7 @@ package com.hc.nettygame.common.message.command;
 import com.hc.nettygame.common.enums.BOEnum;
 
 /**
- * Created by jiangwenping on 17/2/20.
+ * Created by hc on 17/2/20.
  */
 public enum MessageCommandEnum {
 
@@ -37,21 +37,14 @@ public enum MessageCommandEnum {
     }
 
     public static String getMessageCommandName(int commandId) {
-        MessageCommandEnum commands = ONLINE_HEART_MESSAGE;
-        MessageCommandEnum[] set = commands.values();
-        for (MessageCommandEnum tempCommand : set) {
-            if (tempCommand.command_id == commandId) {
-                commands = tempCommand;
-                break;
-            }
-        }
+        MessageCommandEnum commands = getMessageCommand(commandId);
         return commands.name();
 
     }
 
     public static MessageCommandEnum getMessageCommand(int commandId) {
         MessageCommandEnum commands = ONLINE_HEART_MESSAGE;
-        MessageCommandEnum[] set = commands.values();
+        MessageCommandEnum[] set = values();
         for (MessageCommandEnum tempCommand : set) {
             if (tempCommand.command_id == commandId) {
                 commands = tempCommand;
@@ -63,14 +56,7 @@ public enum MessageCommandEnum {
     }
 
     public static int getBoIdByCommandId(int commandId) {
-        MessageCommandEnum commands = ONLINE_HEART_MESSAGE;
-        MessageCommandEnum[] set = commands.values();
-        for (MessageCommandEnum tempCommand : set) {
-            if (tempCommand.command_id == commandId) {
-                commands = tempCommand;
-                break;
-            }
-        }
+        MessageCommandEnum commands = getMessageCommand(commandId);
         return commands.bo_id;
     }
 

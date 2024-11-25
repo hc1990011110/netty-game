@@ -1,17 +1,21 @@
 package com.hc.nettygame.common.message.command;
 
+import lombok.Getter;
+
 /**
- * Created by jwp on 2017/2/4.
+ * Created by hc on 2017/2/4.
  */
 public class MessageCommand {
     /**
      * 协议号
      */
+    @Getter
     public final int command_id;
 
     /**
-     * boconstant的id
+     * constant的id
      */
+    @Getter
     public final int bo_id;
 
     /**
@@ -23,14 +27,6 @@ public class MessageCommand {
         this.command_id = commandId;
         this.bo_id = boId;
         this.is_need_filter = is_need_filter;
-    }
-
-    public int getCommand_id() {
-        return command_id;
-    }
-
-    public int getBo_id() {
-        return bo_id;
     }
 
     public boolean is_need_filter() {

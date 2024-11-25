@@ -9,7 +9,7 @@ import io.netty.buffer.Unpooled;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by jiangwenping on 17/2/8.
+ * Created by hc on 17/2/8.
  */
 @Service
 public class NetProtoBufTcpMessageEncoderFactory implements INetProtoBufTcpMessageEncoderFactory {

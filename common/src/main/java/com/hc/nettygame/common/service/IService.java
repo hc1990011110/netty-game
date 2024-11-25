@@ -1,7 +1,7 @@
 package com.hc.nettygame.common.service;
 
 /**
- * Created by jwp on 2017/2/4.
+ * Created by hc on 2017/2/4.
  * 基础服务
  */
 public interface IService {
