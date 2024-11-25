@@ -31,7 +31,7 @@ public final class MessageGenerator {
     }
 
     public static void main(String[] args) {
-        generateMacroObject();
+//        generateMacroObject();
         generateTemplate();
     }
 

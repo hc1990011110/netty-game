@@ -1,0 +1,14 @@
+option java_package = "com.hc.nettygame.generatecode.message.auto.tcp.client";
+option java_outer_classname = "TcpClientMessageProBuf";
+
+message OnlineHeartTcpClientProBuf
+{
+    required int32 id = 1;
+}
+
+message OnlineLoginTcpClientProBuf
+{
+    required int32 id = 1;
+}
+
+

@@ -3,13 +3,13 @@
 
 package com.hc.nettygame.generatecode.message.auto.http.client;
 
-public final class OnlineClientHttpProBuf {
-  private OnlineClientHttpProBuf() {}
+public final class HttpClientMessageProBuf {
+  private HttpClientMessageProBuf() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface OnlineHeartClientHttpProBufOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:OnlineHeartClientHttpProBuf)
+  public interface OnlineHeartHttpClientProBufOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:OnlineHeartHttpClientProBuf)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -22,29 +22,29 @@ public final class OnlineClientHttpProBuf {
     int getId();
   }
   /**
-   * Protobuf type {@code OnlineHeartClientHttpProBuf}
+   * Protobuf type {@code OnlineHeartHttpClientProBuf}
    *
    * <pre>
    *心跳协议
    * </pre>
    */
-  public static final class OnlineHeartClientHttpProBuf extends
+  public static final class OnlineHeartHttpClientProBuf extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:OnlineHeartClientHttpProBuf)
-      OnlineHeartClientHttpProBufOrBuilder {
-    // Use OnlineHeartClientHttpProBuf.newBuilder() to construct.
-    private OnlineHeartClientHttpProBuf(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:OnlineHeartHttpClientProBuf)
+      OnlineHeartHttpClientProBufOrBuilder {
+    // Use OnlineHeartHttpClientProBuf.newBuilder() to construct.
+    private OnlineHeartHttpClientProBuf(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private OnlineHeartClientHttpProBuf(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private OnlineHeartHttpClientProBuf(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final OnlineHeartClientHttpProBuf defaultInstance;
-    public static OnlineHeartClientHttpProBuf getDefaultInstance() {
+    private static final OnlineHeartHttpClientProBuf defaultInstance;
+    public static OnlineHeartHttpClientProBuf getDefaultInstance() {
       return defaultInstance;
     }
 
-    public OnlineHeartClientHttpProBuf getDefaultInstanceForType() {
+    public OnlineHeartHttpClientProBuf getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -54,7 +54,7 @@ public final class OnlineClientHttpProBuf {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private OnlineHeartClientHttpProBuf(
+    private OnlineHeartHttpClientProBuf(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -96,28 +96,28 @@ public final class OnlineClientHttpProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_descriptor;
+      return com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.internal_static_OnlineHeartHttpClientProBuf_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_fieldAccessorTable
+      return com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.internal_static_OnlineHeartHttpClientProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.class, com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.Builder.class);
+              com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf.class, com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<OnlineHeartClientHttpProBuf> PARSER =
-        new com.google.protobuf.AbstractParser<OnlineHeartClientHttpProBuf>() {
-      public OnlineHeartClientHttpProBuf parsePartialFrom(
+    public static com.google.protobuf.Parser<OnlineHeartHttpClientProBuf> PARSER =
+        new com.google.protobuf.AbstractParser<OnlineHeartHttpClientProBuf>() {
+      public OnlineHeartHttpClientProBuf parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new OnlineHeartClientHttpProBuf(input, extensionRegistry);
+        return new OnlineHeartHttpClientProBuf(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<OnlineHeartClientHttpProBuf> getParserForType() {
+    public com.google.protobuf.Parser<OnlineHeartHttpClientProBuf> getParserForType() {
       return PARSER;
     }
 
@@ -185,53 +185,53 @@ public final class OnlineClientHttpProBuf {
       return super.writeReplace();
     }
 
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(byte[] data)
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(java.io.InputStream input)
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseDelimitedFrom(
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -240,7 +240,7 @@ public final class OnlineClientHttpProBuf {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf prototype) {
+    public static Builder newBuilder(com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -252,7 +252,7 @@ public final class OnlineClientHttpProBuf {
       return builder;
     }
     /**
-     * Protobuf type {@code OnlineHeartClientHttpProBuf}
+     * Protobuf type {@code OnlineHeartHttpClientProBuf}
      *
      * <pre>
      *心跳协议
@@ -260,21 +260,21 @@ public final class OnlineClientHttpProBuf {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:OnlineHeartClientHttpProBuf)
-        com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBufOrBuilder {
+        // @@protoc_insertion_point(builder_implements:OnlineHeartHttpClientProBuf)
+        com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_descriptor;
+        return com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.internal_static_OnlineHeartHttpClientProBuf_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_fieldAccessorTable
+        return com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.internal_static_OnlineHeartHttpClientProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.class, com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.Builder.class);
+                com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf.class, com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf.Builder.class);
       }
 
-      // Construct using com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.newBuilder()
+      // Construct using com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -305,23 +305,23 @@ public final class OnlineClientHttpProBuf {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_descriptor;
+        return com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.internal_static_OnlineHeartHttpClientProBuf_descriptor;
       }
 
-      public com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf getDefaultInstanceForType() {
-        return com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.getDefaultInstance();
+      public com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf getDefaultInstanceForType() {
+        return com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf.getDefaultInstance();
       }
 
-      public com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf build() {
-        com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf result = buildPartial();
+      public com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf build() {
+        com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf buildPartial() {
-        com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf result = new com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf(this);
+      public com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf buildPartial() {
+        com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf result = new com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -334,16 +334,16 @@ public final class OnlineClientHttpProBuf {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf) {
-          return mergeFrom((com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf)other);
+        if (other instanceof com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf) {
+          return mergeFrom((com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf other) {
-        if (other == com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf other) {
+        if (other == com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf.getDefaultInstance()) return this;
         if (other.hasId()) {
           setId(other.getId());
         }
@@ -363,11 +363,11 @@ public final class OnlineClientHttpProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parsedMessage = null;
+        com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.hc.nettygame.generatecode.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.OnlineHeartHttpClientProBuf) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -410,22 +410,22 @@ public final class OnlineClientHttpProBuf {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:OnlineHeartClientHttpProBuf)
+      // @@protoc_insertion_point(builder_scope:OnlineHeartHttpClientProBuf)
     }
 
     static {
-      defaultInstance = new OnlineHeartClientHttpProBuf(true);
+      defaultInstance = new OnlineHeartHttpClientProBuf(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:OnlineHeartClientHttpProBuf)
+    // @@protoc_insertion_point(class_scope:OnlineHeartHttpClientProBuf)
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_OnlineHeartClientHttpProBuf_descriptor;
+    internal_static_OnlineHeartHttpClientProBuf_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_OnlineHeartClientHttpProBuf_fieldAccessorTable;
+      internal_static_OnlineHeartHttpClientProBuf_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -436,9 +436,9 @@ public final class OnlineClientHttpProBuf {
   static {
     java.lang.String[] descriptorData = {
       "\n\021http_client.proto\032\014common.proto\")\n\033Onl" +
-      "ineHeartClientHttpProBuf\022\n\n\002id\030\001 \002(\005BP\n6" +
+      "ineHeartHttpClientProBuf\022\n\n\002id\030\001 \002(\005BQ\n6" +
       "com.hc.nettygame.generatecode.message.au" +
-      "to.http.clientB\026OnlineClientHttpProBuf"
+      "to.http.clientB\027HttpClientMessageProBuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -453,11 +453,11 @@ public final class OnlineClientHttpProBuf {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.hc.nettygame.generatecode.message.auto.common.CommonMessageProBuf.getDescriptor(),
         }, assigner);
-    internal_static_OnlineHeartClientHttpProBuf_descriptor =
+    internal_static_OnlineHeartHttpClientProBuf_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_OnlineHeartClientHttpProBuf_fieldAccessorTable = new
+    internal_static_OnlineHeartHttpClientProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_OnlineHeartClientHttpProBuf_descriptor,
+        internal_static_OnlineHeartHttpClientProBuf_descriptor,
         new java.lang.String[] { "Id", });
     com.hc.nettygame.generatecode.message.auto.common.CommonMessageProBuf.getDescriptor();
   }

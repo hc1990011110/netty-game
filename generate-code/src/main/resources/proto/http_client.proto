@@ -1,10 +1,10 @@
 option java_package = "com.hc.nettygame.generatecode.message.auto.http.client";
-option java_outer_classname = "OnlineClientHttpProBuf";
+option java_outer_classname = "HttpClientMessageProBuf";
 
 import "common.proto";
 
 /*心跳协议*/
-message OnlineHeartClientHttpProBuf
+message OnlineHeartHttpClientProBuf
 {
     required int32 id = 1;
 }

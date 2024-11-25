@@ -83,9 +83,9 @@
 #end
 package ${msg.namespace};
 
-import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
-import com.snowcattle.game.service.message.AbstractNetProtoBufHttpMessage;
-import com.snowcattle.game.service.net.GameMessageCommandIndex;
+import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
+import com.hc.nettygame.common.message.AbstractNetProtoBufHttpMessage;
+import com.hc.nettygame.common.message.command.MessageCommandIndex;
 import ${msg.importPackage};
 
 /**

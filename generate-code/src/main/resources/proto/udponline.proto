@@ -1,8 +1,0 @@
-option java_package = "com.hc.nettygame.generatecode.message.auto.udp.online";
-option java_outer_classname = "OnlineUDPProBuf";
-
-message OnlineHeartUDPProBuf
-{
-    required int32 id = 1;
-}
-
