@@ -8,8 +8,8 @@ public final class TcpServerMessageProBuf {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface OnlineHeartTcpServerProBufOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:OnlineHeartTcpServerProBuf)
+  public interface OnlineLoginTcpServerProBufOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:OnlineLoginTcpServerProBuf)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -31,25 +31,25 @@ public final class TcpServerMessageProBuf {
     int getToken();
   }
   /**
-   * Protobuf type {@code OnlineHeartTcpServerProBuf}
+   * Protobuf type {@code OnlineLoginTcpServerProBuf}
    */
-  public static final class OnlineHeartTcpServerProBuf extends
+  public static final class OnlineLoginTcpServerProBuf extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:OnlineHeartTcpServerProBuf)
-      OnlineHeartTcpServerProBufOrBuilder {
-    // Use OnlineHeartTcpServerProBuf.newBuilder() to construct.
-    private OnlineHeartTcpServerProBuf(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:OnlineLoginTcpServerProBuf)
+      OnlineLoginTcpServerProBufOrBuilder {
+    // Use OnlineLoginTcpServerProBuf.newBuilder() to construct.
+    private OnlineLoginTcpServerProBuf(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private OnlineHeartTcpServerProBuf(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private OnlineLoginTcpServerProBuf(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final OnlineHeartTcpServerProBuf defaultInstance;
-    public static OnlineHeartTcpServerProBuf getDefaultInstance() {
+    private static final OnlineLoginTcpServerProBuf defaultInstance;
+    public static OnlineLoginTcpServerProBuf getDefaultInstance() {
       return defaultInstance;
     }
 
-    public OnlineHeartTcpServerProBuf getDefaultInstanceForType() {
+    public OnlineLoginTcpServerProBuf getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -59,7 +59,7 @@ public final class TcpServerMessageProBuf {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private OnlineHeartTcpServerProBuf(
+    private OnlineLoginTcpServerProBuf(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -106,28 +106,28 @@ public final class TcpServerMessageProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineHeartTcpServerProBuf_descriptor;
+      return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineLoginTcpServerProBuf_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineHeartTcpServerProBuf_fieldAccessorTable
+      return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineLoginTcpServerProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf.class, com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf.Builder.class);
+              com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf.class, com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<OnlineHeartTcpServerProBuf> PARSER =
-        new com.google.protobuf.AbstractParser<OnlineHeartTcpServerProBuf>() {
-      public OnlineHeartTcpServerProBuf parsePartialFrom(
+    public static com.google.protobuf.Parser<OnlineLoginTcpServerProBuf> PARSER =
+        new com.google.protobuf.AbstractParser<OnlineLoginTcpServerProBuf>() {
+      public OnlineLoginTcpServerProBuf parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new OnlineHeartTcpServerProBuf(input, extensionRegistry);
+        return new OnlineLoginTcpServerProBuf(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<OnlineHeartTcpServerProBuf> getParserForType() {
+    public com.google.protobuf.Parser<OnlineLoginTcpServerProBuf> getParserForType() {
       return PARSER;
     }
 
@@ -222,53 +222,53 @@ public final class TcpServerMessageProBuf {
       return super.writeReplace();
     }
 
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseFrom(byte[] data)
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseFrom(java.io.InputStream input)
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseDelimitedFrom(
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parseFrom(
+    public static com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -277,7 +277,7 @@ public final class TcpServerMessageProBuf {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf prototype) {
+    public static Builder newBuilder(com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -289,25 +289,25 @@ public final class TcpServerMessageProBuf {
       return builder;
     }
     /**
-     * Protobuf type {@code OnlineHeartTcpServerProBuf}
+     * Protobuf type {@code OnlineLoginTcpServerProBuf}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:OnlineHeartTcpServerProBuf)
-        com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBufOrBuilder {
+        // @@protoc_insertion_point(builder_implements:OnlineLoginTcpServerProBuf)
+        com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineHeartTcpServerProBuf_descriptor;
+        return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineLoginTcpServerProBuf_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineHeartTcpServerProBuf_fieldAccessorTable
+        return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineLoginTcpServerProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf.class, com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf.Builder.class);
+                com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf.class, com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf.Builder.class);
       }
 
-      // Construct using com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf.newBuilder()
+      // Construct using com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -340,23 +340,23 @@ public final class TcpServerMessageProBuf {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineHeartTcpServerProBuf_descriptor;
+        return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.internal_static_OnlineLoginTcpServerProBuf_descriptor;
       }
 
-      public com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf getDefaultInstanceForType() {
-        return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf.getDefaultInstance();
+      public com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf getDefaultInstanceForType() {
+        return com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf.getDefaultInstance();
       }
 
-      public com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf build() {
-        com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf result = buildPartial();
+      public com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf build() {
+        com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf buildPartial() {
-        com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf result = new com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf(this);
+      public com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf buildPartial() {
+        com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf result = new com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -373,16 +373,16 @@ public final class TcpServerMessageProBuf {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf) {
-          return mergeFrom((com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf)other);
+        if (other instanceof com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf) {
+          return mergeFrom((com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf other) {
-        if (other == com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf other) {
+        if (other == com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf.getDefaultInstance()) return this;
         if (other.hasPlayerId()) {
           setPlayerId(other.getPlayerId());
         }
@@ -409,11 +409,11 @@ public final class TcpServerMessageProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf parsedMessage = null;
+        com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineHeartTcpServerProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.OnlineLoginTcpServerProBuf) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -488,22 +488,22 @@ public final class TcpServerMessageProBuf {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:OnlineHeartTcpServerProBuf)
+      // @@protoc_insertion_point(builder_scope:OnlineLoginTcpServerProBuf)
     }
 
     static {
-      defaultInstance = new OnlineHeartTcpServerProBuf(true);
+      defaultInstance = new OnlineLoginTcpServerProBuf(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:OnlineHeartTcpServerProBuf)
+    // @@protoc_insertion_point(class_scope:OnlineLoginTcpServerProBuf)
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_OnlineHeartTcpServerProBuf_descriptor;
+    internal_static_OnlineLoginTcpServerProBuf_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_OnlineHeartTcpServerProBuf_fieldAccessorTable;
+      internal_static_OnlineLoginTcpServerProBuf_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -513,7 +513,7 @@ public final class TcpServerMessageProBuf {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020tcp_server.proto\"=\n\032OnlineHeartTcpServ" +
+      "\n\020tcp_server.proto\"=\n\032OnlineLoginTcpServ" +
       "erProBuf\022\020\n\010playerId\030\001 \002(\003\022\r\n\005token\030\002 \002(" +
       "\005BO\n5com.hc.nettygame.generatecode.messa" +
       "ge.auto.tcp.serverB\026TcpServerMessageProB" +
@@ -531,11 +531,11 @@ public final class TcpServerMessageProBuf {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_OnlineHeartTcpServerProBuf_descriptor =
+    internal_static_OnlineLoginTcpServerProBuf_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_OnlineHeartTcpServerProBuf_fieldAccessorTable = new
+    internal_static_OnlineLoginTcpServerProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_OnlineHeartTcpServerProBuf_descriptor,
+        internal_static_OnlineLoginTcpServerProBuf_descriptor,
         new java.lang.String[] { "PlayerId", "Token", });
   }
 

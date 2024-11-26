@@ -6,7 +6,7 @@ import com.hc.nettygame.common.message.command.MessageCommandIndex;
 import com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.*;
 
 /**
-* http心跳协议
+* 心跳
 *
 * @author CodeGenerator, don't modify this file please.
 */
@@ -36,10 +36,10 @@ getNetMessageBody().setBytes(bytes);
 public void release() {
 
 }
-            public void setReq(OnlineHeartHttpClientProBuf req){
-    this.req = req;
-    }
-    public OnlineHeartHttpClientProBuf getReq(){
-    return this.req;
-    }
-    }
+    		public void setReq(OnlineHeartHttpClientProBuf req){
+	this.req = req;
+	}
+	public OnlineHeartHttpClientProBuf getReq(){
+	return this.req;
+	}
+	}

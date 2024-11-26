@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <messages>
-
-    <message comment="http心跳协议" name = "OnlineHeartHttpClientMessage" javaPackage="com.hc.nettygame.generatecode.message.logic.http.client"
+    <message comment="心跳" name = "OnlineHeartHttpClientMessage" javaPackage="com.hc.nettygame.generatecode.message.logic.http.client"
              importPackage="com.hc.nettygame.generatecode.message.auto.http.client.HttpClientMessageProBuf.*" cmdType="MessageCommandIndex.ONLINE_HEART_HTTP_CLIENT_MESSAGE" vm="templatehttp">
         <field type="OnlineHeartHttpClientProBuf" name="req" comment="请求" />
     </message>

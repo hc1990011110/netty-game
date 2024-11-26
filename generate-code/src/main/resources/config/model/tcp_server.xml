@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+    <message comment="登录" name = "OnlineLoginTcpServerMessage" javaPackage="com.hc.nettygame.generatecode.message.logic.tcp.server"
+             importPackage="com.hc.nettygame.generatecode.message.auto.tcp.server.TcpServerMessageProBuf.*" cmdType="MessageCommandIndex.ONLINE_LOGIN_TCP_SERVER_MESSAGE" vm="templatetcp">
+        <field type="OnlineLoginTcpServerProBuf" name="req" comment="请求" />
+    </message>
+</messages>

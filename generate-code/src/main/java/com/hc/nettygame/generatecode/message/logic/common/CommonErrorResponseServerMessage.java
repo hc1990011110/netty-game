@@ -1,26 +1,26 @@
-package com.hc.nettygame.generatecode.message.logic.tcp.client;
+package com.hc.nettygame.generatecode.message.logic.common;
 
 import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
 import com.hc.nettygame.common.message.AbstractNetProtoBufTcpMessage;
 import com.hc.nettygame.common.message.command.MessageCommandIndex;
-import com.hc.nettygame.generatecode.message.auto.tcp.client.TcpClientMessageProBuf.*;
+import com.hc.nettygame.generatecode.message.auto.common.CommonMessageProBuf.*;
 
 /**
-* 心跳
+* 通用错误返回
 *
 * @author CodeGenerator, don't modify this file please.
 */
-@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE)
-public class OnlineHeartTcpClientMessage extends AbstractNetProtoBufTcpMessage {
+@MessageCommandAnnotation(command = MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE)
+public class CommonErrorResponseServerMessage extends AbstractNetProtoBufTcpMessage {
 
 /**请求*/
-		private OnlineHeartTcpClientProBuf req;
+		private CommonErrorResponseServerProBuf req;
 	
 
 @Override
 public void decoderNetProtoBufMessageBody() throws Exception {
 byte[] bytes = getNetMessageBody().getBytes();
-	OnlineHeartTcpClientProBuf req = OnlineHeartTcpClientProBuf.parseFrom(bytes);
+	CommonErrorResponseServerProBuf req = CommonErrorResponseServerProBuf.parseFrom(bytes);
 this.req=req;
 }
 
@@ -36,10 +36,10 @@ getNetMessageBody().setBytes(bytes);
 public void release() {
 
 }
-			public void setReq(OnlineHeartTcpClientProBuf req){
+			public void setReq(CommonErrorResponseServerProBuf req){
 	this.req = req;
 	}
-	public OnlineHeartTcpClientProBuf getReq(){
+	public CommonErrorResponseServerProBuf getReq(){
 	return this.req;
 	}
 	}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+    <message comment="通用返回" name = "CommonResponseServerMessage" javaPackage="com.hc.nettygame.generatecode.message.logic.common"
+             importPackage="com.hc.nettygame.generatecode.message.auto.common.CommonMessageProBuf.*" cmdType="MessageCommandIndex.COMMON_RESPONSE_MESSAGE" vm="templatetcp">
+        <field type="CommonResponseServerProBuf" name="req" comment="请求" />
+    </message>
+    <message comment="通用错误返回" name = "CommonErrorResponseServerMessage" javaPackage="com.hc.nettygame.generatecode.message.logic.common"
+             importPackage="com.hc.nettygame.generatecode.message.auto.common.CommonMessageProBuf.*" cmdType="MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE" vm="templatetcp">
+        <field type="CommonErrorResponseServerProBuf" name="req" comment="请求" />
+    </message>
+</messages>

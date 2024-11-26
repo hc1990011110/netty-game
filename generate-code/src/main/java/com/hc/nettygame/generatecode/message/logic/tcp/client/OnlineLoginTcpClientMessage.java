@@ -6,21 +6,21 @@ import com.hc.nettygame.common.message.command.MessageCommandIndex;
 import com.hc.nettygame.generatecode.message.auto.tcp.client.TcpClientMessageProBuf.*;
 
 /**
-* 心跳
+* 登录
 *
 * @author CodeGenerator, don't modify this file please.
 */
-@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE)
-public class OnlineHeartTcpClientMessage extends AbstractNetProtoBufTcpMessage {
+@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
+public class OnlineLoginTcpClientMessage extends AbstractNetProtoBufTcpMessage {
 
 /**请求*/
-		private OnlineHeartTcpClientProBuf req;
+		private OnlineLoginTcpClientProBuf req;
 	
 
 @Override
 public void decoderNetProtoBufMessageBody() throws Exception {
 byte[] bytes = getNetMessageBody().getBytes();
-	OnlineHeartTcpClientProBuf req = OnlineHeartTcpClientProBuf.parseFrom(bytes);
+	OnlineLoginTcpClientProBuf req = OnlineLoginTcpClientProBuf.parseFrom(bytes);
 this.req=req;
 }
 
@@ -36,10 +36,10 @@ getNetMessageBody().setBytes(bytes);
 public void release() {
 
 }
-			public void setReq(OnlineHeartTcpClientProBuf req){
+			public void setReq(OnlineLoginTcpClientProBuf req){
 	this.req = req;
 	}
-	public OnlineHeartTcpClientProBuf getReq(){
+	public OnlineLoginTcpClientProBuf getReq(){
 	return this.req;
 	}
 	}

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <messages>
-
-    <message comment="tcp心跳协议" name = "OnlineHeartTcpClientMessage" javaPackage="com.hc.nettygame.generatecode.message.logic.tcp.client"
+    <message comment="心跳" name = "OnlineHeartTcpClientMessage" javaPackage="com.hc.nettygame.generatecode.message.logic.tcp.client"
              importPackage="com.hc.nettygame.generatecode.message.auto.tcp.client.TcpClientMessageProBuf.*" cmdType="MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE" vm="templatetcp">
         <field type="OnlineHeartTcpClientProBuf" name="req" comment="请求" />
+    </message>
+    <message comment="登录" name = "OnlineLoginTcpClientMessage" javaPackage="com.hc.nettygame.generatecode.message.logic.tcp.client"
+             importPackage="com.hc.nettygame.generatecode.message.auto.tcp.client.TcpClientMessageProBuf.*" cmdType="MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE" vm="templatetcp">
+        <field type="OnlineLoginTcpClientProBuf" name="req" comment="请求" />
     </message>
 </messages>
