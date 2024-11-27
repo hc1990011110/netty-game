@@ -2,15 +2,19 @@ package com.hc.nettygame.common.service.net.session;
 
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.NetMessageException;
-import com.hc.nettygame.common.message.AbstractNetMessage;
+import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import io.netty.channel.Channel;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 
 /**
  * Created by jwp on 2017/2/9.
  * netty会话
  */
-public abstract class NettySession implements ISession  {
+@Setter
+@Getter
+public abstract class NettySession implements ISession {
 
     private static final Logger errorLogger = Loggers.errorLogger;
 
@@ -30,14 +34,13 @@ public abstract class NettySession implements ISession  {
         }
         return false;
     }
-
-    @SuppressWarnings({ "rawtypes" })
+    
     @Override
     public void write(AbstractNetMessage msg) throws Exception {
         if (msg != null) {
             try {
                 channel.writeAndFlush(msg);
-            }catch (Exception e){
+            } catch (Exception e) {
                 errorLogger.info("session write msg exception", e);
                 throw new NetMessageException(e);
             }
@@ -68,31 +71,16 @@ public abstract class NettySession implements ISession  {
         return true;
     }
 
-    public long getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(long playerId) {
-        this.playerId = playerId;
-    }
-
     @Override
     public void write(byte[] msg) throws Exception {
         if (channel != null) {
             try {
                 channel.writeAndFlush(msg);
-            }catch (Exception e){
+            } catch (Exception e) {
                 errorLogger.info("session write bytes exception", e);
                 throw new NetMessageException(e);
             }
         }
     }
 
-    public Channel getChannel() {
-        return channel;
-    }
-
-    public void setChannel(Channel channel) {
-        this.channel = channel;
-    }
 }

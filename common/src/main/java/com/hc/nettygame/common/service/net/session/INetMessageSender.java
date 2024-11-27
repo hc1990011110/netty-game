@@ -1,7 +1,7 @@
 package com.hc.nettygame.common.service.net.session;
 
 import com.hc.nettygame.common.exception.NetMessageException;
-import com.hc.nettygame.common.message.AbstractNetMessage;
+import com.hc.nettygame.common.service.message.AbstractNetMessage;
 
 /**
  * Created by jwp on 2017/2/9.
@@ -10,6 +10,7 @@ import com.hc.nettygame.common.message.AbstractNetMessage;
 public interface INetMessageSender {
     /**
      * 发送消息
+     *
      * @param abstractNetMessage
      * @return
      */

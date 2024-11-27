@@ -1,24 +1,21 @@
 package com.hc.nettygame.common.service.net.session;
 
-import com.hc.nettygame.common.bootstrap.LocalMananger;
 //import com.hc.nettygame.common.IUpdatable;
+
 import com.hc.nettygame.common.exception.NetMessageException;
-import com.hc.nettygame.common.message.AbstractNetMessage;
-//import com.hc.nettygame.common.message.process.NetProtoBufMessageProcess;
+import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import com.hc.nettygame.common.service.uuid.LongIdGenerator;
 import io.netty.channel.Channel;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by jwp on 2017/2/9.
  * netty tcp的session
  */
 @Getter
-@Component
-public class NettyTcpSession extends NettySession{// implements IUpdatable {
+public class NettyTcpSession extends NettySession {// implements IUpdatable {
 
     private final long sessionId;
     @Autowired
@@ -55,7 +52,7 @@ public class NettyTcpSession extends NettySession{// implements IUpdatable {
     }
 
 
-//    @Override
+    //    @Override
     public boolean update() {
 //        netProtoBufMessageProcess.update();
         processNetMessage(false);
@@ -65,17 +62,17 @@ public class NettyTcpSession extends NettySession{// implements IUpdatable {
 
     /**
      * 增加消息处理切换。
+     *
      * @param switchFlag
      */
-    public void processNetMessage(boolean switchFlag){
-        if(netMessageProcessSwitch || switchFlag){
+    public void processNetMessage(boolean switchFlag) {
+        if (netMessageProcessSwitch || switchFlag) {
 //            netProtoBufMessageProcess.update();
         }
     }
 
 
-
-    public void addNetMessage(AbstractNetMessage abstractNetMessage){
+    public void addNetMessage(AbstractNetMessage abstractNetMessage) {
 //        this.netProtoBufMessageProcess.addNetMessage(abstractNetMessage);
     }
 

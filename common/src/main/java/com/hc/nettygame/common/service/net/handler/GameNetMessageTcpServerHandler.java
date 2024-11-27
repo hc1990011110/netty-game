@@ -2,8 +2,8 @@ package com.hc.nettygame.common.service.net.handler;
 
 
 import com.hc.nettygame.common.constant.Loggers;
-import com.hc.nettygame.common.message.AbstractNetProtoBufMessage;
-import com.hc.nettygame.common.message.registry.MessageRegistry;
+import com.hc.nettygame.common.service.message.AbstractNetProtoBufMessage;
+import com.hc.nettygame.common.service.message.registry.MessageRegistry;
 import com.hc.nettygame.common.service.net.session.NettyTcpSession;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
@@ -17,6 +17,7 @@ public class GameNetMessageTcpServerHandler extends AbstractGameNetMessageTcpSer
     private final Logger LOGGER = Loggers.serverLogger;
     @Autowired
     private MessageRegistry messageRegistry;
+
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

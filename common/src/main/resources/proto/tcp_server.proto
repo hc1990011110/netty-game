@@ -1,0 +1,10 @@
+option java_package = "com.hc.nettygame.common.message.auto.tcp.server";
+option java_outer_classname = "TcpServerMessageProBuf";
+
+message OnlineLoginTcpServerProBuf
+{
+    required int64 playerId = 1;
+    required int32 token = 2;
+}
+
+

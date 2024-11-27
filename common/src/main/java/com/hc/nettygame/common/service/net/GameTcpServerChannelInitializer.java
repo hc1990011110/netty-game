@@ -2,8 +2,8 @@ package com.hc.nettygame.common.service.net;
 
 
 import com.hc.nettygame.common.constant.GlobalConstants;
-import com.hc.nettygame.common.message.decoder.NetProtoBufMessageTCPDecoder;
-import com.hc.nettygame.common.message.encoder.NetProtoBufMessageTCPEncoder;
+import com.hc.nettygame.common.service.message.decoder.NetProtoBufMessageTCPDecoder;
+import com.hc.nettygame.common.service.message.encoder.NetProtoBufMessageTCPEncoder;
 import com.hc.nettygame.common.service.net.handler.GameNetMessageTcpServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

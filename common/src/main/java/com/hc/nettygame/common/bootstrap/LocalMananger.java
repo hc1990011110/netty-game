@@ -1,6 +1,6 @@
 package com.hc.nettygame.common.bootstrap;
 
-import com.hc.nettygame.common.message.registry.MessageRegistry;
+import com.hc.nettygame.common.service.message.registry.MessageRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

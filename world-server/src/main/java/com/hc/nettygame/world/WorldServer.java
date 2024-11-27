@@ -1,5 +1,6 @@
 package com.hc.nettygame.world;
 
+import com.hc.nettygame.common.bootstrap.LocalMananger;
 import com.hc.nettygame.common.bootstrap.NetManager;
 import com.hc.nettygame.common.constant.Loggers;
 import org.slf4j.Logger;
@@ -15,6 +16,8 @@ public class WorldServer implements CommandLineRunner {
     private final Logger LOGGER = Loggers.serverLogger;
     @Autowired
     private NetManager netManager;
+    @Autowired
+    private LocalMananger localMananger;
 
     public static void main(String[] args) {
         SpringApplication.run(WorldServer.class, args);
@@ -22,6 +25,7 @@ public class WorldServer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        localMananger.startup();
         netManager.startup();
     }
 }

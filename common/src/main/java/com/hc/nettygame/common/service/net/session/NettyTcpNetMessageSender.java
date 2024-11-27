@@ -2,15 +2,16 @@ package com.hc.nettygame.common.service.net.session;
 
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.NetMessageException;
-import com.hc.nettygame.common.message.AbstractNetMessage;
+import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import io.netty.channel.Channel;
 
 /**
  * Created by jwp on 2017/2/9.
  */
-public class NettyTcpNetMessageSender implements INetMessageSender{
+public class NettyTcpNetMessageSender implements INetMessageSender {
 
     private final NettySession nettySession;
+
     public NettyTcpNetMessageSender(NettySession nettySession) {
         this.nettySession = nettySession;
     }
@@ -19,9 +20,9 @@ public class NettyTcpNetMessageSender implements INetMessageSender{
     public boolean sendMessage(AbstractNetMessage message) throws NetMessageException {
         try {
             nettySession.write(message);
-        }catch (Exception e){
+        } catch (Exception e) {
             //增加session 消息输出的错误日志
-            if(Loggers.sessionLogger.isErrorEnabled()){
+            if (Loggers.sessionLogger.isErrorEnabled()) {
                 Loggers.sessionLogger.error(e.toString(), e);
             }
             throw new NetMessageException("write tcp netmessage exception", e);
@@ -31,23 +32,20 @@ public class NettyTcpNetMessageSender implements INetMessageSender{
     }
 
     @Override
-    public void close() throws NetMessageException{
+    public void close() throws NetMessageException {
 
         Loggers.sessionLogger.debug("Going to close tcp connection in class: {}", this
                 .getClass().getName());
 //        Event event = Events.event(null, Events.DISCONNECT);
         Channel channel = nettySession.channel;
-        if (channel.isActive())
-        {
+        if (channel.isActive()) {
             channel.close();
 //            channel.write(event).addListener(ChannelFutureListener.CLOSE);
-        }
-        else
-        {
+        } else {
             channel.close();
 //            Loggers.sessionLogger.debug("Unable to write the Event {} with type {} to socket",
 //                    event, event.getType());
-            if( Loggers.sessionLogger.isDebugEnabled()) {
+            if (Loggers.sessionLogger.isDebugEnabled()) {
                 Loggers.sessionLogger.debug("Unable to write the Event {} with type {} to socket");
             }
         }

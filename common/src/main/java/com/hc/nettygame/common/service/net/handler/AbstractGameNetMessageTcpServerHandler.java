@@ -4,9 +4,9 @@ package com.hc.nettygame.common.service.net.handler;
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.GameHandlerException;
 import com.hc.nettygame.common.exception.NetMessageException;
-import com.hc.nettygame.common.message.AbstractNetMessage;
-import com.hc.nettygame.common.message.factory.ITcpMessageFactory;
 import com.hc.nettygame.common.service.lookup.NetTcpSessionLoopUpService;
+import com.hc.nettygame.common.service.message.AbstractNetMessage;
+import com.hc.nettygame.common.service.message.factory.TcpMessageFactory;
 import com.hc.nettygame.common.service.net.session.NettyTcpSession;
 import com.hc.nettygame.common.service.net.session.builder.NettyTcpSessionBuilder;
 import io.netty.channel.Channel;
@@ -19,18 +19,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public abstract class AbstractGameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter {
+    public static Logger logger = Loggers.handlerLogger;
+    @Autowired
+    private TcpMessageFactory tcpMessageFactory;
     @Autowired
     private NettyTcpSessionBuilder nettyTcpSessionBuilder;
     @Autowired
     private NetTcpSessionLoopUpService netTcpSessionLoopUpService;
 
-    public static Logger logger = Loggers.handlerLogger;
-
-    private final ITcpMessageFactory tcpMessageFactory;
-
-    public AbstractGameNetMessageTcpServerHandler(ITcpMessageFactory tcpMessageFactory) {
-        this.tcpMessageFactory = tcpMessageFactory;
-    }
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
