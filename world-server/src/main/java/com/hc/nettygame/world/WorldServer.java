@@ -1,6 +1,6 @@
 package com.hc.nettygame.world;
 
-import com.hc.nettygame.common.NetManager;
+import com.hc.nettygame.common.bootstrap.NetManager;
 import com.hc.nettygame.common.constant.Loggers;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -8,23 +8,20 @@ import com.hc.nettygame.generatecode.message.auto.tcp.client.TcpClientMessagePro
 import lombok.Getter;
 import lombok.Setter;
 
-
 /**
- * 心跳
- *
- * @author CodeGenerator, don't modify this file please.
+ * Created by hc on 17/2/21.
  */
 @Setter
 @Getter
-@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE)
-public class OnlineHeartTcpClientMessage extends AbstractNetProtoBufTcpMessage {
+@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
+public class OnlineLoginClientTcpMessage extends AbstractNetProtoBufTcpMessage {
 
     private int id;
 
     @Override
     public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();
-        TcpClientMessageProBuf.OnlineHeartTcpClientProBuf req = TcpClientMessageProBuf.OnlineHeartTcpClientProBuf.parseFrom(bytes);
+        TcpClientMessageProBuf.OnlineLoginTcpClientProBuf req = TcpClientMessageProBuf.OnlineLoginTcpClientProBuf.parseFrom(bytes);
         setId(req.getId());
     }
 
@@ -35,10 +32,11 @@ public class OnlineHeartTcpClientMessage extends AbstractNetProtoBufTcpMessage {
 
     @Override
     public void encodeNetProtoBufMessageBody() throws Exception {
-        TcpClientMessageProBuf.OnlineHeartTcpClientProBuf.Builder builder = TcpClientMessageProBuf.OnlineHeartTcpClientProBuf.newBuilder();
+        TcpClientMessageProBuf.OnlineLoginTcpClientProBuf.Builder builder = TcpClientMessageProBuf.OnlineLoginTcpClientProBuf.newBuilder();
         builder.setId(getId());
         byte[] bytes = builder.build().toByteArray();
         getNetMessageBody().setBytes(bytes);
     }
 
 }
+

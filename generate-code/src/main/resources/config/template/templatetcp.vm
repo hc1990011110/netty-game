@@ -74,10 +74,10 @@
 		##	}
 	#else
 	public void set#upperFirstChar(${field.name} )(${field.type} ${field.name}){
-	this.${field.name} = ${field.name};
+		this.${field.name} = ${field.name};
 	}
 	public ${field.type} get#upperFirstChar(${field.name} )(){
-	return this.${field.name};
+		return this.${field.name};
 	}
 	#end
 #end
@@ -103,7 +103,7 @@ public class ${msg.className} extends AbstractNetProtoBufTcpMessage {
 	#elseif(${field.type} == "Integer" || ${field.type} == "Short" || ${field.type} == "Long" || ${field.type} == "Boolean" || ${field.type} == "Float" || ${field.type} == "Double" || ${field.type} == "String" || ${field.type} == "Byte")
 		##	private #smallType(${field.type}) ${field.name};
 	#else
-	private ${field.type} ${field.name};
+		private ${field.type} ${field.name};
 	#end
 #end
 
@@ -111,33 +111,33 @@ public class ${msg.className} extends AbstractNetProtoBufTcpMessage {
 ##		super(head);
 ##	}
 
-@Override
-public void decoderNetProtoBufMessageBody() throws Exception {
-###foreach( ${field} in ${msg.fieldList})
-##	#readfield(${field})
-###end
-#foreach( ${field} in ${msg.fieldList})
-byte[] bytes = getNetMessageBody().getBytes();
-	${field.type} req = ${field.type}.parseFrom(bytes);
-this.${field.name}=req;
-#end
-}
+	@Override
+	public void decoderNetProtoBufMessageBody() throws Exception {
+	###foreach( ${field} in ${msg.fieldList})
+	##	#readfield(${field})
+	###end
+	#foreach( ${field} in ${msg.fieldList})
+		byte[] bytes = getNetMessageBody().getBytes();
+		${field.type} req = ${field.type}.parseFrom(bytes);
+		this.${field.name}=req;
+	#end
+	}
 
 
-//以下为客户端专用代码======================================================
-@Override
-public void encodeNetProtoBufMessageBody() throws Exception {
-###foreach( ${field} in ${msg.fieldList})
-###writefield($field)
-###end
-byte[] bytes = req.toByteArray();
-getNetMessageBody().setBytes(bytes);
-}
+	//以下为客户端专用代码======================================================
+	@Override
+	public void encodeNetProtoBufMessageBody() throws Exception {
+	###foreach( ${field} in ${msg.fieldList})
+	###writefield($field)
+	###end
+		byte[] bytes = req.toByteArray();
+		getNetMessageBody().setBytes(bytes);
+	}
 
-@Override
-public void release() {
+	@Override
+	public void release() {
 
-}
+	}
 #foreach(${field} in ${msg.fieldList})
 	#createGetterSetter(${field})
 #end

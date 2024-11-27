@@ -1,45 +1,53 @@
 package com.hc.nettygame.generatecode.message.logic.common;
 
 import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
+import com.hc.nettygame.common.exception.CodecException;
 import com.hc.nettygame.common.message.AbstractNetProtoBufTcpMessage;
 import com.hc.nettygame.common.message.command.MessageCommandIndex;
-import com.hc.nettygame.generatecode.message.auto.common.CommonMessageProBuf.*;
+import com.hc.nettygame.common.util.StringUtils;
+import com.hc.nettygame.generatecode.message.auto.common.CommonMessageProBuf;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
-* 通用错误返回
-*
-* @author CodeGenerator, don't modify this file please.
-*/
+ * Created by jwp on 2017/2/10.
+ */
+@Setter
+@Getter
 @MessageCommandAnnotation(command = MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE)
 public class CommonErrorResponseServerMessage extends AbstractNetProtoBufTcpMessage {
 
-/**请求*/
-		private CommonErrorResponseServerProBuf req;
-	
+    /**
+     * 状态码
+     */
+    private int state;
+    /**
+     * 特殊提示
+     */
+    private String arg;
 
-@Override
-public void decoderNetProtoBufMessageBody() throws Exception {
-byte[] bytes = getNetMessageBody().getBytes();
-	CommonErrorResponseServerProBuf req = CommonErrorResponseServerProBuf.parseFrom(bytes);
-this.req=req;
+    @Override
+    public void decoderNetProtoBufMessageBody() throws Exception {
+        byte[] bytes = getNetMessageBody().getBytes();
+        CommonMessageProBuf.CommonErrorResponseServerProBuf req = CommonMessageProBuf.CommonErrorResponseServerProBuf.parseFrom(bytes);
+        this.state = req.getState();
+        this.arg = req.getArg();
+    }
+
+    @Override
+    public void release() throws CodecException {
+
+    }
+
+    @Override
+    public void encodeNetProtoBufMessageBody() throws Exception {
+        CommonMessageProBuf.CommonErrorResponseServerProBuf.Builder builder = CommonMessageProBuf.CommonErrorResponseServerProBuf.newBuilder();
+        if (!StringUtils.isEmpty(arg)) {
+            builder.setArg(arg);
+        }
+        builder.setState(state);
+        byte[] bytes = builder.build().toByteArray();
+        getNetMessageBody().setBytes(bytes);
+    }
+
 }
-
-
-//以下为客户端专用代码======================================================
-@Override
-public void encodeNetProtoBufMessageBody() throws Exception {
-byte[] bytes = req.toByteArray();
-getNetMessageBody().setBytes(bytes);
-}
-
-@Override
-public void release() {
-
-}
-			public void setReq(CommonErrorResponseServerProBuf req){
-	this.req = req;
-	}
-	public CommonErrorResponseServerProBuf getReq(){
-	return this.req;
-	}
-	}

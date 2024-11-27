@@ -1,4 +1,4 @@
-package com.hc.nettygame.common;
+package com.hc.nettygame.common.service.net;
 
 
 import com.hc.nettygame.common.constant.Loggers;

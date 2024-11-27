@@ -1,5 +1,6 @@
-package com.hc.nettygame.common;
+package com.hc.nettygame.common.bootstrap;
 
+import com.hc.nettygame.common.service.net.GameNettyTcpServerService;
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.StartUpException;
 import org.slf4j.Logger;

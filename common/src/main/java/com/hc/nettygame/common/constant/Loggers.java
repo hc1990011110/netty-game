@@ -15,12 +15,22 @@ public final class Loggers {
      * Game Server相关的日志
      */
     public static final Logger gameLogger = LoggerFactory.getLogger("game");
-
+    /**
+     * Game Server相关的日志
+     */
+    public static final Logger handlerLogger = LoggerFactory.getLogger("handler");
     /**
      * session相关的日志
      */
     public static final Logger sessionLogger = LoggerFactory.getLogger("session");
-
+    /**
+     * error相关的日志
+     */
+    public static final Logger errorLogger = LoggerFactory.getLogger("error");
+    /**
+     * 服务器状态统计
+     */
+    public static final Logger serverStatusStatistics = LoggerFactory.getLogger("statistics");
 
     private Loggers() {
     }

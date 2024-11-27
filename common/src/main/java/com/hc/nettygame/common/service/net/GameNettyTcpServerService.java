@@ -1,4 +1,4 @@
-package com.hc.nettygame.common;
+package com.hc.nettygame.common.service.net;
 
 import io.netty.channel.ChannelInitializer;
 import org.springframework.beans.factory.annotation.Qualifier;

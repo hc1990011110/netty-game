@@ -1,4 +1,4 @@
-package com.hc.nettygame.common;
+package com.hc.nettygame.common.bootstrap;
 
 import com.hc.nettygame.common.message.registry.MessageRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
