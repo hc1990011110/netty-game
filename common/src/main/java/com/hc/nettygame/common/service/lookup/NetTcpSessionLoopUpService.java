@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class NetTcpSessionLoopUpService implements IChannleLookUpService, IService {
 
-    protected static final Logger log = Loggers.serverStatusStatistics;
+    protected static final Logger LOGGER = Loggers.serverStatusStatistics;
 
     @Setter
     @Getter
@@ -36,16 +36,13 @@ public class NetTcpSessionLoopUpService implements IChannleLookUpService, IServi
 
     @Override
     public boolean addNettySession(NettyTcpSession nettyTcpSession) {
-
-        if (log.isDebugEnabled()) {
-            log.debug("add nettySesioin " + nettyTcpSession.getChannel().id().asLongText() + " sessionId " + nettyTcpSession.getSessionId());
-        }
         long current = atomicLimitNumber.increment();
         if (!checkMaxNumber(current)) {
             atomicLimitNumber.decrement();
             return false;
         }
         sessions.put(nettyTcpSession.getSessionId(), nettyTcpSession);
+        LOGGER.info("add nettySesioin {} sessionId {}", nettyTcpSession.getChannel().id().asLongText(), nettyTcpSession.getSessionId());
         return true;
     }
 
@@ -56,11 +53,10 @@ public class NetTcpSessionLoopUpService implements IChannleLookUpService, IServi
 
     @Override
     public boolean removeNettySession(NettyTcpSession nettyTcpSession) {
-        if (log.isDebugEnabled()) {
-            log.debug("remove nettySesioin " + nettyTcpSession.getChannel().id().asLongText() + " sessionId " + nettyTcpSession.getSessionId());
-        }
         atomicLimitNumber.decrement();
-        return sessions.remove(nettyTcpSession.getSessionId()) != null;
+        boolean result = sessions.remove(nettyTcpSession.getSessionId()) != null;
+        LOGGER.info("remove nettySesioin {} sessionId {}", nettyTcpSession.getChannel().id().asLongText(), nettyTcpSession.getSessionId());
+        return result;
     }
 
     @Override

@@ -22,6 +22,7 @@ public class GameNetMessageTcpServerHandler extends AbstractGameNetMessageTcpSer
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         AbstractNetProtoBufMessage netMessage = (AbstractNetProtoBufMessage) msg;
+        LOGGER.info("GameNetMessageTcpServerHandler channelRead {}", msg);
         //获取管道
 //        IServerPipeLine iServerPipeLine = LocalMananger.getInstance().getLocalSpringBeanManager().getDefaultTcpServerPipeLine();
 //        iServerPipeLine.dispatchAction(ctx.channel(), netMessage);

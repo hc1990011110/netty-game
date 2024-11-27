@@ -10,22 +10,21 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GameClientChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Autowired
-    private NetProtoBufMessageTCPEncoder netProtoBufMessageTCPEncoder;
-    @Autowired
-    private NetProtoBufMessageTCPDecoder netProtoBufMessageTCPDecoder;
+    private ApplicationContext applicationContext;
 
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
         channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        channelPipLine.addLast("encoder", netProtoBufMessageTCPEncoder);
-        channelPipLine.addLast("decoder", netProtoBufMessageTCPDecoder);
+        channelPipLine.addLast("encoder", applicationContext.getBean(NetProtoBufMessageTCPEncoder.class));
+        channelPipLine.addLast("decoder", applicationContext.getBean(NetProtoBufMessageTCPDecoder.class));
 
         int readerIdleTimeSeconds = 0;
         int writerIdleTimeSeconds = 0;

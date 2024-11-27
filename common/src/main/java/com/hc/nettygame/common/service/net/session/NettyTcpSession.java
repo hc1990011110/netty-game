@@ -8,7 +8,6 @@ import com.hc.nettygame.common.service.uuid.LongIdGenerator;
 import io.netty.channel.Channel;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by jwp on 2017/2/9.
@@ -18,8 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class NettyTcpSession extends NettySession {// implements IUpdatable {
 
     private final long sessionId;
-    @Autowired
-    private LongIdGenerator longIdGenerator;
+
     /**
      * 消息发送
      */
@@ -43,7 +41,7 @@ public class NettyTcpSession extends NettySession {// implements IUpdatable {
     @Setter
     private volatile boolean netMessageProcessSwitch = true;
 
-    public NettyTcpSession(Channel channel) {
+    public NettyTcpSession(Channel channel, LongIdGenerator longIdGenerator) {
         super(channel);
         sessionId = longIdGenerator.generateId();
         nettyTcpNetMessageSender = new NettyTcpNetMessageSender(this);

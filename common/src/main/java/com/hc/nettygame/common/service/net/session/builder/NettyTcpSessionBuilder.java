@@ -2,6 +2,7 @@ package com.hc.nettygame.common.service.net.session.builder;
 
 import com.hc.nettygame.common.service.net.session.ISession;
 import com.hc.nettygame.common.service.net.session.NettyTcpSession;
+import com.hc.nettygame.common.service.uuid.LongIdGenerator;
 import io.netty.channel.Channel;
 import io.netty.util.AttributeKey;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,12 @@ public class NettyTcpSessionBuilder implements ISessionBuilder {
     @Autowired
     private AutowireCapableBeanFactory beanFactory;
 
+    @Autowired
+    private LongIdGenerator longIdGenerator;
+
     @Override
     public ISession buildSession(Channel channel) {
-        NettyTcpSession nettyTcpSession = new NettyTcpSession(channel);
+        NettyTcpSession nettyTcpSession = new NettyTcpSession(channel, longIdGenerator);
         channel.attr(channel_session_id).set(nettyTcpSession.getSessionId());
         beanFactory.autowireBean(nettyTcpSession);
         return nettyTcpSession;

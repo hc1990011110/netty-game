@@ -1,11 +1,14 @@
 package com.hc.nettygame.gate.test.tcp;
 
-import com.hc.nettygame.generatecode.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
+import com.hc.nettygame.common.constant.Loggers;
+import com.hc.nettygame.common.message.logic.tcp.client.OnlineLoginClientTcpMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.slf4j.Logger;
 
 
 public class GameClientHandler extends ChannelInboundHandlerAdapter {
+    public static Logger LOGGER = Loggers.sessionLogger;
 //    private final ByteBuf firstMessage;
 
     public GameClientHandler() {
@@ -31,7 +34,7 @@ public class GameClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
 //        ctx.write(msg);
-        System.out.println(msg);
+        LOGGER.info("GameClientHandler channelRead {}", msg);
     }
 
     @Override
