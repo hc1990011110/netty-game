@@ -4,7 +4,7 @@ package com.hc.nettygame.common.service.net;
 import com.hc.nettygame.common.constant.GlobalConstants;
 import com.hc.nettygame.common.service.message.decoder.RpcDecoder;
 import com.hc.nettygame.common.service.message.encoder.RpcEncoder;
-import com.hc.nettygame.common.service.net.handler.GameNetRPCServerHandler;
+import com.hc.nettygame.common.service.net.handler.GameNetRpcServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -37,6 +37,6 @@ public class GameNetRpcChannelInitializer extends ChannelInitializer<NioSocketCh
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
         channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
-        channelPipLine.addLast("handler", applicationContext.getBean(GameNetRPCServerHandler.class));
+        channelPipLine.addLast("handler", applicationContext.getBean(GameNetRpcServerHandler.class));
     }
 }

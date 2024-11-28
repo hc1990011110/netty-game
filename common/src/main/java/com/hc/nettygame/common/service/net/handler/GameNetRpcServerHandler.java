@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  */
 @Service
 @Scope("prototype")
-public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
+public class GameNetRpcServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
     private final Logger LOGGER = Loggers.rpcLogger;
     @Autowired
     private RemoteRpcHandlerService remoteRpcHandlerService;
@@ -39,9 +39,9 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
         remoteRpcHandlerService.submit(new Runnable() {
             @Override
             public void run() {
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Receive request {}", request.getRequestId());
-                }
+//                if (LOGGER.isDebugEnabled()) {
+                LOGGER.info("Receive request {}", request.getRequestId());
+//                }
                 RpcResponse response = new RpcResponse();
                 response.setRequestId(request.getRequestId());
                 try {
@@ -54,9 +54,9 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
                 ctx.writeAndFlush(response).addListener(new ChannelFutureListener() {
                     @Override
                     public void operationComplete(ChannelFuture channelFuture) throws Exception {
-                        if (LOGGER.isDebugEnabled()) {
-                            LOGGER.debug("Send response for request {}", request.getRequestId());
-                        }
+//                        if (LOGGER.isDebugEnabled()) {
+                        LOGGER.info("Send response for request {}", request.getRequestId());
+//                        }
                     }
                 });
             }

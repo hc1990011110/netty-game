@@ -28,14 +28,11 @@ public class RPCFuture implements Future<Object> {
     private final Logger logger = Loggers.rpcLogger;
     private final Sync sync;
     private final RpcRequest request;
-    private RpcResponse response;
     private final long startTime;
-
     private final long responseTimeThreshold = 5000;
-
     private final List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
     private final ReentrantLock lock = new ReentrantLock();
-
+    private RpcResponse response;
     @Value("${netty.rpcFutureDeleteTimeOut:60000}")
     private Integer rpcFutureDeleteTimeOut;
     @Autowired
