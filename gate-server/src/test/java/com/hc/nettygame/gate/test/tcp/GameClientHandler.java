@@ -2,6 +2,7 @@ package com.hc.nettygame.gate.test.tcp;
 
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.message.logic.tcp.client.OnlineLoginClientTcpMessage;
+import com.hc.nettygame.common.message.logic.tcp.server.OnlineLoginServerTcpMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
@@ -34,7 +35,8 @@ public class GameClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
 //        ctx.write(msg);
-        LOGGER.info("GameClientHandler channelRead {}", msg);
+        OnlineLoginServerTcpMessage message = (OnlineLoginServerTcpMessage) msg;
+        LOGGER.info("GameClientHandler channelRead playerId:{} token:{}", message.getPlayerId(), message.getToken());
     }
 
     @Override

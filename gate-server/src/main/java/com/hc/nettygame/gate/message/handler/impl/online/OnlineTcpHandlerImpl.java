@@ -28,7 +28,7 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
         onlineLoginServerTcpMessage.setPlayerId(playerId);
         onlineLoginServerTcpMessage.setToken(token);
 //        if (Loggers.sessionLogger.isDebugEnabled()) {
-        Loggers.sessionLogger.info("playerId {}, token {}, login", playerId, token);
+        Loggers.sessionLogger.info("id:{} playerId:{}, token:{} login", message.getId(), playerId, token);
 //        }
         NettyTcpSession clientSesion = (NettyTcpSession) message.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
 

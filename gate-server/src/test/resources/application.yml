@@ -3,7 +3,5 @@ netty:
   serverId: gate-server
   netMessageHandlerNameSpace: com.hc.nettygame.gate.message.handler.impl
   netMsgNameSpace: com.hc.nettygame.common.message.logic
-  gameExecutorCorePoolSize: 4
-  tcpMessageQueueDirectDispatch: false
 
 

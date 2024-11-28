@@ -3,11 +3,9 @@ package com.hc.nettygame.common.service.net.handler;
 
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.message.AbstractNetProtoBufMessage;
-import com.hc.nettygame.common.service.message.registry.MessageRegistry;
 import com.hc.nettygame.common.service.net.session.NettyTcpSession;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +13,6 @@ import org.springframework.stereotype.Service;
 @Scope("prototype")
 public class GameNetMessageTcpServerHandler extends AbstractGameNetMessageTcpServerHandler {
     private final Logger LOGGER = Loggers.serverLogger;
-    @Autowired
-    private MessageRegistry messageRegistry;
 
 
     @Override

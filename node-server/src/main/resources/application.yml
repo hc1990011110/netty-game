@@ -3,7 +3,8 @@ netty:
   serverId: node-server
   netMessageHandlerNameSpace: com.hc.nettygame.node.message.handler.impl
   netMsgNameSpace: com.hc.nettygame.common.message.logic
-  gameExcutorCorePoolSize: 4
+  gameExecutorCorePoolSize: 4
+  tcpMessageQueueDirectDispatch: false
 #spring:
 #  datasource:
 #    url: jdbc:mysql://localhost:3307/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false

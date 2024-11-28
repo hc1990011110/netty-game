@@ -23,7 +23,7 @@ public class GameTcpServerChannelInitializer extends ChannelInitializer<NioSocke
     private ApplicationContext applicationContext;
     @Autowired
     private AsyncNettyTcpHandlerService asyncNettyTcpHandlerService;
-    @Value("${netty.tcpMessageQueueDirectDispatch}")
+    @Value("${netty.tcpMessageQueueDirectDispatch:false}")
     private boolean tcpMessageQueueDirectDispatch;
 
     @Override

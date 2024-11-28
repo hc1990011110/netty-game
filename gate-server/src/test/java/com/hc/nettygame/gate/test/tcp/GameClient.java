@@ -2,6 +2,7 @@ package com.hc.nettygame.gate.test.tcp;
 
 
 import com.hc.nettygame.common.constant.Loggers;
+import com.hc.nettygame.common.service.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -28,6 +29,8 @@ public class GameClient implements CommandLineRunner {
 
     @Autowired
     private GameClientChannelInitializer gameClientChannelInitializer;
+    @Autowired
+    private MessageRegistry messageRegistry;
 
     public static void main(String[] args) {
         SpringApplication.run(GameClient.class, args);
@@ -36,7 +39,12 @@ public class GameClient implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        startup();
         connect("127.0.0.1", serverPort);
+    }
+
+    public void startup() throws Exception {
+        messageRegistry.startup();
     }
 
     public void connect(String addr, int port) throws Exception {
