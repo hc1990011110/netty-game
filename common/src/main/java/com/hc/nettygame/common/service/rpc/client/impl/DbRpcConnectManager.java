@@ -5,9 +5,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * Created by hc on 17/3/15.
- * 游戏rpc manger
+ * db rpc
  */
 @Service
-public class GameRpcConnecetMananger extends AbstractRpcConnectManager {
-
+public class DbRpcConnectManager extends AbstractRpcConnectManager {
 }

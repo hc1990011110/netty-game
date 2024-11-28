@@ -4,8 +4,8 @@ import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.constant.ServiceName;
 import com.hc.nettygame.common.enums.BOEnum;
 import com.hc.nettygame.common.service.IService;
-import com.hc.nettygame.common.service.rpc.client.impl.DbRpcConnnectMananger;
-import com.hc.nettygame.common.service.rpc.client.impl.GameRpcConnecetMananger;
+import com.hc.nettygame.common.service.rpc.client.impl.DbRpcConnectManager;
+import com.hc.nettygame.common.service.rpc.client.impl.GameRpcConnectManager;
 import com.hc.nettygame.common.service.rpc.client.impl.WorldRpcConnectManager;
 import com.hc.nettygame.common.service.rpc.server.zookeeper.ZooKeeperNodeBoEnum;
 import org.slf4j.Logger;
@@ -28,10 +28,10 @@ public class RpcClientConnectService implements IService {
     private WorldRpcConnectManager worldRpcConnectManager;
 
     @Autowired
-    private GameRpcConnecetMananger gameRpcConnecetMananger;
+    private GameRpcConnectManager gameRpcConnectManager;
 
     @Autowired
-    private DbRpcConnnectMananger dbRpcConnnectMananger;
+    private DbRpcConnectManager dbRpcConnectManager;
 
 //    public void initWorldConnectedServer(List<SdServer> sdServerList) throws Exception {
 //        worldRpcConnectManager.initServers(sdServerList);
@@ -53,16 +53,16 @@ public class RpcClientConnectService implements IService {
     @Override
     public void startup() throws Exception {
         worldRpcConnectManager.initManager();
-        gameRpcConnecetMananger.initManager();
-        dbRpcConnnectMananger.initManager();
+        gameRpcConnectManager.initManager();
+        dbRpcConnectManager.initManager();
         init();
     }
 
     @Override
     public void shutdown() throws Exception {
         worldRpcConnectManager.stop();
-        gameRpcConnecetMananger.stop();
-        dbRpcConnnectMananger.stop();
+        gameRpcConnectManager.stop();
+        dbRpcConnectManager.stop();
     }
 
     public void init() throws Exception {
@@ -76,10 +76,10 @@ public class RpcClientConnectService implements IService {
     public AbstractRpcConnectManager getRpcConnectMannger(BOEnum boEnum) {
         AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
         if (boEnum == BOEnum.GAME) {
-            return gameRpcConnecetMananger;
+            return gameRpcConnectManager;
         }
         if (boEnum == BOEnum.DB) {
-            return dbRpcConnnectMananger;
+            return dbRpcConnectManager;
         }
         return worldRpcConnectManager;
     }

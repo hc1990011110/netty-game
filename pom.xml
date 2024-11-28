@@ -30,6 +30,9 @@
         <protobuf-java.version>3.1.0</protobuf-java.version>
         <commons-lang.version>2.6</commons-lang.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <protostuff-core.version>1.0.8</protostuff-core.version>
+        <protostuff-runtime.version>1.0.8</protostuff-runtime.version>
+        <objenesis.version>2.1</objenesis.version>
     </properties>
     <dependencies>
         <dependency>
@@ -100,6 +103,21 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.dyuproject.protostuff</groupId>
+                <artifactId>protostuff-core</artifactId>
+                <version>${protostuff-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dyuproject.protostuff</groupId>
+                <artifactId>protostuff-runtime</artifactId>
+                <version>${protostuff-runtime.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.objenesis</groupId>
+                <artifactId>objenesis</artifactId>
+                <version>${objenesis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
