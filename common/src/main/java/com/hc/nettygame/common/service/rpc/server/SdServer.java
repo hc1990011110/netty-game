@@ -61,5 +61,4 @@ public class SdServer {
         rpcClientNumber = element.getAttribute("rpcClientNumber").getIntValue();
     }
 
-
 }

@@ -7,10 +7,13 @@ import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.rpc.client.impl.DbRpcConnectManager;
 import com.hc.nettygame.common.service.rpc.client.impl.GameRpcConnectManager;
 import com.hc.nettygame.common.service.rpc.client.impl.WorldRpcConnectManager;
-import com.hc.nettygame.common.service.rpc.server.zookeeper.ZooKeeperNodeBoEnum;
+import com.hc.nettygame.common.service.rpc.server.RpcServerRegisterConfig;
+import com.hc.nettygame.common.service.rpc.server.SdServer;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by hc on 2017/3/8.
@@ -23,27 +26,29 @@ public class RpcClientConnectService implements IService {
 
     protected Object lock = new Object();
 
-
     @Autowired
     private WorldRpcConnectManager worldRpcConnectManager;
-
     @Autowired
     private GameRpcConnectManager gameRpcConnectManager;
-
     @Autowired
     private DbRpcConnectManager dbRpcConnectManager;
+    @Autowired
+    private RpcServerRegisterConfig rpcServerRegisterConfig;
 
-//    public void initWorldConnectedServer(List<SdServer> sdServerList) throws Exception {
-//        worldRpcConnectManager.initServers(sdServerList);
-//    }
-//
-//    public void initGameConnectedServer(List<SdServer> sdServerList) throws Exception {
-//        gameRpcConnecetMananger.initServers(sdServerList);
-//    }
-//
-//    public void initDbConnectServer(List<SdServer> sdServerList) throws Exception {
-//        dbRpcConnnectMananger.initServers(sdServerList);
-//    }
+    public void initWorldConnectedServer(List<SdServer> sdServerList) throws Exception {
+        worldRpcConnectManager.initServers(sdServerList);
+        LOGGER.info("worldRpcConnectManager.initServers {}", (Object) sdServerList.stream().map(sdServer -> new Integer[]{sdServer.getServerId(), sdServer.getPort()}).toArray(Integer[][]::new));
+    }
+
+    public void initGameConnectedServer(List<SdServer> sdServerList) throws Exception {
+        gameRpcConnectManager.initServers(sdServerList);
+        LOGGER.info("gameRpcConnectManager.initServers {}", (Object) sdServerList.stream().map(sdServer -> new Integer[]{sdServer.getServerId(), sdServer.getPort()}).toArray(Integer[][]::new));
+    }
+
+    public void initDbConnectServer(List<SdServer> sdServerList) throws Exception {
+        dbRpcConnectManager.initServers(sdServerList);
+        LOGGER.info("dbRpcConnectManager.initServers {}", (Object) sdServerList.stream().map(sdServer -> new Integer[]{sdServer.getServerId(), sdServer.getPort()}).toArray(Integer[][]::new));
+    }
 
     @Override
     public String getId() {
@@ -66,15 +71,13 @@ public class RpcClientConnectService implements IService {
     }
 
     public void init() throws Exception {
-//        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-//        initWorldConnectedServer(gameServerConfigService.getRpcServerRegisterConfig().getSdWorldServers());
-//        initGameConnectedServer(gameServerConfigService.getRpcServerRegisterConfig().getSdGameServers());
-//        initDbConnectServer(gameServerConfigService.getRpcServerRegisterConfig().getSdDbServers());
+        initWorldConnectedServer(rpcServerRegisterConfig.getSdWorldServers());
+        initGameConnectedServer(rpcServerRegisterConfig.getSdGameServers());
+        initDbConnectServer(rpcServerRegisterConfig.getSdDbServers());
     }
 
 
-    public AbstractRpcConnectManager getRpcConnectMannger(BOEnum boEnum) {
-        AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
+    public AbstractRpcConnectManager getRpcConnectManager(BOEnum boEnum) {
         if (boEnum == BOEnum.GAME) {
             return gameRpcConnectManager;
         }
@@ -84,13 +87,13 @@ public class RpcClientConnectService implements IService {
         return worldRpcConnectManager;
     }
 
-    public AbstractRpcConnectManager getRpcConnectMannger(ZooKeeperNodeBoEnum zooKeeperNodeBoEnu) {
-        AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
-        if (zooKeeperNodeBoEnu == ZooKeeperNodeBoEnum.GAME) {
-        } else if (zooKeeperNodeBoEnu == ZooKeeperNodeBoEnum.DB) {
-        }
-        return worldRpcConnectManager;
-    }
+//    public AbstractRpcConnectManager getRpcConnectManager(ZooKeeperNodeBoEnum zooKeeperNodeBoEnu) {
+//        AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
+//        if (zooKeeperNodeBoEnu == ZooKeeperNodeBoEnum.GAME) {
+//        } else if (zooKeeperNodeBoEnu == ZooKeeperNodeBoEnum.DB) {
+//        }
+//        return worldRpcConnectManager;
+//    }
 
 //    public void notifyConnect(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum, List<ZooKeeperNodeInfo> zooKeeperNodeInfoList) throws InterruptedException {
 //        getRpcConnectMannger(zooKeeperNodeBoEnum).initZookeeperRpcServers(zooKeeperNodeInfoList);

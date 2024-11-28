@@ -1,11 +1,16 @@
 package com.hc.nettygame.common.service.rpc.client;
 
 
+import com.hc.nettygame.common.annotation.RpcServiceAnnotation;
+import com.hc.nettygame.common.annotation.RpcServiceBoEnum;
 import com.hc.nettygame.common.constant.ServiceName;
+import com.hc.nettygame.common.enums.BOEnum;
 import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.rpc.client.proxy.AsyncRpcProxy;
 import com.hc.nettygame.common.service.rpc.client.proxy.IAsyncRpcProxy;
 import com.hc.nettygame.common.service.rpc.client.proxy.ObjectProxy;
+import com.hc.nettygame.common.service.rpc.server.RpcMethodRegistry;
+import com.hc.nettygame.common.service.rpc.server.RpcServerRegisterConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -21,13 +26,17 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class RpcProxyService implements IService {
+    private static ThreadPoolExecutor threadPoolExecutor;
     @Value("${netty.rpcTimeOut:0}")
     private Integer rpcTimeOut;
     @Value("${netty.rpcSendProxyThreadSize:16}")
     private Integer rpcSendProxyThreadSize;
     @Autowired
     private ApplicationContext context;
-    private static ThreadPoolExecutor threadPoolExecutor;
+    @Autowired
+    private RpcMethodRegistry rpcMethodRegistry;
+    @Autowired
+    private RpcServerRegisterConfig rpcServerRegisterConfig;
 
     @SuppressWarnings("unchecked")
     public <T> T createProxy(Class<T> interfaceClass) {
@@ -67,37 +76,34 @@ public class RpcProxyService implements IService {
      * @param interfaceClass
      * @return
      */
-//    public <T> T createRemoteProxy(Class<T> interfaceClass) {
-//        RpcMethodRegistry rpcMethodRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcMethodRegistry();
-//        String serviceName = interfaceClass.getName();
-//        Object bean = rpcMethodRegistry.getServiceBean(serviceName);
-//        if (bean == null) {
-//            //如果是空，进行rpc调用
-//            return null;
-//        }
-//
-//        RpcServiceAnnotation rpcServiceAnnotation = bean.getClass().getAnnotation(RpcServiceAnnotation.class);
-//        if (rpcServiceAnnotation == null) {
-//            //找不到rpc服务
-//            return null;
-//        }
-//
-//        RpcServiceBoEnum rpcServiceBoEnum = bean.getClass().getAnnotation(RpcServiceBoEnum.class);
-//        if (rpcServiceBoEnum == null) {
-//            //找不到rpc服务
-//            return null;
-//        }
-//
-//        //是否本地提供服务
-//        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-//        RpcServerRegisterConfig rpcServerRegisterConfig = gameServerConfigService.getRpcServerRegisterConfig();
-//        BOEnum boEnum = rpcServiceBoEnum.bo();
-//        if (rpcServerRegisterConfig.getSdRpcServiceProvider().validServer(boEnum.getBoId())) {
-//            return (T) bean;
-//        }
-//
-//        return createProxy(interfaceClass);
-//    }
+    public <T> T createRemoteProxy(Class<T> interfaceClass) {
+        String serviceName = interfaceClass.getName();
+        Object bean = rpcMethodRegistry.getServiceBean(serviceName);
+        if (bean == null) {
+            //如果是空，进行rpc调用
+            return null;
+        }
+
+        RpcServiceAnnotation rpcServiceAnnotation = bean.getClass().getAnnotation(RpcServiceAnnotation.class);
+        if (rpcServiceAnnotation == null) {
+            //找不到rpc服务
+            return null;
+        }
+
+        RpcServiceBoEnum rpcServiceBoEnum = bean.getClass().getAnnotation(RpcServiceBoEnum.class);
+        if (rpcServiceBoEnum == null) {
+            //找不到rpc服务
+            return null;
+        }
+
+        //是否本地提供服务
+        BOEnum boEnum = rpcServiceBoEnum.bo();
+        if (rpcServerRegisterConfig.getSdRpcServiceProvider().validServer(boEnum.getBoId())) {
+            return (T) bean;
+        }
+
+        return createProxy(interfaceClass);
+    }
 
 }
 

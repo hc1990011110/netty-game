@@ -1,6 +1,8 @@
 package com.hc.nettygame.common.service.rpc.client;
 
 import com.hc.nettygame.common.service.rpc.client.net.RpcClient;
+import com.hc.nettygame.common.service.rpc.server.RpcNodeInfo;
+import com.hc.nettygame.common.service.rpc.server.SdServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +24,12 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Service
 public abstract class AbstractRpcConnectManager {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractRpcConnectManager.class);
+    private final Map<Integer, RpcClient> serverNodes = new HashMap<>();
+    private final AtomicInteger roundRobin = new AtomicInteger();
     @Autowired
     private ApplicationContext context;
-    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractRpcConnectManager.class);
-
     private ThreadPoolExecutor threadPoolExecutor;
-
-    private final Map<Integer, RpcClient> serverNodes = new HashMap<>();
-
-    private final AtomicInteger roundRobin = new AtomicInteger();
-
     @Value("${netty.rpcConnectThreadSize:16}")
     private Integer rpcConnectThreadSize;
 
@@ -39,23 +37,23 @@ public abstract class AbstractRpcConnectManager {
         threadPoolExecutor = new ThreadPoolExecutor(rpcConnectThreadSize, rpcConnectThreadSize, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
     }
 
-//    public synchronized void initServers(List<SdServer> allServerAddress) throws InterruptedException {
-//        //增加同步，当前
-//        if (allServerAddress != null) {
-////                serverNodes.clear();
-//            for (SdServer sdServer : allServerAddress) {
-//                if (serverNodes.containsKey(sdServer.getServerId())) {
-//                    continue;
-//                }
-//                RpcNodeInfo rpcNodeInfo = new RpcNodeInfo();
-//                rpcNodeInfo.setServerId(String.valueOf(sdServer.getServerId()));
-//                rpcNodeInfo.setHost(sdServer.getIp());
-//                rpcNodeInfo.setPort(String.valueOf(sdServer.getRpcPort()));
-//                RpcClient rpcClient = context.getBean(RpcClient.class, rpcNodeInfo, threadPoolExecutor);
-//                serverNodes.put(sdServer.getServerId(), rpcClient);
-//            }
-//        }
-//    }
+    public synchronized void initServers(List<SdServer> allServerAddress) throws InterruptedException {
+        //增加同步，当前
+        if (allServerAddress != null) {
+//                serverNodes.clear();
+            for (SdServer sdServer : allServerAddress) {
+                if (serverNodes.containsKey(sdServer.getServerId())) {
+                    continue;
+                }
+                RpcNodeInfo rpcNodeInfo = new RpcNodeInfo();
+                rpcNodeInfo.setServerId(String.valueOf(sdServer.getServerId()));
+                rpcNodeInfo.setHost(sdServer.getIp());
+                rpcNodeInfo.setPort(String.valueOf(sdServer.getRpcPort()));
+                RpcClient rpcClient = context.getBean(RpcClient.class, rpcNodeInfo, threadPoolExecutor);
+                serverNodes.put(sdServer.getServerId(), rpcClient);
+            }
+        }
+    }
 
 //    public synchronized void initZookeeperRpcServers(List<ZooKeeperNodeInfo> zooKeeperNodeInfoList) throws InterruptedException {
 //        //增加同步，当前

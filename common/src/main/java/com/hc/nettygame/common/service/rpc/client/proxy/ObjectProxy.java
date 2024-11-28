@@ -17,11 +17,11 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Scope("prototype")
 public class ObjectProxy<T> implements InvocationHandler {
-    @Autowired
-    private RpcClientConnectService rpcClientConnectService;
     private final Logger logger = Loggers.rpcLogger;
     private final Class<T> clazz;
     private final int timeOut;
+    @Autowired
+    private RpcClientConnectService rpcClientConnectService;
 
     @Autowired
     public ObjectProxy(Class<T> clazz, int timeOut) {
@@ -66,7 +66,7 @@ public class ObjectProxy<T> implements InvocationHandler {
         }
 
         RpcContextHolderObject rpcContextHolderObject = RpcContextHolder.getContext();
-        AbstractRpcConnectManager abstractRpcConnectManager = rpcClientConnectService.getRpcConnectMannger(rpcContextHolderObject.getBoEnum());
+        AbstractRpcConnectManager abstractRpcConnectManager = rpcClientConnectService.getRpcConnectManager(rpcContextHolderObject.getBoEnum());
         RpcClient rpcClient = abstractRpcConnectManager.chooseClient(rpcContextHolderObject.getServerId());
         RPCFuture rpcFuture = rpcClient.sendRequest(request);
         if (timeOut > 0) {
