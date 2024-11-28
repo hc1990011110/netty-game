@@ -4,7 +4,7 @@ import com.hc.nettygame.common.exception.NetMessageException;
 import com.hc.nettygame.common.service.message.AbstractNetMessage;
 
 /**
- * Created by jwp on 2017/2/9.
+ * Created by hc on 2017/2/9.
  * 消息处理器
  */
 public interface INetMessageSender {

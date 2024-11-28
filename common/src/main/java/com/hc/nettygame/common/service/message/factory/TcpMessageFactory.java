@@ -7,7 +7,7 @@ import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by jwp on 2017/2/10.
+ * Created by hc on 2017/2/10.
  */
 @Service
 public class TcpMessageFactory implements ITcpMessageFactory {

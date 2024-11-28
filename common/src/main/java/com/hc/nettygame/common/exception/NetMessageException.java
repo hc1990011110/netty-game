@@ -1,7 +1,7 @@
 package com.hc.nettygame.common.exception;
 
 /**
- * Created by jwp on 2017/2/9.
+ * Created by hc on 2017/2/9.
  * 网络消息发送异常
  */
 public class NetMessageException extends Exception {

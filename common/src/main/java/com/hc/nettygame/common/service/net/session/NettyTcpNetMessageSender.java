@@ -6,7 +6,7 @@ import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import io.netty.channel.Channel;
 
 /**
- * Created by jwp on 2017/2/9.
+ * Created by hc on 2017/2/9.
  */
 public class NettyTcpNetMessageSender implements INetMessageSender {
 

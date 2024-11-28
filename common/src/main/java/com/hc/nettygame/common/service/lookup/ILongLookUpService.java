@@ -1,7 +1,7 @@
 package com.hc.nettygame.common.service.lookup;
 
 /**
- * Created by jwp on 2017/2/10.
+ * Created by hc on 2017/2/10.
  * 提供查询服务
  */
 public interface ILongLookUpService<T extends ILongId> {

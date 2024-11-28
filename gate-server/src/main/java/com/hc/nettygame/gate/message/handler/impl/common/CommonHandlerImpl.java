@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by jiangwenping on 17/2/15.
+ * Created by hc on 17/2/15.
  */
 @Component
 public class CommonHandlerImpl extends AbstractMessageHandler {

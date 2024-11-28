@@ -8,12 +8,17 @@ import com.hc.nettygame.common.service.uuid.LongIdGenerator;
 import io.netty.channel.Channel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
- * Created by jwp on 2017/2/9.
+ * Created by hc on 2017/2/9.
  * netty tcp的session
  */
 @Getter
+@Component
+@Scope("prototype")
 public class NettyTcpSession extends NettySession {// implements IUpdatable {
 
     private final long sessionId;
@@ -41,6 +46,7 @@ public class NettyTcpSession extends NettySession {// implements IUpdatable {
     @Setter
     private volatile boolean netMessageProcessSwitch = true;
 
+    @Autowired
     public NettyTcpSession(Channel channel, LongIdGenerator longIdGenerator) {
         super(channel);
         sessionId = longIdGenerator.generateId();

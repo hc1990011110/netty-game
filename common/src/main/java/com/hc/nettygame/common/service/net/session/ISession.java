@@ -3,7 +3,7 @@ package com.hc.nettygame.common.service.net.session;
 import com.hc.nettygame.common.service.message.AbstractNetMessage;
 
 /**
- * Created by jwp on 2017/2/9.
+ * Created by hc on 2017/2/9.
  * 封装会话的业务逻辑
  */
 public interface ISession {

@@ -8,7 +8,7 @@ import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import com.hc.nettygame.common.service.message.command.MessageCommandIndex;
 
 /**
- * Created by jiangwenping on 2017/9/30.
+ * Created by hc on 2017/9/30.
  */
 public class HttpHandlerImpl extends AbstractMessageHandler {
 

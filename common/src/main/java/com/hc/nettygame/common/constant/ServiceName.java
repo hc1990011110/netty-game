@@ -6,6 +6,9 @@ public final class ServiceName {
     public static final String GameFacade = "GameFacade";
     public static final String NetTcpSessionLoopUpService = "NetTcpSessionLoopUpService";
     public static final String AsyncTcpHandlerService = "AsyncTcpHandlerService";
+    public static final String RPCFutureService = "RPCFutureService";
+    public static final String RpcSenderProxy = "RpcSenderProxy";
+    public static final String RpcServiceDiscovery = "RpcServiceDiscovery";
 
     private ServiceName() {
     }

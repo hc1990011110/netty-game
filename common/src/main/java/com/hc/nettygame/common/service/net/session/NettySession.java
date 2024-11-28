@@ -9,7 +9,7 @@ import lombok.Setter;
 import org.slf4j.Logger;
 
 /**
- * Created by jwp on 2017/2/9.
+ * Created by hc on 2017/2/9.
  * netty会话
  */
 @Setter
@@ -34,7 +34,7 @@ public abstract class NettySession implements ISession {
         }
         return false;
     }
-    
+
     @Override
     public void write(AbstractNetMessage msg) throws Exception {
         if (msg != null) {

@@ -31,6 +31,14 @@ public final class Loggers {
      * 服务器状态统计
      */
     public static final Logger serverStatusStatistics = LoggerFactory.getLogger("statistics");
+    /**
+     * util相关的日志
+     */
+    public static final Logger utilLogger = LoggerFactory.getLogger("util");
+    /**
+     * rpc相关的日志
+     */
+    public static final Logger rpcLogger = LoggerFactory.getLogger("rpc");
 
     private Loggers() {
     }

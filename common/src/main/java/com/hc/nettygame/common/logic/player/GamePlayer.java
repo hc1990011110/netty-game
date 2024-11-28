@@ -5,7 +5,7 @@ import com.hc.nettygame.common.service.lookup.ILongId;
 import com.hc.nettygame.common.service.net.session.NettyTcpNetMessageSender;
 
 /**
- * Created by jiangwenping on 17/2/20.
+ * Created by hc on 17/2/20.
  */
 public class GamePlayer implements IPlayer, ILongId {
 

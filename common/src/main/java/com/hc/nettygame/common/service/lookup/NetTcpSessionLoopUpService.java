@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by jwp on 2017/2/10.
+ * Created by hc on 2017/2/10.
  * session提供服务
  */
 @Service
