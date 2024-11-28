@@ -1,7 +1,7 @@
 package com.hc.nettygame.node;
 
 
-import com.hc.nettygame.common.bootstrap.LocalMananger;
+import com.hc.nettygame.common.bootstrap.LocalManager;
 import com.hc.nettygame.common.bootstrap.NetManager;
 import com.hc.nettygame.common.constant.Loggers;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ public class NodeServer implements CommandLineRunner {
     @Autowired
     private NetManager netManager;
     @Autowired
-    private LocalMananger localMananger;
+    private LocalManager localManager;
 
     public static void main(String[] args) {
         SpringApplication.run(NodeServer.class, args);
@@ -27,7 +27,7 @@ public class NodeServer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        localMananger.startup();
+        localManager.startup();
         netManager.startup();
     }
 }

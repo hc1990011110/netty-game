@@ -5,6 +5,10 @@ netty:
   netMsgNameSpace: com.hc.nettygame.common.message.logic
   gameExecutorCorePoolSize: 4
   tcpMessageQueueDirectDispatch: false
+  rpcOpen: true
+  rpc-port: 10100
+  rpcThreadPoolSize: 60
+  rpcThreadPoolQueueSize: 65536
   rpcConnectThreadSize: 16
   rpcSendProxyThreadSize: 16
   rpcTimeOut: 0

@@ -5,13 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * Created by hc on 2017/3/7.
+ * 增加rpc服务
+ */
 @Service
 @Scope("prototype")
-public class GameNettyTcpServerService extends AbstractNettyTcpServerService {
-
+public class GameNettyRpcService extends AbstractNettyTcpServerService {
     @Autowired
-    public GameNettyTcpServerService(String serviceId, int serverPort, ChannelInitializer channelInitializer) {
+    public GameNettyRpcService(String serviceId, int serverPort, ChannelInitializer channelInitializer) {
         super(serviceId, serverPort, channelInitializer);
     }
 }

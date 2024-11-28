@@ -9,15 +9,13 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.net.InetSocketAddress;
 
 @Getter
-public class AbstractNettyTcpServerService {
+public class AbstractNettyTcpServerService extends AbstractNettyServerService {
     private final Logger LOGGER = Loggers.serverLogger;
     private final ChannelInitializer channelInitializer;
     protected InetSocketAddress serverAddress;
@@ -26,22 +24,14 @@ public class AbstractNettyTcpServerService {
     private EventLoopGroup workerGroup;
     private ChannelFuture serverChannelFuture;
 
-    @Value("${netty.serverId}")
-    private String serverId;
-    @Value("${netty.tcp-port}")
-    private int serverPort;
-
-    public AbstractNettyTcpServerService(ChannelInitializer channelInitializer) {
+    public AbstractNettyTcpServerService(String serviceId, int serverPort, ChannelInitializer channelInitializer) {
+        super(serviceId, serverPort);
         this.channelInitializer = channelInitializer;
     }
 
-    @PostConstruct
-    public void init() {
-        serverAddress = new InetSocketAddress(serverPort);
-    }
-
+    @Override
     public boolean startService() throws Exception {
-        boolean serviceFlag = true;
+        boolean serviceFlag = super.startService();
         bossGroup = new NioEventLoopGroup(1);
         workerGroup = new NioEventLoopGroup(0);
         try {
@@ -70,9 +60,9 @@ public class AbstractNettyTcpServerService {
         return serviceFlag;
     }
 
-
+    @Override
     public boolean stopService() throws Exception {
-        boolean flag = true;
+        boolean flag = super.stopService();
         if (bossGroup != null) {
             bossGroup.shutdownGracefully();
         }

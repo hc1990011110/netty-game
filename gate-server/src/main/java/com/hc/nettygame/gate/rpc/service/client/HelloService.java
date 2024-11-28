@@ -1,4 +1,4 @@
-package com.hc.nettygame.common.service.rpc.service.client;
+package com.hc.nettygame.gate.rpc.service.client;
 
 /**
  * Created by hc on 2017/3/7.

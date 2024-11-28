@@ -10,6 +10,7 @@ public final class ServiceName {
     public static final String RPCFutureService = "RPCFutureService";
     public static final String RpcSenderProxy = "RpcSenderProxy";
     public static final String RpcServiceDiscovery = "RpcServiceDiscovery";
+    public static final String RemoteRpcService = "RemoteRpcService";
 
     private ServiceName() {
     }

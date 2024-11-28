@@ -1,6 +1,6 @@
-package com.hc.nettygame.common.service.rpc.service.server;
+package com.hc.nettygame.gate.rpc.service.server;
 
-import com.hc.nettygame.common.service.rpc.service.client.HelloService;
+import com.hc.nettygame.gate.rpc.service.client.HelloService;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -1,43 +1,42 @@
-package com.hc.nettygame.gate.test.tcp;
+package com.hc.nettygame.common.service.net;
 
 
 import com.hc.nettygame.common.constant.GlobalConstants;
-import com.hc.nettygame.common.service.message.decoder.NetProtoBufMessageTCPDecoder;
-import com.hc.nettygame.common.service.message.encoder.NetProtoBufMessageTCPEncoder;
-import com.hc.nettygame.common.service.net.handler.GameLoggingHandler;
+import com.hc.nettygame.common.service.message.decoder.RpcDecoder;
+import com.hc.nettygame.common.service.message.encoder.RpcEncoder;
+import com.hc.nettygame.common.service.net.handler.GameNetRPCServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-@Component
-public class GameClientChannelInitializer extends ChannelInitializer<NioSocketChannel> {
-    @Value("${spring.profiles.active:default}")
-    private String activeProfile;
+/**
+ * Created by hc on 2017/3/8.
+ */
+@Component()
+public class GameNetRpcChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Autowired
     private ApplicationContext applicationContext;
 
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
+
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        channelPipLine.addLast("encoder", applicationContext.getBean(NetProtoBufMessageTCPEncoder.class));
-        channelPipLine.addLast("decoder", applicationContext.getBean(NetProtoBufMessageTCPDecoder.class));
-
+        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
+        channelPipLine.addLast("decoder", new RpcDecoder(RpcRequest.class));
+        channelPipLine.addLast("encoder", new RpcEncoder(RpcResponse.class));
         int readerIdleTimeSeconds = 0;
         int writerIdleTimeSeconds = 0;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
-        if ("dev".equalsIgnoreCase(activeProfile)) {
-            channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
-        }
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
-        channelPipLine.addLast("handler", new GameClientHandler());
+        channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
+        channelPipLine.addLast("handler", applicationContext.getBean(GameNetRPCServerHandler.class));
     }
 }

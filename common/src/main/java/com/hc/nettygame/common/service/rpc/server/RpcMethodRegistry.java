@@ -1,7 +1,6 @@
 package com.hc.nettygame.common.service.rpc.server;
 
 import com.hc.nettygame.common.annotation.RpcServiceAnnotation;
-import com.hc.nettygame.common.bootstrap.LocalMananger;
 import com.hc.nettygame.common.constant.GlobalConstants;
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.constant.ServiceName;
@@ -10,6 +9,7 @@ import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.Reloadable;
 import com.hc.nettygame.common.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +20,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class RpcMethodRegistry implements Reloadable, IService {
-    @Value("${netty.rpcServicePackage}")
-    private String rpcServicePackage;
     public static Logger logger = Loggers.serverLogger;
-
-    public ClassScanner classScanner = new ClassScanner();
-
     private final ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
+    public ClassScanner classScanner = new ClassScanner();
+    @Value("${netty.rpcServicePackage:com.hc.nettygame.gate.rpc.service.server}")
+    private String rpcServicePackage;
+    @Autowired
+    private ProtostuffSerializeI rpcSerialize;
 
     @Override
     public String getId() {
@@ -59,11 +59,10 @@ public class RpcMethodRegistry implements Reloadable, IService {
                         - (ext.length()));
                 Class<?> messageClass = Class.forName(realClass);
 
-                logger.info("rpc load:" + messageClass);
+                logger.info("rpc load:{}", messageClass);
                 RpcServiceAnnotation rpcServiceAnnotation = messageClass.getAnnotation(RpcServiceAnnotation.class);
                 if (rpcServiceAnnotation != null) {
                     String interfaceName = messageClass.getAnnotation(RpcServiceAnnotation.class).value().getName();
-                    ProtostuffSerializeI rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
                     Object serviceBean = rpcSerialize.newInstance(messageClass);
                     registryMap.put(interfaceName, serviceBean);
                     logger.info("rpc register:" + messageClass);

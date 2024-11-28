@@ -39,6 +39,10 @@ public final class Loggers {
      * rpc相关的日志
      */
     public static final Logger rpcLogger = LoggerFactory.getLogger("rpc");
+    /**
+     * thread相关的日志
+     */
+    public static final Logger threadLogger = LoggerFactory.getLogger("thread");
 
     private Loggers() {
     }

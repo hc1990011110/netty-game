@@ -1,6 +1,6 @@
 package com.hc.nettygame.gate;
 
-import com.hc.nettygame.common.bootstrap.LocalMananger;
+import com.hc.nettygame.common.bootstrap.LocalManager;
 import com.hc.nettygame.common.bootstrap.NetManager;
 import com.hc.nettygame.common.constant.Loggers;
 import org.slf4j.Logger;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class GateServer implements CommandLineRunner {
     private final Logger LOGGER = Loggers.serverLogger;
     @Autowired
-    private LocalMananger localMananger;
+    private LocalManager localManager;
     @Autowired
     private NetManager netManager;
 
@@ -25,7 +25,7 @@ public class GateServer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        localMananger.startup();
+        localManager.startup();
         netManager.startup();
     }
 
