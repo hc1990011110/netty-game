@@ -1,6 +1,6 @@
-package com.hc.nettygame.gate.rpc.service.server;
+package com.hc.nettygame.world.rpc.service.server;
 
-import com.hc.nettygame.gate.rpc.service.client.HelloService;
+import com.hc.nettygame.world.rpc.service.client.HelloService;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,7 +13,7 @@ public class HelloServiceImpl implements HelloService {
 
     @Override
     public String hello(String name) {
-        return "Hello From Gate! " + name;
+        return "Hello From World! " + name;
     }
 }
 

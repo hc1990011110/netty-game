@@ -24,15 +24,13 @@ public class RpcClientConnectService implements IService {
 
     private static final Logger LOGGER = Loggers.rpcLogger;
 
-    protected Object lock = new Object();
-
     @Autowired
     private WorldRpcConnectManager worldRpcConnectManager;
     @Autowired
     private NodeRpcConnectManager nodeRpcConnectManager;
     @Autowired
     private DbRpcConnectManager dbRpcConnectManager;
-    @Autowired
+    @Autowired()
     private RpcServerRegisterConfig rpcServerRegisterConfig;
 
     public void initWorldConnectedServer(List<SdServer> sdServerList) throws Exception {

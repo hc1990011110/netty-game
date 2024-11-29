@@ -2,6 +2,11 @@ package com.hc.nettygame.gate.test.tcp;
 
 
 import com.hc.nettygame.common.constant.Loggers;
+import com.hc.nettygame.common.service.message.command.MessageCommandFactory;
+import com.hc.nettygame.common.service.message.decoder.NetProtoBufMessageTCPDecoder;
+import com.hc.nettygame.common.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
+import com.hc.nettygame.common.service.message.encoder.NetProtoBufMessageTCPEncoder;
+import com.hc.nettygame.common.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
 import com.hc.nettygame.common.service.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -17,10 +22,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.hc.nettygame.common", "com.hc.nettygame.gate.test"})
+@Import({MessageRegistry.class, MessageCommandFactory.class, NetProtoBufMessageTCPEncoder.class, NetProtoBufTcpMessageEncoderFactory.class, NetProtoBufMessageTCPDecoder.class, NetProtoBufTcpMessageDecoderFactory.class})
 public class GameClient implements CommandLineRunner {
     private final Logger LOGGER = Loggers.serverLogger;
 
