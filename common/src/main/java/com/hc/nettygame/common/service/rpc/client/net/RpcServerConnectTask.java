@@ -11,6 +11,9 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
 
@@ -18,6 +21,8 @@ import java.net.InetSocketAddress;
  * Created by hc on 17/3/14.
  * 服务器连接
  */
+@Component
+@Scope("prototype")
 public class RpcServerConnectTask implements Runnable {
 
     private final Logger logger = Loggers.serverLogger;
@@ -26,9 +31,12 @@ public class RpcServerConnectTask implements Runnable {
 
     private final EventLoopGroup eventLoopGroup;
 
-
     private final RpcClient rpcClient;
 
+    @Autowired
+    private RpcClientInitializer rpcClientInitializer;
+
+    @Autowired
     public RpcServerConnectTask(RpcNodeInfo rpcNodeInfo, EventLoopGroup eventLoopGroup, RpcClient rpcClient) {
         this.remotePeer = new InetSocketAddress(rpcNodeInfo.getHost(), rpcNodeInfo.getIntPort());
         this.eventLoopGroup = eventLoopGroup;
@@ -42,7 +50,7 @@ public class RpcServerConnectTask implements Runnable {
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .handler(new LoggingHandler(LogLevel.DEBUG))
-                .handler(new RpcClientInitializer());
+                .handler(rpcClientInitializer);
         ChannelFuture channelFuture = b.connect(remotePeer);
         channelFuture.addListener(new ChannelFutureListener() {
             @Override

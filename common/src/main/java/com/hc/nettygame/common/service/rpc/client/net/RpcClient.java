@@ -26,15 +26,16 @@ public class RpcClient {
     private final Logger logger = Loggers.rpcLogger;
     @Getter
     private final RpcClientConnection rpcClientConnection;
+    private final ApplicationContext context;
     @Autowired
     private RPCFutureService rpcFutureService;
-    @Autowired
-    private ApplicationContext context;
 
     @Autowired
-    public RpcClient(RpcNodeInfo rpcNodeInfo, ExecutorService threadPool) {
-        rpcClientConnection = new RpcClientConnection(this, rpcNodeInfo, threadPool);
+    public RpcClient(RpcNodeInfo rpcNodeInfo, ExecutorService threadPool, ApplicationContext context) {
+        this.context = context;
+        rpcClientConnection = context.getBean(RpcClientConnection.class, this, rpcNodeInfo, threadPool);
     }
+
 
     public RPCFuture sendRequest(RpcRequest request) {
         RPCFuture rpcFuture = context.getBean(RPCFuture.class, request);

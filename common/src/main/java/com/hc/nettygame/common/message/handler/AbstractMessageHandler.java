@@ -20,7 +20,7 @@ public abstract class AbstractMessageHandler implements IMessageHandler {
     /**
      * 日志
      */
-    public static final Logger logger = Loggers.gameLogger;
+    public static final Logger LOGGER = Loggers.gameLogger;
 
 
     private Map<Integer, Method> handlerMethods;

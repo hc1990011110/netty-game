@@ -1,10 +1,12 @@
 package com.hc.nettygame.common.service.message.decoder;
 
 
+import com.hc.nettygame.common.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +15,11 @@ import java.util.List;
  * Created by hc on 2017/3/7.
  */
 @Service
+@Scope("prototype")
 public class RpcDecoder extends ByteToMessageDecoder {
-    @Autowired
-    private com.hc.nettygame.common.service.rpc.serialize.IRpcSerialize IRpcSerialize;
     private final Class<?> genericClass;
+    @Autowired
+    private ProtostuffSerializeI protostuffSerialize;
 
     public RpcDecoder(Class<?> genericClass) {
         this.genericClass = genericClass;
@@ -38,8 +41,8 @@ public class RpcDecoder extends ByteToMessageDecoder {
         }
         byte[] data = new byte[dataLength];
         in.readBytes(data);
-        
-        Object obj = IRpcSerialize.deserialize(data, genericClass);
+
+        Object obj = protostuffSerialize.deserialize(data, genericClass);
         //Object obj = JsonUtil.deserialize(data,genericClass); // Not use this, have some bugs
         out.add(obj);
     }

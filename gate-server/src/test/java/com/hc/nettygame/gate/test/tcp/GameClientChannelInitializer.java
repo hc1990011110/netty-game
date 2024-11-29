@@ -21,15 +21,15 @@ public class GameClientChannelInitializer extends ChannelInitializer<NioSocketCh
     @Value("${spring.profiles.active}")
     private String activeProfile;
     @Autowired
-    private ApplicationContext applicationContext;
+    private ApplicationContext context;
 
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
         channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        channelPipLine.addLast("encoder", applicationContext.getBean(NetProtoBufMessageTCPEncoder.class));
-        channelPipLine.addLast("decoder", applicationContext.getBean(NetProtoBufMessageTCPDecoder.class));
+        channelPipLine.addLast("encoder", context.getBean(NetProtoBufMessageTCPEncoder.class));
+        channelPipLine.addLast("decoder", context.getBean(NetProtoBufMessageTCPDecoder.class));
 
         int readerIdleTimeSeconds = 0;
         int writerIdleTimeSeconds = 0;

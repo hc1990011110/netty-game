@@ -6,7 +6,13 @@ import com.hc.nettygame.common.service.rpc.server.RpcNodeInfo;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
@@ -17,32 +23,33 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by hc on 17/3/14.
  * 管理连接
  */
+@Component
+@Scope("prototype")
 public class RpcClientConnection {
-
     private final Logger logger = Loggers.rpcLogger;
-
-    private NioSocketChannel channel;
-
     private final ReentrantLock statusLock;
     /**
      * 重连线程池工具
      */
     private final ExecutorService threadPool;
-    EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
-
-//    /**
+    private final RpcClient rpcClient;
+    private final RpcNodeInfo rpcNodeInfo;
+    //    /**
 //     * 重连标识 因为重连的时候没有加锁，会导致检查链接失败，丢失包信息
 //     */
 //    private volatile boolean reConnect = false;
-
+    EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
+    @Autowired
+    private ApplicationContext context;
+    @Getter
+    @Setter
+    private NioSocketChannel channel;
     /**
      * 是否启用重连
      */
     private volatile boolean reConnectOn = true;
 
-    private final RpcClient rpcClient;
-    private final RpcNodeInfo rpcNodeInfo;
-
+    @Autowired
     public RpcClientConnection(RpcClient rpcClient, RpcNodeInfo rpcNodeInfo, ExecutorService threadPool) {
         if (threadPool == null) {
             throw new IllegalArgumentException("All parameters must accurate.");
@@ -68,7 +75,7 @@ public class RpcClientConnection {
             InetSocketAddress remotePeer = new InetSocketAddress(rpcNodeInfo.getHost(), rpcNodeInfo.getIntPort());
             //连接结束
             logger.info("connect to remote server. remote peer = " + remotePeer);
-            Future future = threadPool.submit(new RpcServerConnectTask(rpcNodeInfo, eventLoopGroup, rpcClient));
+            Future<?> future = threadPool.submit(context.getBean(RpcServerConnectTask.class, rpcNodeInfo, eventLoopGroup, rpcClient));
             future.get();
             if (isConnected()) {
                 return false;
@@ -144,6 +151,28 @@ public class RpcClientConnection {
     }
 
     /**
+     * 启动自动重连
+     */
+    public void setReconnectOn() {
+        this.reConnectOn = true;
+    }
+
+    /**
+     * 关闭自动重连
+     */
+    public void setReconnectOff() {
+        this.reConnectOn = false;
+    }
+
+    public void close() {
+        if (channel != null) {
+            channel.close();
+        }
+        // 因为需要重连，不能关闭eventLoopGroup
+//        eventLoopGroup.shutdownGracefully();
+    }
+
+    /**
      * 重连线程内部类
      *
      * @author Fancy
@@ -159,34 +188,5 @@ public class RpcClientConnection {
                 }
             }
         }
-    }
-
-    /**
-     * 启动自动重连
-     */
-    public void setReconnectOn() {
-        this.reConnectOn = true;
-    }
-
-    /**
-     * 关闭自动重连
-     */
-    public void setReconnectOff() {
-        this.reConnectOn = false;
-    }
-
-    public NioSocketChannel getChannel() {
-        return channel;
-    }
-
-    public void setChannel(NioSocketChannel channel) {
-        this.channel = channel;
-    }
-
-    public void close() {
-        if (channel != null) {
-            channel.close();
-        }
-        eventLoopGroup.shutdownGracefully();
     }
 }

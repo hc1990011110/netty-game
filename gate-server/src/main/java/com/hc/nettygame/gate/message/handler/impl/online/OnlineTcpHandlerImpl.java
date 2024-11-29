@@ -22,9 +22,9 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @Service
 public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
+    private final AtomicLong id = new AtomicLong();
     @Autowired
     private RpcProxyService rpcProxyService;
-    private final AtomicLong id = new AtomicLong();
 
     @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
     public AbstractNetMessage handleOnlineLoginClientTcpMessage(OnlineLoginClientTcpMessage message) throws Exception {
@@ -41,7 +41,7 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
         RpcContextHolder.setContextHolder(rpcContextHolderObject);
         HelloService helloService = rpcProxyService.createProxy(HelloService.class);
         String result = helloService.hello("mother fucker");
-        logger.debug("FUCK: " + result);
+        LOGGER.info("FUCK: {}", result);
         return onlineLoginServerTcpMessage;
     }
 

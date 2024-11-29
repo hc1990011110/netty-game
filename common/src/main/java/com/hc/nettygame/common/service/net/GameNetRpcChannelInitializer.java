@@ -14,29 +14,29 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by hc on 2017/3/8.
  */
-@Component()
+@Service()
 public class GameNetRpcChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Autowired
-    private ApplicationContext applicationContext;
+    private ApplicationContext context;
 
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
 
-        ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
+        ChannelPipeline channelPipeLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
-        channelPipLine.addLast("encoder", applicationContext.getBean(RpcDecoder.class));
-        channelPipLine.addLast("decoder", applicationContext.getBean(RpcEncoder.class));
+        channelPipeLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
+        channelPipeLine.addLast("decoder", context.getBean(RpcDecoder.class, RpcRequest.class));
+        channelPipeLine.addLast("encoder", context.getBean(RpcEncoder.class, RpcResponse.class));
         int readerIdleTimeSeconds = 0;
         int writerIdleTimeSeconds = 0;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
-        channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
-        channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
-        channelPipLine.addLast("handler", applicationContext.getBean(GameNetRpcServerHandler.class));
+        channelPipeLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
+        channelPipeLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
+        channelPipeLine.addLast("handler", context.getBean(GameNetRpcServerHandler.class));
     }
 }

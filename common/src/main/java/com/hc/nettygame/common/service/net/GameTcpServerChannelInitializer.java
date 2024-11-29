@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 @Component()
 public class GameTcpServerChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Autowired
-    private ApplicationContext applicationContext;
+    private ApplicationContext context;
     @Autowired
     private AsyncNettyTcpHandlerService asyncNettyTcpHandlerService;
     @Value("${netty.tcpMessageQueueDirectDispatch}")
@@ -36,8 +36,8 @@ public class GameTcpServerChannelInitializer extends ChannelInitializer<NioSocke
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
         channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        channelPipLine.addLast("encoder", applicationContext.getBean(NetProtoBufMessageTCPEncoder.class));
-        channelPipLine.addLast("decoder", applicationContext.getBean(NetProtoBufMessageTCPDecoder.class));
+        channelPipLine.addLast("encoder", context.getBean(NetProtoBufMessageTCPEncoder.class));
+        channelPipLine.addLast("decoder", context.getBean(NetProtoBufMessageTCPDecoder.class));
 //        int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_READ_TIMEOUT;
 //        int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_WRITE_TIMEOUT;
         int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
@@ -49,9 +49,9 @@ public class GameTcpServerChannelInitializer extends ChannelInitializer<NioSocke
         }
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
         if (tcpMessageQueueDirectDispatch) {
-            channelPipLine.addLast("handler", applicationContext.getBean(GameNetMessageTcpServerHandler.class));
+            channelPipLine.addLast("handler", context.getBean(GameNetMessageTcpServerHandler.class));
         } else {
-            channelPipLine.addLast(asyncNettyTcpHandlerService.getDefaultEventExecutorGroup(), applicationContext.getBean(AsyncNettyGameNetMessageTcpServerHandler.class));
+            channelPipLine.addLast(asyncNettyTcpHandlerService.getDefaultEventExecutorGroup(), context.getBean(AsyncNettyGameNetMessageTcpServerHandler.class));
         }
     }
 }

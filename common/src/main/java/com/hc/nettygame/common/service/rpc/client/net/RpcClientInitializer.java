@@ -10,19 +10,26 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
 /**
  *
  */
+@Service
 public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
+    @Autowired
+    private ApplicationContext context;
+
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
-        ChannelPipeline channelPipeline = socketChannel.pipeline();
+        ChannelPipeline channelPipeLine = socketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-        channelPipeline.addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
-        channelPipeline.addLast(new RpcEncoder(RpcRequest.class));
-        channelPipeline.addLast(new RpcDecoder(RpcResponse.class));
-        channelPipeline.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
-        channelPipeline.addLast(new RpcClientHandler());
+        channelPipeLine.addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
+        channelPipeLine.addLast(context.getBean(RpcEncoder.class, RpcRequest.class));
+        channelPipeLine.addLast(context.getBean(RpcDecoder.class, RpcResponse.class));
+        channelPipeLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
+        channelPipeLine.addLast(new RpcClientHandler());
     }
 }
