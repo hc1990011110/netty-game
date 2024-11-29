@@ -11,7 +11,7 @@ import com.hc.nettygame.common.service.message.command.MessageCommandIndex;
 import com.hc.nettygame.common.service.rpc.client.RpcContextHolder;
 import com.hc.nettygame.common.service.rpc.client.RpcContextHolderObject;
 import com.hc.nettygame.common.service.rpc.client.RpcProxyService;
-import com.hc.nettygame.gate.rpc.service.client.HelloService;
+import com.hc.nettygame.common.service.rpc.service.client.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +37,7 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
         Loggers.sessionLogger.info("id:{} playerId:{}, token:{} login", message.getId(), playerId, token);
 //        }
 //        NettyTcpSession clientSesion = (NettyTcpSession) message.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
-        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, 9000);
+        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.NODE, 8000);
         RpcContextHolder.setContextHolder(rpcContextHolderObject);
         HelloService helloService = rpcProxyService.createProxy(HelloService.class);
         String result = helloService.hello("mother fucker");
