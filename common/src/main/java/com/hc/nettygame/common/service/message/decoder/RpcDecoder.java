@@ -4,14 +4,18 @@ package com.hc.nettygame.common.service.message.decoder;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by hc on 2017/3/7.
  */
+@Service
 public class RpcDecoder extends ByteToMessageDecoder {
-
+    @Autowired
+    private com.hc.nettygame.common.service.rpc.serialize.IRpcSerialize IRpcSerialize;
     private final Class<?> genericClass;
 
     public RpcDecoder(Class<?> genericClass) {
@@ -34,11 +38,10 @@ public class RpcDecoder extends ByteToMessageDecoder {
         }
         byte[] data = new byte[dataLength];
         in.readBytes(data);
-
-//        IRpcSerialize IRpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
-//        Object obj = IRpcSerialize.deserialize(data, genericClass);
-//        //Object obj = JsonUtil.deserialize(data,genericClass); // Not use this, have some bugs
-//        out.add(obj);
+        
+        Object obj = IRpcSerialize.deserialize(data, genericClass);
+        //Object obj = JsonUtil.deserialize(data,genericClass); // Not use this, have some bugs
+        out.add(obj);
     }
 
 }

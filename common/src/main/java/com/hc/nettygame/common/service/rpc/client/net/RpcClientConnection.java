@@ -67,7 +67,7 @@ public class RpcClientConnection {
         try {
             InetSocketAddress remotePeer = new InetSocketAddress(rpcNodeInfo.getHost(), rpcNodeInfo.getIntPort());
             //连接结束
-            logger.debug("connect to remote server. remote peer = " + remotePeer);
+            logger.info("connect to remote server. remote peer = " + remotePeer);
             Future future = threadPool.submit(new RpcServerConnectTask(rpcNodeInfo, eventLoopGroup, rpcClient));
             future.get();
             if (isConnected()) {
@@ -113,9 +113,9 @@ public class RpcClientConnection {
         }
         // 发送消息
         if (channel != null) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("【Send】" + rpcRequest);
-            }
+//            if (logger.isDebugEnabled()) {
+            logger.info("【Send】" + rpcRequest);
+//            }
             channel.writeAndFlush(rpcRequest);
             return true;
         }
