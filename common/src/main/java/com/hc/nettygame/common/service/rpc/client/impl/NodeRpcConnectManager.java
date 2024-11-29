@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
  * 游戏rpc manger
  */
 @Service
-public class GameRpcConnectManager extends AbstractRpcConnectManager {
+public class NodeRpcConnectManager extends AbstractRpcConnectManager {
 
 }

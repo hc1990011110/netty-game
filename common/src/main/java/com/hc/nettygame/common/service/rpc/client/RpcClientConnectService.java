@@ -5,7 +5,7 @@ import com.hc.nettygame.common.constant.ServiceName;
 import com.hc.nettygame.common.enums.BOEnum;
 import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.rpc.client.impl.DbRpcConnectManager;
-import com.hc.nettygame.common.service.rpc.client.impl.GameRpcConnectManager;
+import com.hc.nettygame.common.service.rpc.client.impl.NodeRpcConnectManager;
 import com.hc.nettygame.common.service.rpc.client.impl.WorldRpcConnectManager;
 import com.hc.nettygame.common.service.rpc.server.RpcServerRegisterConfig;
 import com.hc.nettygame.common.service.rpc.server.SdServer;
@@ -29,23 +29,32 @@ public class RpcClientConnectService implements IService {
     @Autowired
     private WorldRpcConnectManager worldRpcConnectManager;
     @Autowired
-    private GameRpcConnectManager gameRpcConnectManager;
+    private NodeRpcConnectManager nodeRpcConnectManager;
     @Autowired
     private DbRpcConnectManager dbRpcConnectManager;
     @Autowired
     private RpcServerRegisterConfig rpcServerRegisterConfig;
 
     public void initWorldConnectedServer(List<SdServer> sdServerList) throws Exception {
+        if (sdServerList == null || sdServerList.isEmpty()) {
+            return;
+        }
         worldRpcConnectManager.initServers(sdServerList);
         LOGGER.info("worldRpcConnectManager.initServers {}", (Object) sdServerList.stream().map(sdServer -> new Integer[]{sdServer.getServerId(), sdServer.getPort()}).toArray(Integer[][]::new));
     }
 
-    public void initGameConnectedServer(List<SdServer> sdServerList) throws Exception {
-        gameRpcConnectManager.initServers(sdServerList);
-        LOGGER.info("gameRpcConnectManager.initServers {}", (Object) sdServerList.stream().map(sdServer -> new Integer[]{sdServer.getServerId(), sdServer.getPort()}).toArray(Integer[][]::new));
+    public void initNodeConnectedServer(List<SdServer> sdServerList) throws Exception {
+        if (sdServerList == null || sdServerList.isEmpty()) {
+            return;
+        }
+        nodeRpcConnectManager.initServers(sdServerList);
+        LOGGER.info("nodeRpcConnectManager.initServers {}", (Object) sdServerList.stream().map(sdServer -> new Integer[]{sdServer.getServerId(), sdServer.getPort()}).toArray(Integer[][]::new));
     }
 
     public void initDbConnectServer(List<SdServer> sdServerList) throws Exception {
+        if (sdServerList == null || sdServerList.isEmpty()) {
+            return;
+        }
         dbRpcConnectManager.initServers(sdServerList);
         LOGGER.info("dbRpcConnectManager.initServers {}", (Object) sdServerList.stream().map(sdServer -> new Integer[]{sdServer.getServerId(), sdServer.getPort()}).toArray(Integer[][]::new));
     }
@@ -57,29 +66,29 @@ public class RpcClientConnectService implements IService {
 
     @Override
     public void startup() throws Exception {
+        nodeRpcConnectManager.initManager();
         worldRpcConnectManager.initManager();
-        gameRpcConnectManager.initManager();
         dbRpcConnectManager.initManager();
         init();
     }
 
     @Override
     public void shutdown() throws Exception {
+        nodeRpcConnectManager.stop();
         worldRpcConnectManager.stop();
-        gameRpcConnectManager.stop();
         dbRpcConnectManager.stop();
     }
 
     public void init() throws Exception {
+        initNodeConnectedServer(rpcServerRegisterConfig.getSdNodeServers());
         initWorldConnectedServer(rpcServerRegisterConfig.getSdWorldServers());
-        initGameConnectedServer(rpcServerRegisterConfig.getSdNodeServers());
-        initDbConnectServer(rpcServerRegisterConfig.getSdGateServers());
+        initDbConnectServer(rpcServerRegisterConfig.getSdDbServers());
     }
 
 
     public AbstractRpcConnectManager getRpcConnectManager(BOEnum boEnum) {
         if (boEnum == BOEnum.NODE) {
-            return gameRpcConnectManager;
+            return nodeRpcConnectManager;
         }
         if (boEnum == BOEnum.DB) {
             return dbRpcConnectManager;

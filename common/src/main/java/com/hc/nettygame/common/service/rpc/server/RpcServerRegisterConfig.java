@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
 public class RpcServerRegisterConfig {
     private static final Logger LOGGER = Loggers.rpcLogger;
 
-    private List<SdServer> sdGateServers;
     private List<SdServer> sdNodeServers;
     private List<SdServer> sdWorldServers;
+    private List<SdServer> sdDbServers;
     private SdRpcServiceProvider sdRpcServiceProvider;
 
     @PostConstruct
@@ -36,7 +36,7 @@ public class RpcServerRegisterConfig {
                     .collect(Collectors.toSet());
             sdRpcServiceProvider.setServerIds(serverIds);
         }
-        LOGGER.info("sdRpcServiceProvider:{} {}", sdRpcServiceProvider.getServerIds(), sdRpcServiceProvider.getServers());
+        LOGGER.info("sdRpcServiceProvider:{} {} {}", sdRpcServiceProvider.isWorldOpen(), sdRpcServiceProvider.isNodeOpen(), sdRpcServiceProvider.isDbOpen());
     }
 
     public boolean validServer(int boId) {

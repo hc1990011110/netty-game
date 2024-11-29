@@ -29,33 +29,23 @@ rpc:
       - gate
       - node
       - world
-  sdGateServers:
-    - serverId: 8001
-      domain: 127.0.0.1
-      domainPort: 7090
-      ip: 127.0.0.1
-      port: 7090
-      weight: 100
-      maxNumber: 1000
-      rpcPort: 10100
-      rpcClientNumber: 3
   sdNodeServers:
-    - serverId: 8001
+    - serverId: 8000
       domain: 127.0.0.1
-      domainPort: 7090
+      domainPort: 10081
       ip: 127.0.0.1
-      port: 7090
+      port: 10081
       weight: 100
       maxNumber: 1000
-      rpcPort: 10100
+      rpcPort: 10101
       rpcClientNumber: 3
   sdWorldServers:
-    - serverId: 8001
+    - serverId: 9000
       domain: 127.0.0.1
-      domainPort: 7090
+      domainPort: 10082
       ip: 127.0.0.1
-      port: 7090
+      port: 10082
       weight: 100
       maxNumber: 1000
-      rpcPort: 10100
+      rpcPort: 10102
       rpcClientNumber: 3
