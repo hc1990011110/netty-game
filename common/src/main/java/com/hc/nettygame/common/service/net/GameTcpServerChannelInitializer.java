@@ -25,9 +25,9 @@ public class GameTcpServerChannelInitializer extends ChannelInitializer<NioSocke
     private ApplicationContext applicationContext;
     @Autowired
     private AsyncNettyTcpHandlerService asyncNettyTcpHandlerService;
-    @Value("${netty.tcpMessageQueueDirectDispatch:false}")
+    @Value("${netty.tcpMessageQueueDirectDispatch}")
     private boolean tcpMessageQueueDirectDispatch;
-    @Value("${spring.profiles.active:default}")
+    @Value("${spring.profiles.active}")
     private String activeProfile;
 
     @Override

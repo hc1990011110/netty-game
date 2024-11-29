@@ -2,19 +2,11 @@ netty:
   tcp-port: 10080
   serverId: gate-server
   netMessageHandlerNameSpace: com.hc.nettygame.gate.message.handler.impl
-  netMsgNameSpace: com.hc.nettygame.common.message.logic
-  gameExecutorCorePoolSize: 4
-  tcpMessageQueueDirectDispatch: false
-  rpcOpen: true
   rpc-port: 10100
-  rpcThreadPoolSize: 60
-  rpcThreadPoolQueueSize: 65536
-  rpcConnectThreadSize: 16
-  rpcSendProxyThreadSize: 16
-  rpcTimeOut: 0
-  rpcFutureDeleteTimeOut: 60*1000
   rpcServicePackage: com.hc.nettygame.gate.rpc.service.server
-#spring:
+spring:
+  config:
+    import: common-config.yml
 #  datasource:
 #    url: jdbc:mysql://localhost:3307/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
 #    username: root
@@ -39,18 +31,4 @@ netty:
 #  mapper-locations:
 #    - classpath:dao/*.xml
 #    - classpath*:com/**/mapper/*.xml
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*' #暴露Actuator的监控端点
-  endpoint:
-    health:
-      show-details: always #显示健康的详细信息
-    env:
-      show-values: always #默认Actuator的环境变量会以****显示，这里开启显示
-    configprops:
-      show-values: always #默认Actuator的配置属性会以****显示，这里开启显示
-    info:
-      enabled: true
 

@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class NetManager {
     private final Logger LOGGER = Loggers.serverLogger;
-    @Value("${netty.serverId:default}")
+    @Value("${netty.serverId}")
     private String serverId;
-    @Value("${netty.tcp-port:10080}")
+    @Value("${netty.tcp-port}")
     private Integer tcpPort;
-    @Value("${netty.rpc-port:10100}")
+    @Value("${netty.rpc-port}")
     private Integer rpcPort;
-    @Value("${netty.rpcOpen:true}")
+    @Value("${netty.rpcOpen}")
     private boolean rpcOpen;
 
     @Autowired

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class GameClientChannelInitializer extends ChannelInitializer<NioSocketChannel> {
-    @Value("${spring.profiles.active:default}")
+    @Value("${spring.profiles.active}")
     private String activeProfile;
     @Autowired
     private ApplicationContext applicationContext;

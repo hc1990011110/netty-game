@@ -27,9 +27,9 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RpcProxyService implements IService {
     private static ThreadPoolExecutor threadPoolExecutor;
-    @Value("${netty.rpcTimeOut:0}")
+    @Value("${netty.rpcTimeOut}")
     private Integer rpcTimeOut;
-    @Value("${netty.rpcSendProxyThreadSize:16}")
+    @Value("${netty.rpcSendProxyThreadSize}")
     private Integer rpcSendProxyThreadSize;
     @Autowired
     private ApplicationContext context;

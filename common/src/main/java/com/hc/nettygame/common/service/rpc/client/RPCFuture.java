@@ -33,7 +33,7 @@ public class RPCFuture implements Future<Object> {
     private final List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
     private final ReentrantLock lock = new ReentrantLock();
     private RpcResponse response;
-    @Value("${netty.rpcFutureDeleteTimeOut:60000}")
+    @Value("${netty.rpcFutureDeleteTimeOut}")
     private Integer rpcFutureDeleteTimeOut;
     @Autowired
     private RpcProxyService rpcProxyService;

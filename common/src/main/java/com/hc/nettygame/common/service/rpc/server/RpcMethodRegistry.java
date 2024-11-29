@@ -23,7 +23,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
     public static Logger logger = Loggers.serverLogger;
     private final ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
     public ClassScanner classScanner = new ClassScanner();
-    @Value("${netty.rpcServicePackage:com.hc.nettygame.gate.rpc.service.server}")
+    @Value("${netty.rpcServicePackage}")
     private String rpcServicePackage;
     @Autowired
     private ProtostuffSerializeI rpcSerialize;

@@ -30,7 +30,7 @@ public abstract class AbstractRpcConnectManager {
     @Autowired
     private ApplicationContext context;
     private ThreadPoolExecutor threadPoolExecutor;
-    @Value("${netty.rpcConnectThreadSize:16}")
+    @Value("${netty.rpcConnectThreadSize}")
     private Integer rpcConnectThreadSize;
 
     public void initManager() {

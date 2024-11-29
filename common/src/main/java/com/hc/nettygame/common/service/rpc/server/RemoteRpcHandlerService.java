@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RemoteRpcHandlerService implements IService {
-    @Value("${netty.rpcOpen:true}")
+    @Value("${netty.rpcOpen}")
     private boolean rpcOpen;
-    @Value("${netty.rpcThreadPoolSize:60}")
+    @Value("${netty.rpcThreadPoolSize}")
     private Integer rpcThreadPoolSize;
-    @Value("${netty.rpcThreadPoolQueueSize:65536}")
+    @Value("${netty.rpcThreadPoolQueueSize}")
     private Integer rpcThreadPoolQueueSize;
     @Autowired
     private RpcHandlerThreadPool rpcHandlerThreadPool;

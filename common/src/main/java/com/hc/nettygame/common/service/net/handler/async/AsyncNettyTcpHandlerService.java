@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AsyncNettyTcpHandlerService implements IService {
-    @Value("${netty.gameExecutorCorePoolSize:4}")
+    @Value("${netty.gameExecutorCorePoolSize}")
     private Integer gameExecutorCorePoolSize;
     /**
      * handler线程组
