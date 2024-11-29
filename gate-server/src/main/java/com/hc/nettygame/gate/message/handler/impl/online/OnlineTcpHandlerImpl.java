@@ -40,6 +40,7 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
         RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.NODE, 8000);
         RpcContextHolder.setContextHolder(rpcContextHolderObject);
         HelloService helloService = rpcProxyService.createProxy(HelloService.class);
+//        HelloService helloService = rpcProxyService.createRemoteProxy(HelloService.class);
         String result = helloService.hello("mother fucker");
         LOGGER.info("FUCK: {}", result);
         return onlineLoginServerTcpMessage;

@@ -59,9 +59,7 @@ public abstract class AbstractGameNetMessageTcpServerHandler extends ChannelInbo
             logger.error("channel exceptionCaught", cause);
         }
 
-//        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-//        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-        boolean exceptionCloseSessionFlag = true;// gameServerConfig.isExceptionCloseSessionFlag();
+        boolean exceptionCloseSessionFlag = true;
 
         if (exceptionCloseSessionFlag) {
             //设置下线
@@ -81,8 +79,8 @@ public abstract class AbstractGameNetMessageTcpServerHandler extends ChannelInbo
     }
 
     private void disconnect(Channel channel) throws NetMessageException {
-        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
-        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
+        long sessionId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
+        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessionId);
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
             return;
