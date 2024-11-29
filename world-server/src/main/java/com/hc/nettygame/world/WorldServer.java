@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.hc.nettygame.common"})
+@ComponentScan(basePackages = {"com.hc.nettygame.common", "com.hc.nettygame.world"})
 public class WorldServer implements CommandLineRunner {
     private final Logger LOGGER = Loggers.serverLogger;
     @Autowired

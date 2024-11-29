@@ -13,7 +13,9 @@ import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.Reloadable;
 import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
@@ -34,6 +36,8 @@ public class GameFacade implements IFacade, Reloadable, IService {
     protected Map<Integer, IMessageHandler> handlers = new HashMap<Integer, IMessageHandler>();
     @Value("${netty.netMessageHandlerNameSpace}")
     private String netMessageHandlerNameSpace;
+    @Autowired
+    private ApplicationContext context;
 
     /**
      * 获取消息对象
@@ -41,16 +45,18 @@ public class GameFacade implements IFacade, Reloadable, IService {
      * @return
      * @throws Exception
      */
-    public static IMessageHandler getMessageHandler(Class<?> classes) {
-
+    public IMessageHandler getMessageHandler(Class<?> classes) {
         try {
             if (classes == null) {
                 return null;
             }
-
-            IMessageHandler messageHandler = (IMessageHandler) classes
-                    .newInstance();
-            return messageHandler;
+            // 优先从 Spring 容器中获取 Bean
+            String simpleName = classes.getSimpleName(); // 获取类名（不含包名）
+            String beanName = Character.toLowerCase(simpleName.charAt(0)) + simpleName.substring(1); // 首字母小写
+            if (context.containsBeanDefinition(beanName)) {
+                return (IMessageHandler) context.getBean(classes);
+            }
+            return (IMessageHandler) classes.newInstance();
         } catch (Exception e) {
             logger.error("getMessageHandler - classes=" + classes.getName()
                     + ". ", e);

@@ -8,12 +8,12 @@ import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import com.hc.nettygame.common.service.message.command.MessageCommandIndex;
 import com.hc.nettygame.common.service.message.factory.TcpMessageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by hc on 17/2/15.
  */
-@Component
+@Service
 public class CommonHandlerImpl extends AbstractMessageHandler {
     @Autowired
     private TcpMessageFactory tcpMessageFactory;

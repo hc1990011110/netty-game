@@ -17,8 +17,6 @@ import java.util.Map;
 @Setter
 @Getter
 public abstract class AbstractMessageHandler implements IMessageHandler {
-
-
     /**
      * 日志
      */

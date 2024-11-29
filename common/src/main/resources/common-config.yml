@@ -8,7 +8,7 @@ netty:
   rpcConnectThreadSize: 16
   rpcSendProxyThreadSize: 16
   rpcTimeOut: 0
-  rpcFutureDeleteTimeOut: 60*1000
+  rpcFutureDeleteTimeOut: 60000
 management:
   endpoints:
     web:
