@@ -23,4 +23,39 @@ management:
       show-values: always #默认Actuator的配置属性会以****显示，这里开启显示
     info:
       enabled: true
-
+rpc:
+  sdRpcServiceProvider:
+    servers:
+      - gate
+      - node
+      - world
+  sdGateServers:
+    - serverId: 8001
+      domain: 127.0.0.1
+      domainPort: 7090
+      ip: 127.0.0.1
+      port: 7090
+      weight: 100
+      maxNumber: 1000
+      rpcPort: 10100
+      rpcClientNumber: 3
+  sdNodeServers:
+    - serverId: 8001
+      domain: 127.0.0.1
+      domainPort: 7090
+      ip: 127.0.0.1
+      port: 7090
+      weight: 100
+      maxNumber: 1000
+      rpcPort: 10100
+      rpcClientNumber: 3
+  sdWorldServers:
+    - serverId: 8001
+      domain: 127.0.0.1
+      domainPort: 7090
+      ip: 127.0.0.1
+      port: 7090
+      weight: 100
+      maxNumber: 1000
+      rpcPort: 10100
+      rpcClientNumber: 3

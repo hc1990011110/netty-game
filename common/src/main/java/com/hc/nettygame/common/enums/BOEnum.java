@@ -7,11 +7,11 @@ package com.hc.nettygame.common.enums;
 public enum BOEnum {
 
     //网关
-    PROXY(1),
+    GATE(1),
     //世界
     WORLD(2),
     //游戏
-    GAME(3),
+    NODE(3),
     //db
     DB(4),
     ;

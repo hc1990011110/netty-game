@@ -1,41 +1,41 @@
 package com.hc.nettygame.common.service.rpc.server;
 
+import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.enums.BOEnum;
-import org.jdom2.DataConversionException;
-import org.jdom2.Element;
+import lombok.Getter;
+import lombok.Setter;
+import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
-import java.util.BitSet;
+import java.util.Set;
 
 /**
  * Created by hc on 17/3/31.
  * rpc服务提供模块
  */
+@Getter
+@Setter
+@Service
 public class SdRpcServiceProvider {
-
-    //开放功能模块
-    private final BitSet bitSet = new BitSet();
-
-    public void load(Element element) throws DataConversionException {
-        String boenumString = element.getAttribute("boenum").getValue();
-        BOEnum boEnum = BOEnum.valueOf(boenumString.toUpperCase());
-        bitSet.set(boEnum.getBoId(), true);
-    }
+    private static final Logger LOGGER = Loggers.rpcLogger;
+    private Set<BOEnum> servers;
+    private Set<Integer> serverIds;
 
     //是否世界开放
     public boolean isWorldOpen() {
-        return bitSet.get(BOEnum.WORLD.getBoId());
+        return serverIds.contains(BOEnum.WORLD.getBoId());
     }
 
-    public boolean isGameOpen() {
-        return bitSet.get(BOEnum.GAME.getBoId());
+    public boolean isNodeOpen() {
+        return serverIds.contains(BOEnum.NODE.getBoId());
     }
 
     public boolean isDbOpen() {
-        return bitSet.get(BOEnum.DB.getBoId());
+        return serverIds.contains(BOEnum.DB.getBoId());
     }
 
     public boolean validServer(int boId) {
-        return bitSet.get(boId);
+        return serverIds.contains(boId);
     }
 
 

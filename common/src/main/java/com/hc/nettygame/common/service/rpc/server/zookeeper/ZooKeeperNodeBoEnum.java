@@ -7,7 +7,7 @@ import com.hc.nettygame.common.enums.BOEnum;
  */
 public enum ZooKeeperNodeBoEnum {
     WORLD(BOEnum.WORLD, "/world_registry_adress"),
-    GAME(BOEnum.GAME, "/game_registry_adress"),
+    NODE(BOEnum.NODE, "/game_registry_adress"),
     DB(BOEnum.DB, "/db_registry_adress"),
     ;
     private BOEnum boEnum;

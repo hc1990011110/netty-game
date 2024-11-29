@@ -72,13 +72,13 @@ public class RpcClientConnectService implements IService {
 
     public void init() throws Exception {
         initWorldConnectedServer(rpcServerRegisterConfig.getSdWorldServers());
-        initGameConnectedServer(rpcServerRegisterConfig.getSdGameServers());
-        initDbConnectServer(rpcServerRegisterConfig.getSdDbServers());
+        initGameConnectedServer(rpcServerRegisterConfig.getSdNodeServers());
+        initDbConnectServer(rpcServerRegisterConfig.getSdGateServers());
     }
 
 
     public AbstractRpcConnectManager getRpcConnectManager(BOEnum boEnum) {
-        if (boEnum == BOEnum.GAME) {
+        if (boEnum == BOEnum.NODE) {
             return gameRpcConnectManager;
         }
         if (boEnum == BOEnum.DB) {

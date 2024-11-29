@@ -12,8 +12,6 @@ import org.jdom2.Element;
 @Setter
 @Getter
 public class SdServer {
-
-
     /**
      * 服务器配置id
      */

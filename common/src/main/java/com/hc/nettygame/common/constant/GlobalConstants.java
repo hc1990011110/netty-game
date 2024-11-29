@@ -86,14 +86,6 @@ public class GlobalConstants {
      * redis Key的基本配置
      */
     public static final class ConfigFile {
-        /**
-         * rpc
-         */
-        public static final String RPC_SERVER_REGISTER_CONFIG = "rpc-server-register.xml";
-        /**
-         * rpcservice
-         */
-        public static final String RPC_SERVEICE_CONFIG = "rpc-service-register.xml";
 
         private ConfigFile() {
         }

@@ -1,94 +1,42 @@
 package com.hc.nettygame.common.service.rpc.server;
 
-import com.hc.nettygame.common.constant.GlobalConstants;
 import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.enums.BOEnum;
-import com.hc.nettygame.common.util.FileUtil;
-import com.hc.nettygame.common.util.JdomUtils;
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.Setter;
-import org.jdom2.Element;
 import org.slf4j.Logger;
-import org.springframework.stereotype.Service;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by hc on 17/4/1.
  */
-@Service
+@Setter
+@Getter
+@Configuration
+@ConfigurationProperties(prefix = "rpc")
 public class RpcServerRegisterConfig {
-
     private static final Logger LOGGER = Loggers.rpcLogger;
 
-    protected final Object lock = new Object();
-
-    @Setter
-    @Getter
-    protected List<SdServer> sdWorldServers;
-    @Setter
-    @Getter
-    protected List<SdServer> sdGameServers;
-    @Setter
-    @Getter
-    protected List<SdServer> sdDbServers;
-
-    @Setter
-    @Getter
+    private List<SdServer> sdGateServers;
+    private List<SdServer> sdNodeServers;
+    private List<SdServer> sdWorldServers;
     private SdRpcServiceProvider sdRpcServiceProvider;
 
-    public void init() throws Exception {
-
-        Element rootElement = JdomUtils.getRootElement(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_REGISTER_CONFIG).getFile());
-
-        Map<Integer, SdServer> serverMap = new HashMap<>();
-
-        List<SdServer> sdWorldServers = new ArrayList<SdServer>();
-        Element element = rootElement.getChild(BOEnum.WORLD.toString().toLowerCase());
-        List<Element> childrenElements = element.getChildren("server");
-        for (Element childElement : childrenElements) {
-            SdServer sdServer = new SdServer();
-            sdServer.load(childElement);
-            sdWorldServers.add(sdServer);
+    @PostConstruct
+    public void initServerIds() {
+        if (sdRpcServiceProvider.getServers() != null) {
+            Set<Integer> serverIds = sdRpcServiceProvider.getServers().stream()
+                    .map(BOEnum::getBoId) // 提取 boId
+                    .collect(Collectors.toSet());
+            sdRpcServiceProvider.setServerIds(serverIds);
         }
-
-        List<SdServer> sdGameServers = new ArrayList<SdServer>();
-        element = rootElement.getChild(BOEnum.GAME.toString().toLowerCase());
-        childrenElements = element.getChildren("server");
-        for (Element childElement : childrenElements) {
-            SdServer sdServer = new SdServer();
-            sdServer.load(childElement);
-            sdGameServers.add(sdServer);
-        }
-
-        List<SdServer> sdDbServers = new ArrayList<SdServer>();
-        element = rootElement.getChild(BOEnum.DB.toString().toLowerCase());
-        childrenElements = element.getChildren("server");
-        for (Element childElement : childrenElements) {
-            SdServer sdServer = new SdServer();
-            sdServer.load(childElement);
-            sdDbServers.add(sdServer);
-        }
-
-        synchronized (this.lock) {
-            this.sdWorldServers = sdWorldServers;
-            this.sdGameServers = sdGameServers;
-            this.sdDbServers = sdDbServers;
-        }
-
-        SdRpcServiceProvider sdRpcServiceProvider = new SdRpcServiceProvider();
-        rootElement = JdomUtils.getRootElement(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVEICE_CONFIG).getFile());
-        childrenElements = rootElement.getChildren("service");
-        for (Element childElement : childrenElements) {
-            sdRpcServiceProvider.load(childElement);
-        }
-
-        synchronized (this.lock) {
-            this.sdRpcServiceProvider = sdRpcServiceProvider;
-        }
+        LOGGER.info("sdRpcServiceProvider:{} {}", sdRpcServiceProvider.getServerIds(), sdRpcServiceProvider.getServers());
     }
 
     public boolean validServer(int boId) {
