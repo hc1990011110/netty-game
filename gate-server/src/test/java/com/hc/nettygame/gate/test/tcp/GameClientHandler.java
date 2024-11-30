@@ -1,15 +1,15 @@
 package com.hc.nettygame.gate.test.tcp;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.message.logic.tcp.client.OnlineLoginClientTcpMessage;
 import com.hc.nettygame.common.message.logic.tcp.server.OnlineLoginServerTcpMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class GameClientHandler extends ChannelInboundHandlerAdapter {
-    public static Logger LOGGER = Loggers.sessionLogger;
+    public static Logger LOGGER = LoggerFactory.getLogger(GameClientHandler.class);
 //    private final ByteBuf firstMessage;
 
     public GameClientHandler() {

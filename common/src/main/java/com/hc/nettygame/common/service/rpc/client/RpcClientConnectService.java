@@ -1,6 +1,5 @@
 package com.hc.nettygame.common.service.rpc.client;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.constant.ServiceName;
 import com.hc.nettygame.common.enums.BOEnum;
 import com.hc.nettygame.common.service.IService;
@@ -10,6 +9,7 @@ import com.hc.nettygame.common.service.rpc.client.impl.WorldRpcConnectManager;
 import com.hc.nettygame.common.service.rpc.server.RpcServerRegisterConfig;
 import com.hc.nettygame.common.service.rpc.server.SdServer;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 public class RpcClientConnectService implements IService {
 
-    private static final Logger LOGGER = Loggers.rpcLogger;
+    private static final Logger LOGGER = LoggerFactory.getLogger(RpcClientConnectService.class);
 
     @Autowired
     private WorldRpcConnectManager worldRpcConnectManager;

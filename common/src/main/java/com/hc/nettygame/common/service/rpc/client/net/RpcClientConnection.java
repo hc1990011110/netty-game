@@ -1,6 +1,5 @@
 package com.hc.nettygame.common.service.rpc.client.net;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.net.RpcRequest;
 import com.hc.nettygame.common.service.rpc.server.RpcNodeInfo;
 import io.netty.channel.EventLoopGroup;
@@ -9,6 +8,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -26,7 +26,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Component
 @Scope("prototype")
 public class RpcClientConnection {
-    private final Logger logger = Loggers.rpcLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(RpcClientConnection.class);
     private final ReentrantLock statusLock;
     /**
      * 重连线程池工具
@@ -74,14 +74,14 @@ public class RpcClientConnection {
         try {
             InetSocketAddress remotePeer = new InetSocketAddress(rpcNodeInfo.getHost(), rpcNodeInfo.getIntPort());
             //连接结束
-            logger.info("connect to remote server. remote peer = " + remotePeer);
+            LOGGER.info("connect to remote server. remote peer = " + remotePeer);
             Future<?> future = threadPool.submit(context.getBean(RpcServerConnectTask.class, rpcNodeInfo, eventLoopGroup, rpcClient));
             future.get();
             if (isConnected()) {
                 return false;
             }
-            if (logger.isInfoEnabled()) {
-                logger.info("Connect success.");
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Connect success.");
             }
             return true;
         } catch (Exception e) {
@@ -121,7 +121,7 @@ public class RpcClientConnection {
         // 发送消息
         if (channel != null) {
 //            if (logger.isDebugEnabled()) {
-            logger.info("【Send】" + rpcRequest);
+            LOGGER.info("【Send】" + rpcRequest);
 //            }
             channel.writeAndFlush(rpcRequest);
             return true;
@@ -183,8 +183,8 @@ public class RpcClientConnection {
             try {
                 open();
             } catch (Exception e) {
-                if (logger.isErrorEnabled()) {
-                    logger.error("Restart connection error.");
+                if (LOGGER.isErrorEnabled()) {
+                    LOGGER.error("Restart connection error.");
                 }
             }
         }

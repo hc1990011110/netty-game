@@ -1,7 +1,6 @@
 package com.hc.nettygame.common.logic.net;
 
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.GameHandlerException;
 import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import com.hc.nettygame.common.service.message.AbstractNetProtoBufMessage;
@@ -20,6 +19,7 @@ import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +32,8 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  */
 @Service
 public class NetMessageProcessLogic {
-    protected static final Logger logger = Loggers.sessionLogger;
-    protected static final Logger statLog = Loggers.serverStatusStatistics;
+    protected static final Logger LOGGER = LoggerFactory.getLogger(NetMessageProcessLogic.class);
+    ;
     @Autowired
     private GameFacade gameFacade;
     @Autowired
@@ -51,8 +51,8 @@ public class NetMessageProcessLogic {
                 nettySession.write(respone);
             }
         } catch (Exception e) {
-            if (logger.isErrorEnabled()) {
-                Loggers.errorLogger.error(ErrorsUtil.error("Error",
+            if (LOGGER.isErrorEnabled()) {
+                LOGGER.error(ErrorsUtil.error("Error",
                         "#.QueueMessageExecutorProcessor.process", "param"), e);
             }
 
@@ -62,18 +62,18 @@ public class NetMessageProcessLogic {
                 try {
                     nettySession.write(errorMessage);
                 } catch (Exception writeException) {
-                    Loggers.errorLogger.error(ErrorsUtil.error("Error",
+                    LOGGER.error(ErrorsUtil.error("Error",
                             "#.QueueMessageExecutorProcessor.writeErrorMessage", "param"), e);
                 }
 
             }
 
         } finally {
-            if (logger.isInfoEnabled()) {
+            if (LOGGER.isInfoEnabled()) {
                 // 特例，统计时间跨度
                 long time = (System.nanoTime() - begin) / (1000 * 1000);
                 if (time > 1) {
-                    statLog.info("#CORE.MSG.PROCESS.STATICS Message id:"
+                    LOGGER.info("#CORE.MSG.PROCESS.STATICS Message id:"
                             + message.getNetMessageHead().getCmd() + " Time:"
                             + time + "ms");
                 }
@@ -91,8 +91,8 @@ public class NetMessageProcessLogic {
         try {
             respone = (AbstractNetProtoBufMessage) gameFacade.dispatch(message);
         } catch (Exception e) {
-            if (logger.isErrorEnabled()) {
-                Loggers.errorLogger.error(ErrorsUtil.error("Error",
+            if (LOGGER.isErrorEnabled()) {
+                LOGGER.error(ErrorsUtil.error("Error",
                         "#.QueueMessageExecutorProcessor.process", "param"), e);
             }
 
@@ -102,18 +102,18 @@ public class NetMessageProcessLogic {
             }
 
         } finally {
-            if (logger.isInfoEnabled()) {
+            if (LOGGER.isInfoEnabled()) {
                 // 特例，统计时间跨度
                 long time = (System.nanoTime() - begin) / (1000 * 1000);
                 if (time > 1) {
-                    statLog.info("#CORE.MSG.PROCESS.STATICS Message id:"
+                    LOGGER.info("#CORE.MSG.PROCESS.STATICS Message id:"
                             + message.getNetMessageHead().getCmd() + " Time:"
                             + time + "ms");
                 }
             }
 
         }
-        
+
         if (respone != null) {
             respone.setSerial(message.getNetMessageHead().getSerial());
             try {
@@ -144,8 +144,8 @@ public class NetMessageProcessLogic {
                 channel.writeAndFlush(binaryWebSocketFrame);
             }
         } catch (Exception e) {
-            if (logger.isErrorEnabled()) {
-                Loggers.errorLogger.error(ErrorsUtil.error("Error",
+            if (LOGGER.isErrorEnabled()) {
+                LOGGER.error(ErrorsUtil.error("Error",
                         "#.QueueMessageExecutorProcessor.process", "param"), e);
             }
 
@@ -155,11 +155,11 @@ public class NetMessageProcessLogic {
             }
 
         } finally {
-            if (logger.isInfoEnabled()) {
+            if (LOGGER.isInfoEnabled()) {
                 // 特例，统计时间跨度
                 long time = (System.nanoTime() - begin) / (1000 * 1000);
                 if (time > 1) {
-                    statLog.info("#CORE.MSG.PROCESS.STATICS Message id:"
+                    LOGGER.info("#CORE.MSG.PROCESS.STATICS Message id:"
                             + message.getNetMessageHead().getCmd() + " Time:"
                             + time + "ms");
                 }

@@ -2,10 +2,10 @@ package com.hc.nettygame.common.service.rpc.server;
 
 import com.hc.nettygame.common.annotation.BlockingQueueType;
 import com.hc.nettygame.common.constant.GlobalConstants;
-import com.hc.nettygame.common.constant.Loggers;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.*;
@@ -16,7 +16,7 @@ import java.util.concurrent.*;
 @Service
 public class RpcHandlerThreadPool {
 
-    private final Logger LOGGER = Loggers.threadLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(RpcHandlerThreadPool.class);
     @Getter
     @Setter
     private ExecutorService executor;

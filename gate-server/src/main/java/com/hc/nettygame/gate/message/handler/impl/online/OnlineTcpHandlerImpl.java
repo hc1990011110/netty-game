@@ -1,7 +1,6 @@
 package com.hc.nettygame.gate.message.handler.impl.online;
 
 import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.message.handler.AbstractMessageHandler;
 import com.hc.nettygame.common.message.logic.tcp.client.OnlineLoginClientTcpMessage;
 import com.hc.nettygame.common.message.logic.tcp.server.OnlineLoginServerTcpMessage;
@@ -10,6 +9,8 @@ import com.hc.nettygame.common.service.message.command.MessageCommandIndex;
 import com.hc.nettygame.common.service.rpc.client.RpcProxyService;
 import com.hc.nettygame.common.service.rpc.service.client.HelloService;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @Service
 public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
+    public static final Logger LOGGER = LoggerFactory.getLogger(OnlineTcpHandlerImpl.class);
     private final AtomicLong id = new AtomicLong();
     @Autowired
     private RpcProxyService rpcProxyService;
@@ -34,7 +36,7 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
         onlineLoginServerTcpMessage.setPlayerId(playerId);
         onlineLoginServerTcpMessage.setToken(token);
 //        if (Loggers.sessionLogger.isDebugEnabled()) {
-        Loggers.sessionLogger.info("id:{} playerId:{}, token:{} login", message.getId(), playerId, token);
+        LOGGER.info("id:{} playerId:{}, token:{} login", message.getId(), playerId, token);
 //        }
 //        NettyTcpSession clientSesion = (NettyTcpSession) message.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
 //        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.NODE, 8000);

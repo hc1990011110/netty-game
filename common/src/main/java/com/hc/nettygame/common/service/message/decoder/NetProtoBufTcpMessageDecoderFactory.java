@@ -1,12 +1,13 @@
 package com.hc.nettygame.common.service.message.decoder;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.CodecException;
 import com.hc.nettygame.common.service.message.AbstractNetProtoBufMessage;
 import com.hc.nettygame.common.service.message.NetMessageHead;
 import com.hc.nettygame.common.service.message.NetProtoBufMessageBody;
 import com.hc.nettygame.common.service.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class NetProtoBufTcpMessageDecoderFactory implements INetProtoBufTcpMessageDecoderFactory {
+    public static final Logger LOGGER = LoggerFactory.getLogger(NetProtoBufTcpMessageDecoderFactory.class);
     @Autowired
     private MessageRegistry messageRegistry;
 
@@ -51,8 +53,8 @@ public class NetProtoBufTcpMessageDecoderFactory implements INetProtoBufTcpMessa
         }
 
         //增加协议解析打印
-        if (Loggers.sessionLogger.isDebugEnabled()) {
-            Loggers.sessionLogger.debug("receive net message{}", netMessage.toAllInfoString());
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("receive net message{}", netMessage.toAllInfoString());
         }
 
         return netMessage;

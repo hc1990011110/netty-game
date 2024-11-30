@@ -1,12 +1,12 @@
 package com.hc.nettygame.common.service.net.session;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.NetMessageException;
 import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import io.netty.channel.Channel;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by hc on 2017/2/9.
@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 @Getter
 public abstract class NettySession implements ISession {
 
-    private static final Logger errorLogger = Loggers.errorLogger;
+    private static final Logger LOGGER = LoggerFactory.getLogger(NettySession.class);
 
     protected volatile Channel channel;
 
@@ -41,7 +41,7 @@ public abstract class NettySession implements ISession {
             try {
                 channel.writeAndFlush(msg);
             } catch (Exception e) {
-                errorLogger.info("session write msg exception", e);
+                LOGGER.info("session write msg exception", e);
                 throw new NetMessageException(e);
             }
 
@@ -77,7 +77,7 @@ public abstract class NettySession implements ISession {
             try {
                 channel.writeAndFlush(msg);
             } catch (Exception e) {
-                errorLogger.info("session write bytes exception", e);
+                LOGGER.info("session write bytes exception", e);
                 throw new NetMessageException(e);
             }
         }

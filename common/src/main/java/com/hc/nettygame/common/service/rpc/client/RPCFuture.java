@@ -1,9 +1,9 @@
 package com.hc.nettygame.common.service.rpc.client;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.net.RpcRequest;
 import com.hc.nettygame.common.service.net.RpcResponse;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -25,7 +25,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Component
 @Scope("prototype")
 public class RPCFuture implements Future<Object> {
-    private final Logger logger = Loggers.rpcLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(RPCFuture.class);
     private final Sync sync;
     private final RpcRequest request;
     private final long startTime;
@@ -93,7 +93,7 @@ public class RPCFuture implements Future<Object> {
         // Threshold
         long responseTime = System.currentTimeMillis() - startTime;
         if (responseTime > this.responseTimeThreshold) {
-            logger.warn("Service response time is too slow. Request id = " + response.getRequestId() + ". Response Time = " + responseTime + "ms");
+            LOGGER.warn("Service response time is too slow. Request id = " + response.getRequestId() + ". Response Time = " + responseTime + "ms");
         }
     }
 

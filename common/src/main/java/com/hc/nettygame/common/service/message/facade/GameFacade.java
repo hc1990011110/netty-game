@@ -3,7 +3,6 @@ package com.hc.nettygame.common.service.message.facade;
 
 import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
 import com.hc.nettygame.common.constant.GlobalConstants;
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.constant.ServiceName;
 import com.hc.nettygame.common.exception.GameHandlerException;
 import com.hc.nettygame.common.message.handler.AbstractMessageHandler;
@@ -13,6 +12,7 @@ import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.Reloadable;
 import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -30,7 +30,7 @@ public class GameFacade implements IFacade, Reloadable, IService {
     /**
      * Logger for this class
      */
-    public static final Logger logger = Loggers.serverLogger;
+    public static final Logger LOGGER = LoggerFactory.getLogger(GameFacade.class);
     public ClassScanner classScanner = new ClassScanner();
     public String[] fileNames;
     protected Map<Integer, IMessageHandler> handlers = new HashMap<Integer, IMessageHandler>();
@@ -58,7 +58,7 @@ public class GameFacade implements IFacade, Reloadable, IService {
             }
             return (IMessageHandler) classes.newInstance();
         } catch (Exception e) {
-            logger.error("getMessageHandler - classes=" + classes.getName()
+            LOGGER.error("getMessageHandler - classes=" + classes.getName()
                     + ". ", e);
         }
         return null;
@@ -122,7 +122,7 @@ public class GameFacade implements IFacade, Reloadable, IService {
 //                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
 //                }
                 Class<?> messageClass = Class.forName(realClass);
-                logger.info("handler load: " + messageClass);
+                LOGGER.info("handler load: " + messageClass);
 
                 IMessageHandler iMessageHandler = getMessageHandler(messageClass);
                 AbstractMessageHandler handler = (AbstractMessageHandler) iMessageHandler;
@@ -147,7 +147,7 @@ public class GameFacade implements IFacade, Reloadable, IService {
         try {
             loadPackage(netMessageHandlerNameSpace, GlobalConstants.FileExtendConstants.Ext);
         } catch (Exception e) {
-            logger.error(e.toString(), e);
+            LOGGER.error(e.toString(), e);
         }
     }
 

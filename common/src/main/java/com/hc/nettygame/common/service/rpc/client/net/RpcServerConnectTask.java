@@ -1,6 +1,5 @@
 package com.hc.nettygame.common.service.rpc.client.net;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.rpc.server.RpcNodeInfo;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -11,6 +10,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ import java.net.InetSocketAddress;
 @Scope("prototype")
 public class RpcServerConnectTask implements Runnable {
 
-    private final Logger logger = Loggers.serverLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(RpcServerConnectTask.class);
 
     private final InetSocketAddress remotePeer;
 
@@ -56,12 +56,12 @@ public class RpcServerConnectTask implements Runnable {
             @Override
             public void operationComplete(final ChannelFuture channelFuture) throws Exception {
                 if (channelFuture.isSuccess()) {
-                    logger.info("connect to remote server. remote peer = " + remotePeer + " success");
+                    LOGGER.info("connect to remote server. remote peer = " + remotePeer + " success");
                     RpcClientHandler handler = channelFuture.channel().pipeline().get(RpcClientHandler.class);
                     handler.setRpcClient(rpcClient);
                     rpcClient.getRpcClientConnection().setChannel((NioSocketChannel) channelFuture.channel());
                 } else {
-                    logger.info("connect to remote server. remote peer = " + remotePeer + "fail");
+                    LOGGER.info("connect to remote server. remote peer = " + remotePeer + "fail");
                 }
             }
 
@@ -69,10 +69,10 @@ public class RpcServerConnectTask implements Runnable {
         try {
             channelFuture.await();
         } catch (InterruptedException e) {
-            logger.error(e.toString(), e);
+            LOGGER.error(e.toString(), e);
         }
 
         //连接结束
-        logger.debug("connect to remote server. remote peer = " + remotePeer);
+        LOGGER.debug("connect to remote server. remote peer = " + remotePeer);
     }
 }

@@ -1,7 +1,6 @@
 package com.hc.nettygame.common.service.net;
 
 
-import com.hc.nettygame.common.constant.Loggers;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.*;
@@ -11,12 +10,13 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.Getter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 
 @Getter
 public class AbstractNettyTcpServerService extends AbstractNettyServerService {
-    private final Logger LOGGER = Loggers.serverLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(AbstractNettyTcpServerService.class);
     private final ChannelInitializer channelInitializer;
     protected InetSocketAddress serverAddress;
 

@@ -1,6 +1,5 @@
 package com.hc.nettygame.common.service.net.handler;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.net.RpcRequest;
 import com.hc.nettygame.common.service.net.RpcResponse;
 import com.hc.nettygame.common.service.rpc.server.RemoteRpcHandlerService;
@@ -10,6 +9,7 @@ import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 @Service
 @Scope("prototype")
 public class GameNetRpcServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
-    private final Logger LOGGER = Loggers.rpcLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(GameNetRpcServerHandler.class);
     @Autowired
     private RemoteRpcHandlerService remoteRpcHandlerService;
     @Autowired

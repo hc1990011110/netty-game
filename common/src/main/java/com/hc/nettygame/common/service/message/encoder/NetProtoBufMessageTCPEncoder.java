@@ -1,13 +1,13 @@
 package com.hc.nettygame.common.service.message.encoder;
 
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.message.AbstractNetProtoBufMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ import java.util.List;
 @Component
 @Scope("prototype")
 public class NetProtoBufMessageTCPEncoder extends MessageToMessageEncoder<AbstractNetProtoBufMessage> {
-    private final Logger LOGGER = Loggers.serverLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(NetProtoBufMessageTCPEncoder.class);
     private final Charset charset;
 
     @Autowired

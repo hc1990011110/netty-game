@@ -2,13 +2,13 @@ package com.hc.nettygame.common.service.rpc.server;
 
 import com.hc.nettygame.common.annotation.RpcServiceAnnotation;
 import com.hc.nettygame.common.constant.GlobalConstants;
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.constant.ServiceName;
 import com.hc.nettygame.common.scanner.ClassScanner;
 import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.Reloadable;
 import com.hc.nettygame.common.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class RpcMethodRegistry implements Reloadable, IService {
-    public static Logger logger = Loggers.serverLogger;
+    public static Logger LOGGER = LoggerFactory.getLogger(RpcMethodRegistry.class);
     private final ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
     public ClassScanner classScanner = new ClassScanner();
     @Value("${netty.rpcServicePackage}")
@@ -59,13 +59,13 @@ public class RpcMethodRegistry implements Reloadable, IService {
                         - (ext.length()));
                 Class<?> messageClass = Class.forName(realClass);
 
-                logger.info("rpc load:{}", messageClass);
+                LOGGER.info("rpc load:{}", messageClass);
                 RpcServiceAnnotation rpcServiceAnnotation = messageClass.getAnnotation(RpcServiceAnnotation.class);
                 if (rpcServiceAnnotation != null) {
                     String interfaceName = messageClass.getAnnotation(RpcServiceAnnotation.class).value().getName();
                     Object serviceBean = rpcSerialize.newInstance(messageClass);
                     registryMap.put(interfaceName, serviceBean);
-                    logger.info("rpc register:" + messageClass);
+                    LOGGER.info("rpc register:" + messageClass);
                 }
             }
         }

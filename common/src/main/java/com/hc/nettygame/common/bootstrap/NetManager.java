@@ -1,12 +1,12 @@
 package com.hc.nettygame.common.bootstrap;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.StartUpException;
 import com.hc.nettygame.common.service.net.GameNetRpcChannelInitializer;
 import com.hc.nettygame.common.service.net.GameNettyRpcService;
 import com.hc.nettygame.common.service.net.GameNettyTcpServerService;
 import com.hc.nettygame.common.service.net.GameTcpServerChannelInitializer;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NetManager {
-    private final Logger LOGGER = Loggers.serverLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(NetManager.class);
     @Value("${netty.serverId}")
     private String serverId;
     @Value("${netty.tcp-port}")

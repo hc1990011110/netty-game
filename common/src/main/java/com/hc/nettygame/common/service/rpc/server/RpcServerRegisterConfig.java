@@ -1,11 +1,11 @@
 package com.hc.nettygame.common.service.rpc.server;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.enums.BOEnum;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Configuration
 @ConfigurationProperties(prefix = "rpc")
 public class RpcServerRegisterConfig {
-    private static final Logger LOGGER = Loggers.rpcLogger;
+    private static final Logger LOGGER = LoggerFactory.getLogger(RpcServerRegisterConfig.class);
 
     private List<SdServer> sdNodeServers;
     private List<SdServer> sdWorldServers;

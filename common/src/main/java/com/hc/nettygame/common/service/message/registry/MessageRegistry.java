@@ -3,17 +3,17 @@ package com.hc.nettygame.common.service.message.registry;
 
 import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
 import com.hc.nettygame.common.constant.GlobalConstants;
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.constant.ServiceName;
+import com.hc.nettygame.common.scanner.ClassScanner;
+import com.hc.nettygame.common.service.IService;
+import com.hc.nettygame.common.service.Reloadable;
 import com.hc.nettygame.common.service.message.AbstractNetProtoBufMessage;
 import com.hc.nettygame.common.service.message.command.MessageCommand;
 import com.hc.nettygame.common.service.message.command.MessageCommandEnum;
 import com.hc.nettygame.common.service.message.command.MessageCommandFactory;
-import com.hc.nettygame.common.scanner.ClassScanner;
-import com.hc.nettygame.common.service.IService;
-import com.hc.nettygame.common.service.Reloadable;
 import com.hc.nettygame.common.util.StringUtils;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class MessageRegistry implements Reloadable, IService {
 
-    public static Logger LOGGER = Loggers.serverLogger;
+    public static Logger LOGGER = LoggerFactory.getLogger(MessageRegistry.class);
     private final ConcurrentHashMap<Short, MessageCommand> messageCommandMap = new ConcurrentHashMap<Short, MessageCommand>();
     private final Map<Integer, Class<? extends AbstractNetProtoBufMessage>> messages = new HashMap<Integer, Class<? extends AbstractNetProtoBufMessage>>();
     public ClassScanner classScanner = new ClassScanner();

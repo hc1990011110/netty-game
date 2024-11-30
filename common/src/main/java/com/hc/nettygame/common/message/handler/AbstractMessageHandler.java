@@ -2,10 +2,10 @@ package com.hc.nettygame.common.message.handler;
 
 
 import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
-import com.hc.nettygame.common.constant.Loggers;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public abstract class AbstractMessageHandler implements IMessageHandler {
     /**
      * 日志
      */
-    public static final Logger LOGGER = Loggers.gameLogger;
+    public static final Logger LOGGER = LoggerFactory.getLogger(AbstractMessageHandler.class);
 
 
     private Map<Integer, Method> handlerMethods;

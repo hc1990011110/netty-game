@@ -1,8 +1,8 @@
 package com.hc.nettygame.common.scanner;
 
 
-import com.hc.nettygame.common.constant.Loggers;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.net.JarURLConnection;
@@ -23,21 +23,21 @@ public final class PackageScanner {
     /**
      * Logger for this class
      */
-    public static final Logger logger = Loggers.serverLogger;
+    public static final Logger LOGGER = LoggerFactory.getLogger(PackageScanner.class);
 
     public static String[] scanNamespaceFiles(String namespace, String fileext, boolean isReturnCanonicalPath) {
         return scanNamespaceFiles(namespace, fileext, isReturnCanonicalPath, false);
     }
 
     public static String[] scanNamespaceFiles(String namespace, String fileext, boolean isReturnCanonicalPath, boolean checkSub) {
-        logger.debug("namespace,{}", namespace);
+        LOGGER.debug("namespace,{}", namespace);
         String respath = namespace.replace('.', '/');
         respath = respath.replace('.', '/');
 
         List<String> tmpNameList = new ArrayList<String>();
         try {
             URL url;
-            logger.info("scan url path " + respath);
+            LOGGER.info("scan url path " + respath);
             if (!respath.startsWith("/")) {
                 url = PackageScanner.class.getResource('/' + respath);
             } else {
@@ -109,11 +109,11 @@ public final class PackageScanner {
                         }
                     }
                 } else {
-                    logger.error("scaning stop,invalid package path:" + url.getFile());
+                    LOGGER.error("scaning stop,invalid package path:" + url.getFile());
                 }
             }
         } catch (Exception e) {
-            logger.error("scaning stop,invalid package path error" + e.toString());
+            LOGGER.error("scaning stop,invalid package path error" + e.toString());
         }
 
 

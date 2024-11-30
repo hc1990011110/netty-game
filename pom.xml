@@ -36,6 +36,8 @@
         <dubbo.version>3.2.1</dubbo.version>
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
         <nacos-client.version>2.3.2</nacos-client.version>
+        <logstash-logback.version>5.3</logstash-logback.version>
+        <spring-boot-admin.version>3.2.2</spring-boot-admin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -139,6 +141,24 @@
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
                 <version>${nacos-client.version}</version>
+            </dependency>
+            <!--集成logstash-->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback.version}</version>
+            </dependency>
+            <!--集成SpringBoot Admin监控-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <!--集成SpringBoot Admin监控客户端-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

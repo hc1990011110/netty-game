@@ -1,7 +1,6 @@
 package com.hc.nettygame.common.service.net.handler;
 
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.exception.GameHandlerException;
 import com.hc.nettygame.common.exception.NetMessageException;
 import com.hc.nettygame.common.service.lookup.NetTcpSessionLoopUpService;
@@ -14,12 +13,13 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public abstract class AbstractGameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter {
-    public static Logger logger = Loggers.handlerLogger;
+    public static final Logger LOGGER = LoggerFactory.getLogger(AbstractGameNetMessageTcpServerHandler.class);
     @Autowired
     private TcpMessageFactory tcpMessageFactory;
     @Autowired
@@ -55,8 +55,8 @@ public abstract class AbstractGameNetMessageTcpServerHandler extends ChannelInbo
             return;
         }
 
-        if (logger.isErrorEnabled()) {
-            logger.error("channel exceptionCaught", cause);
+        if (LOGGER.isErrorEnabled()) {
+            LOGGER.error("channel exceptionCaught", cause);
         }
 
         boolean exceptionCloseSessionFlag = true;
@@ -82,7 +82,7 @@ public abstract class AbstractGameNetMessageTcpServerHandler extends ChannelInbo
         long sessionId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessionId);
         if (nettySession == null) {
-            logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
+            LOGGER.error("tcp netsession null channelId is:" + channel.id().asLongText());
             return;
         }
 

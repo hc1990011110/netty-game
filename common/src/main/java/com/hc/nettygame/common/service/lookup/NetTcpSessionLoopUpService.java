@@ -1,7 +1,6 @@
 package com.hc.nettygame.common.service.lookup;
 
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.constant.ServiceName;
 import com.hc.nettygame.common.service.IService;
 import com.hc.nettygame.common.service.limit.AtomicLimitNumber;
@@ -10,6 +9,7 @@ import com.hc.nettygame.common.service.net.session.NettyTcpSession;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class NetTcpSessionLoopUpService implements IChannleLookUpService, IService {
 
-    protected static final Logger LOGGER = Loggers.serverStatusStatistics;
+    protected static final Logger LOGGER = LoggerFactory.getLogger(NetTcpSessionLoopUpService.class);
 
     @Setter
     @Getter

@@ -1,7 +1,6 @@
 package com.hc.nettygame.common.service.net.handler.async;
 
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.logic.net.NetMessageProcessLogic;
 import com.hc.nettygame.common.service.lookup.NetTcpSessionLoopUpService;
 import com.hc.nettygame.common.service.message.AbstractNetProtoBufMessage;
@@ -12,6 +11,7 @@ import com.hc.nettygame.common.service.net.session.builder.NettyTcpSessionBuilde
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class AsyncNettyGameNetMessageTcpServerHandler extends AbstractGameNetMessageTcpServerHandler {
-    public static Logger LOGGER = Loggers.sessionLogger;
+    public static Logger LOGGER = LoggerFactory.getLogger(AsyncNettyGameNetMessageTcpServerHandler.class);
 
     @Autowired
     private NetTcpSessionLoopUpService netTcpSessionLoopUpService;

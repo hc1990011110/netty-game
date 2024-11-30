@@ -31,51 +31,51 @@ services:
 #      RABBITMQ_DEFAULT_USER: game
 #      RABBITMQ_DEFAULT_PASS: game
 #      RABBITMQ_DEFAULT_VHOST: /game             # 创建/game虚拟主机
-#  elasticsearch:
-#    image: elasticsearch:7.17.3
-#    user: root
-#    environment:
-#      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
-#      - "discovery.type=single-node" #以单一节点模式启动
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx1024m" #设置使用jvm内存大小
-#    volumes:
-#      - ./mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
-#      - ./mydata/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
-#    entrypoint: >
-#      sh -c "
-#        if [ ! -d '/usr/share/elasticsearch/plugins/ik' ]; then
-#          elasticsearch-plugin install --batch https://github.com/infinilabs/analysis-ik/releases/download/v7.17.3/elasticsearch-analysis-ik-7.17.3.zip;
-#        fi;
-#        exec /usr/local/bin/docker-entrypoint.sh elasticsearch
-#      "
-#    ports:
-#      - 9202:9200
-#      - 9302:9300
-#  logstash:
-#    image: logstash:7.17.3
-#    environment:
-#      - TZ=Asia/Shanghai
-#    volumes:
-#      - ./mydata/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件
-#    depends_on:
-#      - elasticsearch #kibana在elasticsearch启动之后再启动
-#    links:
-#      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
-#    ports:
-#      - 4760:4560
-#      - 4761:4561
-#      - 4762:4562
-#      - 4763:4563
-#  kibana:
-#    image: kibana:7.17.3
-#    links:
-#      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
-#    depends_on:
-#      - elasticsearch #kibana在elasticsearch启动之后再启动
-#    environment:
-#      - "elasticsearch.hosts=http://es:9200" #设置访问elasticsearch的地址
-#    ports:
-#      - 5603:5601
+  elasticsearch:
+    image: elasticsearch:7.17.3
+    user: root
+    environment:
+      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+      - "discovery.type=single-node" #以单一节点模式启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx1024m" #设置使用jvm内存大小
+    volumes:
+      - ./mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
+      - ./mydata/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
+    entrypoint: >
+      sh -c "
+        if [ ! -d '/usr/share/elasticsearch/plugins/ik' ]; then
+          elasticsearch-plugin install --batch https://github.com/infinilabs/analysis-ik/releases/download/v7.17.3/elasticsearch-analysis-ik-7.17.3.zip;
+        fi;
+        exec /usr/local/bin/docker-entrypoint.sh elasticsearch
+      "
+    ports:
+      - 9202:9200
+      - 9302:9300
+  logstash:
+    image: logstash:7.17.3
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./mydata/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件
+    depends_on:
+      - elasticsearch #kibana在elasticsearch启动之后再启动
+    links:
+      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
+    ports:
+      - 4760:4560
+      - 4761:4561
+      - 4762:4562
+      - 4763:4563
+  kibana:
+    image: kibana:7.17.3
+    links:
+      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
+    depends_on:
+      - elasticsearch #kibana在elasticsearch启动之后再启动
+    environment:
+      - "elasticsearch.hosts=http://es:9200" #设置访问elasticsearch的地址
+    ports:
+      - 5603:5601
   nacos-registry:
     image: nacos/nacos-server:v2.1.0
     environment:

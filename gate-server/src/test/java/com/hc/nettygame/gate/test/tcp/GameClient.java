@@ -1,7 +1,6 @@
 package com.hc.nettygame.gate.test.tcp;
 
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.message.command.MessageCommandFactory;
 import com.hc.nettygame.common.service.message.decoder.NetProtoBufMessageTCPDecoder;
 import com.hc.nettygame.common.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
@@ -17,6 +16,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @Import({MessageRegistry.class, MessageCommandFactory.class, NetProtoBufMessageTCPEncoder.class, NetProtoBufTcpMessageEncoderFactory.class, NetProtoBufMessageTCPDecoder.class, NetProtoBufTcpMessageDecoderFactory.class})
 public class GameClient implements CommandLineRunner {
-    private final Logger LOGGER = Loggers.serverLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(GameClient.class);
 
     @Value("${netty.tcp-port}")
     private int serverPort;

@@ -2,8 +2,8 @@ package com.hc.nettygame.common.util;
 
 
 import com.hc.nettygame.common.constant.CommonErrorLogInfo;
-import com.hc.nettygame.common.constant.Loggers;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * 提供对{@link ExecutorService}的工具类
  */
 public final class ExecutorUtil {
-    private static final Logger logger = Loggers.utilLogger;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExecutorUtil.class);
     /**
      * 默认的{@link ExecutorService}关闭前等待其中的任务结束的时间:5分钟
      */
@@ -51,8 +51,8 @@ public final class ExecutorUtil {
         executorService.shutdown();
         try {
             boolean _terminateResult = executorService.awaitTermination(awaitTerminateTimeout, timeUnit);
-            if (logger.isInfoEnabled()) {
-                logger.info("[#GS.ExecutorUtil.safeShudown] [Shutdown " + executorService + ' '
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("[#GS.ExecutorUtil.safeShudown] [Shutdown " + executorService + ' '
                         + (_terminateResult ? "Success" : "Fail") + ']');
             }
             if (!_terminateResult) {
@@ -60,18 +60,18 @@ public final class ExecutorUtil {
                 _left = executorService.shutdownNow();
                 if (_left != null) {
                     for (Runnable _o : _left) {
-                        logger.warn("Left runnable :" + _o);
+                        LOGGER.warn("Left runnable :" + _o);
                     }
                 }
                 _terminateResult = executorService.awaitTermination(awaitTerminateTimeout, timeUnit);
-                if (logger.isInfoEnabled()) {
-                    logger.info("[#GS.ExecutorUtil.shutdownAndAwaitTermination] [ShutdwonNow " + executorService + ' '
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("[#GS.ExecutorUtil.shutdownAndAwaitTermination] [ShutdwonNow " + executorService + ' '
                             + (_terminateResult ? "Success" : "Fail") + ']');
                 }
             }
         } catch (InterruptedException e) {
-            if (logger.isErrorEnabled()) {
-                logger.error(ErrorsUtil
+            if (LOGGER.isErrorEnabled()) {
+                LOGGER.error(ErrorsUtil
                         .error(CommonErrorLogInfo.THRAD_ERR_INTERRUPTED, "#GS.ExecutorUitl.safeShudown", "param"), e);
             }
             _left = executorService.shutdownNow();

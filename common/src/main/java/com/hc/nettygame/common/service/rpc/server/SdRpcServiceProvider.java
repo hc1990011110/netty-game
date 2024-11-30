@@ -1,10 +1,10 @@
 package com.hc.nettygame.common.service.rpc.server;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.enums.BOEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -17,7 +17,7 @@ import java.util.Set;
 @Setter
 @Service
 public class SdRpcServiceProvider {
-    private static final Logger LOGGER = Loggers.rpcLogger;
+    private static final Logger LOGGER = LoggerFactory.getLogger(SdRpcServiceProvider.class);
     private Set<BOEnum> servers;
     private Set<Integer> serverIds;
 

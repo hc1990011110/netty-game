@@ -1,10 +1,10 @@
 package com.hc.nettygame.common.service.rpc.client.proxy;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.net.RpcRequest;
 import com.hc.nettygame.common.service.rpc.client.*;
 import com.hc.nettygame.common.service.rpc.client.net.RpcClient;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Scope("prototype")
 public class ObjectProxy<T> implements InvocationHandler {
-    private final Logger logger = Loggers.rpcLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(ObjectProxy.class);
     private final Class<T> clazz;
     private final int timeOut;
     @Autowired
@@ -53,15 +53,15 @@ public class ObjectProxy<T> implements InvocationHandler {
         request.setMethodName(method.getName());
         request.setParameterTypes(method.getParameterTypes());
         request.setParameters(args);
-        if (logger.isDebugEnabled()) {
+        if (LOGGER.isDebugEnabled()) {
             // Debug
-            logger.debug(method.getDeclaringClass().getName());
-            logger.debug(method.getName());
+            LOGGER.debug(method.getDeclaringClass().getName());
+            LOGGER.debug(method.getName());
             for (int i = 0; i < method.getParameterTypes().length; ++i) {
-                logger.debug(method.getParameterTypes()[i].getName());
+                LOGGER.debug(method.getParameterTypes()[i].getName());
             }
             for (Object arg : args) {
-                logger.debug(arg.toString());
+                LOGGER.debug(arg.toString());
             }
         }
 

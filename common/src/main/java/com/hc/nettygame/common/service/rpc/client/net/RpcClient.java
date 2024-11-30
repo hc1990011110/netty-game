@@ -1,6 +1,5 @@
 package com.hc.nettygame.common.service.rpc.client.net;
 
-import com.hc.nettygame.common.constant.Loggers;
 import com.hc.nettygame.common.service.net.RpcRequest;
 import com.hc.nettygame.common.service.net.RpcResponse;
 import com.hc.nettygame.common.service.rpc.client.RPCFuture;
@@ -9,6 +8,7 @@ import com.hc.nettygame.common.service.rpc.server.RpcNodeInfo;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.Getter;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutorService;
 @Component
 @Scope("prototype")
 public class RpcClient {
-    private final Logger logger = Loggers.rpcLogger;
+    private final Logger LOGGER = LoggerFactory.getLogger(RpcClient.class);
     @Getter
     private final RpcClientConnection rpcClientConnection;
     private final ApplicationContext context;
@@ -49,7 +49,7 @@ public class RpcClient {
     }
 
     public void close() {
-        logger.info("rpc client close");
+        LOGGER.info("rpc client close");
         if (rpcClientConnection != null) {
             rpcClientConnection.close();
         }
@@ -64,7 +64,7 @@ public class RpcClient {
                 rpcFuture.done(rpcResponse);
             } else {
                 //表示服务器已经处理过了,可能已经超时了
-                logger.error("rpcFuture is remove " + requestId);
+                LOGGER.error("rpcFuture is remove " + requestId);
             }
         }
     }
