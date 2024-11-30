@@ -23,7 +23,7 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
     private final AtomicLong id = new AtomicLong();
     @Autowired
     private RpcProxyService rpcProxyService;
-    @DubboReference // 远程引用 Dubbo 服务
+    @DubboReference(group = "world") // 远程引用 Dubbo 服务
     private HelloService helloService;
 
     @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)

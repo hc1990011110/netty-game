@@ -8,7 +8,6 @@ dubbo:
     name: node-server-dubbo
   registry:
     address: nacos://localhost:8850
-#    port: 10081
   provider:
     timeout: 3000
   consumer:

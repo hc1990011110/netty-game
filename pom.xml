@@ -35,6 +35,7 @@
         <objenesis.version>2.1</objenesis.version>
         <dubbo.version>3.2.1</dubbo.version>
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
+        <nacos-client.version>2.3.2</nacos-client.version>
     </properties>
     <dependencies>
         <dependency>
@@ -133,6 +134,11 @@
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
