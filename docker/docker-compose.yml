@@ -76,12 +76,12 @@ services:
 #      - "elasticsearch.hosts=http://es:9200" #设置访问elasticsearch的地址
 #    ports:
 #      - 5603:5601
-#  nacos-registry:
-#    image: nacos/nacos-server:v2.1.0
-#    environment:
-#      - "MODE=standalone"
-#    ports:
-#      - 8850:8848
-#      - 9850:9848
+  nacos-registry:
+    image: nacos/nacos-server:v2.1.0
+    environment:
+      - "MODE=standalone"
+    ports:
+      - 8850:8848
+      - 9850:9848
 
 

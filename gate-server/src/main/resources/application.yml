@@ -1,3 +1,5 @@
+server:
+  port: 10200
 netty:
   tcp-port: 10080
   serverId: gate-server

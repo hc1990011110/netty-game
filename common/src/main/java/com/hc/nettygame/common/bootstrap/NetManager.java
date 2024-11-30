@@ -42,15 +42,15 @@ public class NetManager {
     public void initNetService() throws Exception {
         tcpService = context.getBean(GameNettyTcpServerService.class, serverId, tcpPort, gameTcpServerChannelInitializer);
         if (!tcpService.startService()) {
-            throw new StartUpException(serverId + " startup error");
+            throw new StartUpException(serverId + " tcpService startup error");
         }
-        LOGGER.info("{} GameNettyTcpServerService start success", serverId);
+        LOGGER.info("{} tcpService start success on port: {}", serverId, tcpPort);
         if (rpcOpen) {
             rpcService = context.getBean(GameNettyRpcService.class, serverId, rpcPort, gameNetRpcChannelInitializer);
             if (!rpcService.startService()) {
-                throw new StartUpException(serverId + " startup error");
+                throw new StartUpException(serverId + " rpcService startup error");
             }
-            LOGGER.info("{} GameNettyRpcService start success", serverId);
+            LOGGER.info("{} rpcService start success on port: {}", serverId, rpcPort);
         }
     }
 
