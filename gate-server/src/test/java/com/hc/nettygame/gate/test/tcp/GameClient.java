@@ -21,10 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
-@SpringBootApplication
+@SpringBootTest
 @Import({MessageRegistry.class, MessageCommandFactory.class, NetProtoBufMessageTCPEncoder.class, NetProtoBufTcpMessageEncoderFactory.class, NetProtoBufMessageTCPDecoder.class, NetProtoBufTcpMessageDecoderFactory.class})
 public class GameClient implements CommandLineRunner {
     private final Logger LOGGER = Loggers.serverLogger;

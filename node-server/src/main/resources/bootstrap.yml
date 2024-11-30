@@ -3,3 +3,16 @@ spring:
     active: dev
   application:
     name: node-server
+dubbo:
+  application:
+    name: node-server-dubbo
+  registry:
+    address: nacos://localhost:8850
+#    port: 10081
+  provider:
+    timeout: 3000
+  consumer:
+    timeout: 3000
+    check: false # 忽略启动时服务检查
+  protocol:
+    port: 20881

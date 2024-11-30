@@ -1,8 +1,0 @@
-spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: http://localhost:8850
-      config:
-        server-addr: http://localhost:8850
-        file-extension: yaml

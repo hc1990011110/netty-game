@@ -3,3 +3,16 @@ spring:
     active: dev
   application:
     name: gate-server
+dubbo:
+  application:
+    name: gate-server-dubbo
+  registry:
+    address: nacos://localhost:8850
+#    port: 10080
+  provider:
+    timeout: 3000
+  consumer:
+    timeout: 3000
+    check: false # 忽略启动时服务检查
+  protocol:
+    port: 20880

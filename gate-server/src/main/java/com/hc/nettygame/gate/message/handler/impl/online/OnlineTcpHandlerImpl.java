@@ -2,16 +2,14 @@ package com.hc.nettygame.gate.message.handler.impl.online;
 
 import com.hc.nettygame.common.annotation.MessageCommandAnnotation;
 import com.hc.nettygame.common.constant.Loggers;
-import com.hc.nettygame.common.enums.BOEnum;
 import com.hc.nettygame.common.message.handler.AbstractMessageHandler;
 import com.hc.nettygame.common.message.logic.tcp.client.OnlineLoginClientTcpMessage;
 import com.hc.nettygame.common.message.logic.tcp.server.OnlineLoginServerTcpMessage;
 import com.hc.nettygame.common.service.message.AbstractNetMessage;
 import com.hc.nettygame.common.service.message.command.MessageCommandIndex;
-import com.hc.nettygame.common.service.rpc.client.RpcContextHolder;
-import com.hc.nettygame.common.service.rpc.client.RpcContextHolderObject;
 import com.hc.nettygame.common.service.rpc.client.RpcProxyService;
 import com.hc.nettygame.common.service.rpc.service.client.HelloService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +23,8 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
     private final AtomicLong id = new AtomicLong();
     @Autowired
     private RpcProxyService rpcProxyService;
+    @DubboReference // 远程引用 Dubbo 服务
+    private HelloService helloService;
 
     @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
     public AbstractNetMessage handleOnlineLoginClientTcpMessage(OnlineLoginClientTcpMessage message) throws Exception {
@@ -37,10 +37,10 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
         Loggers.sessionLogger.info("id:{} playerId:{}, token:{} login", message.getId(), playerId, token);
 //        }
 //        NettyTcpSession clientSesion = (NettyTcpSession) message.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
-        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.NODE, 8000);
-        RpcContextHolder.setContextHolder(rpcContextHolderObject);
-        HelloService helloService = rpcProxyService.createProxy(HelloService.class);
-//        HelloService helloService = rpcProxyService.createRemoteProxy(HelloService.class);
+//        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.NODE, 8000);
+//        RpcContextHolder.setContextHolder(rpcContextHolderObject);
+//        HelloService helloService = rpcProxyService.createProxy(HelloService.class);
+////        HelloService helloService = rpcProxyService.createRemoteProxy(HelloService.class);
         String result = helloService.hello("mother fucker");
         LOGGER.info("FUCK: {}", result);
         return onlineLoginServerTcpMessage;

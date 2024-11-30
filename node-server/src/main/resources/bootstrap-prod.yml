@@ -1,8 +1,0 @@
-spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: http://nacos-registry:8850
-      config:
-        server-addr: http://nacos-registry:8850
-        file-extension: yaml

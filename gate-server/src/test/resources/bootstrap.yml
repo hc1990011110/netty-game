@@ -3,3 +3,13 @@ spring:
     active: test
   application:
     name: game-client
+dubbo:
+  application:
+    name: game-client-dubbo
+  registry:
+    address: nacos://localhost:8850
+  provider:
+    timeout: 3000
+  consumer:
+    timeout: 3000
+    check: false # 忽略启动时服务检查
